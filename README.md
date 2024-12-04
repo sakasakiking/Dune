@@ -1,6 +1,6 @@
-![DownloadCount](https://img.shields.io/github/downloads/sakasakiking/FusionX/total.svg)
+![DownloadCount](https://img.shields.io/github/downloads/sakasakiking/Dune/total.svg)
 
-# FusionX
+# Dune
 Simple, clean and consistent designed Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. To achieve the best User Experience and Usability.
 
 ## Preparation and Settings
