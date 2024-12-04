@@ -1,0 +1,125 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="PropertyItemButton" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="Margin" Value="0,4,0,0" />
+        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock FontSize="{TemplateBinding FontSize}"
+                           Foreground="{TemplateBinding Foreground}"
+                           Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}"
+                           TextWrapping="Wrap"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource AccentHoverBrush}" />
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PropertyItemSmallButton" TargetType="Button">
+        <Setter Property="Margin" Value="0,4,0,0" />
+        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock FontSize="{TemplateBinding FontSize}"
+                           Foreground="{TemplateBinding Foreground}" 
+                           Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}"
+                           TextWrapping="Wrap"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource AccentIdleBrush}" />
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PropertyItemLinkButton" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="Margin" Value="0,4,0,0" />
+        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="{DynamicResource ControlCornerRadius}" Background="{TemplateBinding Background}" Margin="6,0,6,8">
+                        <DockPanel HorizontalAlignment="Center">
+                            <Viewbox DockPanel.Dock="Left" Width="20" Height="20" x:Name="ViewBoxLink"
+                                 VerticalAlignment="Center" Margin="8,8,8,8"
+                                 Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}"
+                                 RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="Fant">
+                                <ContentControl Content="{Binding Value, TargetNullValue={StaticResource LinksIcon}}"
+                                                DataContext="{Binding Url, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
+                            </Viewbox>
+
+                            <TextBlock FontSize="{TemplateBinding FontSize}" Name="LinkName" Margin="8,8,8,8"
+                                       Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center"
+                                       Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}"
+                                       TextWrapping="Wrap"/>
+                        </DockPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=ViewBoxLink, Path=Visibility}" Value="Visible">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="LinkName"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PropertyItemTagButton" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeSmall}" />
+        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Padding="4,2,4,2" CornerRadius="4" BorderThickness="1"  Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <TextBlock FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" 
+                                   Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}" TextWrapping="Wrap"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource AccentIdleBrush}"/>
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

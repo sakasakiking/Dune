@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
+
+    <Style x:Key="NotificationMessage" TargetType="Button">
+        <Setter Property="Command" Value="{Binding ActivateCommand}" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="HoverBg" d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}" 
+                            CornerRadius="{DynamicResource ControlCornerRadius}">
+                        <DockPanel Cursor="Hand">
+                            <Separator x:Name="Divider" DockPanel.Dock="Top" Margin="0"/>
+                            <Button Name="CloseButton" DockPanel.Dock="Right" Background="Transparent"
+                                    Content="&#xe107;" Style="{DynamicResource IconfontButton}" Margin="0,16,0,16"
+                                    VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
+                            <TextBlock Text="{Binding Text}"
+                                       Style="{DynamicResource BaseTextBlockStyle}"
+                                       Margin="0,16,16,16" TextWrapping="Wrap"
+                                       MinHeight="40" DockPanel.Dock="Left" />
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary> 
