@@ -9,10 +9,9 @@ Hi guys, Dune is a light style, super clean and simple (This's what I want it to
 ## Preparation and Settings
 It's using ``Segoe Fluent Icons`` for the theme, you might need to download the [Segoe Fluent Icons](https://learn.microsoft.com/zh-cn/windows/apps/design/downloads/#fonts)
 ## Screenshots
-![Screenshot](https://github.com/sakasakiking/FusionX/blob/f86401d72a76cefc2703c17d79cd102d809bb7d4/Screenshots/Screenshots01.jpg)
-![Screenshot](https://github.com/sakasakiking/FusionX/blob/f86401d72a76cefc2703c17d79cd102d809bb7d4/Screenshots/Screenshots02.jpg)
-![Screenshot](https://github.com/sakasakiking/FusionX/blob/f86401d72a76cefc2703c17d79cd102d809bb7d4/Screenshots/Screenshots03.jpg)
-![Screenshot](https://github.com/sakasakiking/FusionX/blob/f86401d72a76cefc2703c17d79cd102d809bb7d4/Screenshots/Screenshots04.jpg)
+![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots01.jpg)
+![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots02.jpg)
+![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots03.jpg)
 
 ## Recommended Playnite settings to avoid issues and reach the visual effect shown in the screenshots
 Making the new roles...
