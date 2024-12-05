@@ -19,7 +19,7 @@ Making the new roles...
 - For general support, please contact me in the channel dedicated to themes support in the [Playnite Discord](https://discord.com/channels/365863063296933888/808419347105447957)
 
 ## Installation
-- **A**: Download the latest packaged `pthm` theme file from the [Releases page](https://github.com/sakasakiking/FusionX/releases/tag/Latest) and open it.
+- **A**: Download the latest packaged `pthm` theme file from the [Releases page](https://github.com/sakasakiking/Dune/releases/tag/Latest) and open it.
 - **B**: Click the `Download` button on the [Playnite addon page](https://playnite.link/addons.html#Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884) to start the install process.
 - **C**: Download from the Addons browser in Playnite.
 
