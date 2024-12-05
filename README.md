@@ -1,7 +1,7 @@
 ![DownloadCount](https://img.shields.io/github/downloads/sakasakiking/Dune/total.svg)
 
 # Dune
-Simple, clean and consistent designed Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. To achieve the best User Experience and Usability.
+Hi guys, Dune is a light style, super clean Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. If you're tired of the dark themes, it might let you have a different option.
 
 ## Preparation and Settings
 It's using ``Segoe Fluent Icons`` for the theme, you might need to download the [Segoe Fluent Icons](https://learn.microsoft.com/zh-cn/windows/apps/design/downloads/#fonts)
@@ -12,7 +12,7 @@ It's using ``Segoe Fluent Icons`` for the theme, you might need to download the 
 ![Screenshot](https://github.com/sakasakiking/FusionX/blob/f86401d72a76cefc2703c17d79cd102d809bb7d4/Screenshots/Screenshots04.jpg)
 
 ## Recommended Playnite settings to avoid issues and reach the visual effect shown in the screenshots
-Please follow [This guide](https://github.com/sakasakiking/FusionX/wiki/Recommended-settings-for-achieving-the-look-of-screenshots)
+Making the new roles...
 
 ## Support
 - If you found a bug or want to request a feature, please open a new issue in the [Issues Tracker](https://github.com/sakasakiking/FusionX/issues)
@@ -20,14 +20,11 @@ Please follow [This guide](https://github.com/sakasakiking/FusionX/wiki/Recommen
 
 ## Installation
 - **A**: Download the latest packaged `pthm` theme file from the [Releases page](https://github.com/sakasakiking/FusionX/releases/tag/Latest) and open it.
-- **B**: Click the `Download` button on the [Playnite addon page](https://playnite.link/addons.html#FusionX_54244ec8-29ec-418e-bce7-415250c8d67b) to start the install process.
+- **B**: Click the `Download` button on the [Playnite addon page](https://playnite.link/addons.html#Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884) to start the install process.
 - **C**: Download from the Addons browser in Playnite.
 
 ## Extensions Support
-
-**Extra Metadata Loader** is a very good and important component in the **FusionX** to achieve better effect.
-
-At the beginning, just support:
+Fow now, it support
 - **Achievements:** [SuccessStory](https://playnite.link/addons.html#playnite-successstory-plugin) extension.
 - **HowLongToBeat data:** [HowLongToBeat](https://playnite.link/addons.html#playnite-howlongtobeat-plugin) extension.
 - **Logos:** [Extra Metadata Loader](https://playnite.link/addons.html#ExtraMetadataLoader_705fdbca-e1fc-4004-b839-1d040b8b4429) extension.
