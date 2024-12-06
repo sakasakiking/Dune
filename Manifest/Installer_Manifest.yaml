@@ -3,7 +3,7 @@ Packages:
   - Version: 0.8
     RequiredApiVersion: 2.6.0
     ReleaseDate: 2024-12-04
-    PackageUrl: https://github.com/sakasakiking/Dune/releases/download/v0.8/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_8.pthm
+    PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_8.pthm
     Changelog: 
       - Initial release.
 
