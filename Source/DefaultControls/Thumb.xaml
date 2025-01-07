@@ -9,7 +9,7 @@
     <Style TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="Auto" />
         <Setter Property="Height" Value="Auto" />
-        <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
@@ -22,10 +22,10 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True" />
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="HoverRectangle" />
+                            <Setter Property="Fill" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" TargetName="HoverRectangle" />
                         </Trigger>
                         <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Track}}" Value="True">
-                            <Setter Property="Fill" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="HoverRectangle" />
+                            <Setter Property="Fill" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" TargetName="HoverRectangle" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -2,6 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
+    <!--ThemeModifier Options-->
+    <sys:Double x:Key="DetailsViewGameOverviewMaxWidth">1024</sys:Double>
+
+    <sys:Boolean x:Key="GridViewImageCoverUseRoundedCorners">True</sys:Boolean>
+    <sys:Boolean x:Key="GridViewImageCoverShowPlatformBanner">True</sys:Boolean>
+    <sys:Boolean x:Key="GridViewListShowFavorite">True</sys:Boolean>
+
+    <SolidColorBrush x:Key="GridViewItemMaskBackgroundBrush" Color="#1e1e1e" />
+    <CornerRadius x:Key="GridViewCoverCornerRadius">6</CornerRadius>
+    <CornerRadius x:Key="GridViewCoverGridBackgroundDisabledCornerRadius">8,8,8,8</CornerRadius>
+    <CornerRadius x:Key="GridViewSelectionBorderCornerRadius">8</CornerRadius>
+    <!--ThemeModifier Options Ends-->
+
     <sys:Double x:Key="FontSizeSmaller">10</sys:Double>
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
     <sys:Double x:Key="FontSize">14</sys:Double>
@@ -40,7 +53,7 @@
     <Color x:Key="AccentIdleColor">#FF0379FF</Color>
     <Color x:Key="AccentSelectedColor">#FF04A5FF</Color>
 
-    <Color x:Key="PopupBackgroundColor">#F1F1F1</Color>
+    <Color x:Key="PopupBackgroundColor">#FFFFFF</Color>
     <Color x:Key="PopupBorderColor">#CCCCCC</Color>
     
     <Color x:Key="BackgroundToneColor">#FFCC00</Color>
@@ -51,7 +64,7 @@
     <Color x:Key="WindowPanelSeparatorColor">#14ffffff</Color>
     <Color x:Key="DataChangeNotifColor">#ffa500</Color>
 
-    <!--FusionX Newly Added Color-->
+    <!--Dune Newly Added Color-->
     <Color x:Key="8%White">#14FFFFFF</Color>
     <Color x:Key="16%White">#29FFFFFF</Color>
     <Color x:Key="24%White">#3DFFFFFF</Color>
@@ -59,7 +72,7 @@
     <Color x:Key="40%White">#66FFFFFF</Color>
     <Color x:Key="Brown">#795548</Color>
     <Color x:Key="BrownDark">#280B0A</Color>
-    <!--FusionX Newly Added Color Ends-->
+    <!--Dune Newly Added Color Ends-->
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#66000000" />
 
@@ -78,6 +91,10 @@
     <!--PopupStyle-->
     <SolidColorBrush x:Key="PopupIdleBackgroundBrush" Color="#E3E3E3" />
     <SolidColorBrush x:Key="PopupHoverBackgroundBrush" Color="#CCCCCC" />
+
+    <SolidColorBrush x:Key="PopupSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
+    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{DynamicResource PopupBackgroundColor}" />
+    <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
     <!--PopupStyle Ends-->
 
     <SolidColorBrush x:Key="ControlFilledHoverBackgroundBrush" Color="{DynamicResource 24%White}" />
@@ -127,9 +144,7 @@
     
     <SolidColorBrush x:Key="PanelSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
 
-    <SolidColorBrush x:Key="PopupSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
-    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{DynamicResource PopupBackgroundColor}" />
-    <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
+    
 
     <SolidColorBrush x:Key="CardSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />

@@ -59,7 +59,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="{DynamicResource ControlCornerRadius}" Background="{TemplateBinding Background}" Margin="6,0,6,8">
+                    <Border CornerRadius="{DynamicResource ControlCornerRadius}" Background="{TemplateBinding Background}" Margin="5,0,5,8">
                         <DockPanel HorizontalAlignment="Center">
                             <Viewbox DockPanel.Dock="Left" Width="20" Height="20" x:Name="ViewBoxLink"
                                  VerticalAlignment="Center" Margin="8,8,8,8"

@@ -32,7 +32,7 @@
                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">64</sys:Double>
                         </Track.Resources>
                         <Track.Thumb>
-                            <Thumb x:Name="PART_Thumb" Width="4" Margin="0,8,0,8" HorizontalAlignment="Right"/>
+                            <Thumb x:Name="PART_Thumb" Width="4" Margin="0,0,0,0" HorizontalAlignment="Right"/>
                         </Track.Thumb>
                         <Track.DecreaseRepeatButton>
                             <RepeatButton x:Name="UpButton" Style="{DynamicResource ScrollBarTrackButton}"
@@ -76,7 +76,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" Grid.ColumnSpan="2" Grid.Row="0"
+                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                 Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"
                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                                 CanContentScroll="{TemplateBinding CanContentScroll}" />

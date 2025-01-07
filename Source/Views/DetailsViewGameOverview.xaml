@@ -22,8 +22,8 @@
                                       d:DesignHeight="1280"
                                       d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}"
                                       x:Name="PART_ScrollViewHost">
-                                
-                                <Grid MaxWidth="1080" MinWidth="300" Margin="24,0,24,0">
+
+                                <Grid MaxWidth="{DynamicResource DetailsViewGameOverviewMaxWidth}" MinWidth="300" Margin="24,0,24,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="300"/>
@@ -234,7 +234,7 @@
                                                     <ItemsControl Name="PART_ItemsSeries" />
                                                     
                                                     <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}" />
-                                                    <ItemsControl Name="PART_ItemsGenres"  />
+                                                    <ItemsControl Name="PART_ItemsGenres" />
 
                                                     <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
                                                     <ItemsControl Name="PART_ItemsTags" />
@@ -253,7 +253,6 @@
 
                                                     <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
                                                     <Button Name="PART_ButtonVersion" Margin="0,12,0,0"/>
-
 
                                                     <Label Name="PART_ElemAdded" Content="{DynamicResource LOCDateAddedLabel}" />
                                                     <TextBlock Name="PART_TextAdded"  Margin="0,12,0,0" />
@@ -385,7 +384,7 @@
                                     <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,40,0">
 
                                         <!--Hero-->
-                                        <Border Margin="0,0,0,60" Height="420" Grid.Column="0" Background="{DynamicResource ControlIdleBackgroundBrush}">
+                                        <Border Margin="0,0,0,60" Height="500" Grid.Column="0" Background="{DynamicResource ControlIdleBackgroundBrush}">
                                             <Border.OpacityMask>
                                                 <VisualBrush>
                                                     <VisualBrush.Visual>
@@ -397,7 +396,7 @@
                                             </Border.OpacityMask>
 
                                             <Grid>
-                                                <FadeImage x:Name="PART_ImageBackground" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                                                <FadeImage x:Name="PART_ImageBackground" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                                                 <!--Video Part-->
                                                 <Border>
@@ -540,10 +539,16 @@
                                         <StackPanel Margin="0,0,0,40">
                                             <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
                                                     Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
-                                                <StackPanel Orientation="Horizontal" Margin="16,12,16,14">
-                                                    <StackPanel.Resources>
+                                                <Grid Margin="16,12,16,14">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.Resources>
                                                         <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                                                            <Setter Property="Margin" Value="0,2,0,2" />
+                                                            <Setter Property="Margin" Value="0,4,0,2" />
                                                             <Setter Property="VerticalAlignment" Value="Top" />
                                                             <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
                                                             <Setter Property="FontSize" Value="{DynamicResource FontSizeSmall}"/>
@@ -551,33 +556,34 @@
                                                         <Style TargetType="Image">
                                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                                             <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant"/>
-                                                            <Setter Property="Height" Value="36"/>
-                                                            <Setter Property="Margin" Value="0,0,4,0"/>
+                                                            <Setter Property="Height" Value="40"/>
+                                                            <Setter Property="Margin" Value="0,0,10,0"/>
                                                         </Style>
                                                         <Style TargetType="TextBlock">
                                                             <Setter Property="FontWeight" Value="Bold"/>
                                                         </Style>
-                                                    </StackPanel.Resources>
-                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemLastPlayed, Mode=OneWay}" Margin="0,0,16,0">
+                                                    </Grid.Resources>
+                                                    
+                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemLastPlayed, Mode=OneWay}" Grid.Column="0">
                                                         <Image Source="{ThemeFile 'Images/3DIcons/calendar.png'}"  DockPanel.Dock="Left"/>
                                                         <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" DockPanel.Dock="Top"/>
                                                         <TextBlock Name="PART_TextLastActivity" DockPanel.Dock="Top"/>
                                                     </DockPanel>
 
-                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemPlayTime, Mode=OneWay}" Margin="0,0,16,0">
+                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemPlayTime, Mode=OneWay}" Grid.Column="1">
                                                         <Image Source="{ThemeFile 'Images/3DIcons/clock.png'}"  DockPanel.Dock="Left"/>
                                                         <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" DockPanel.Dock="Top"/>
                                                         <TextBlock Name="PART_TextPlayTime" DockPanel.Dock="Top"/>
                                                     </DockPanel>
 
-                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemCompletionStatus, Mode=OneWay}" Margin="0,0,16,0">
+                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemCompletionStatus, Mode=OneWay}" Grid.Column="2">
                                                         <Image Source="{ThemeFile 'Images/3DIcons/check.png'}"  DockPanel.Dock="Left"/>
                                                         <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" DockPanel.Dock="Top"/>
                                                         <Button Name="PART_ButtonCompletionStatus" DockPanel.Dock="Top" FontWeight="Bold" Margin="0,1,0,0"
                                                                 Style="{DynamicResource PropertyItemSmallButton}" FontSize="14"/>
                                                     </DockPanel>
 
-                                                    <DockPanel Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,16,0" >
+                                                    <DockPanel Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="3" >
                                                         <Image Source="{ThemeFile 'Images/3DIcons/trophy.png'}"  DockPanel.Dock="Left"/>
                                                         <StackPanel Name="PART_SuccessStory" DockPanel.Dock="Top">
                                                             
@@ -620,7 +626,7 @@
                                                         </StackPanel>
                                                     </DockPanel>
 
-                                                </StackPanel>
+                                                </Grid>
                                                 
                                             </Border>
                                         </StackPanel>
@@ -736,7 +742,7 @@
                                                         <ContentControl x:Name="SuccessStory_PluginCompactUnlocked" Margin="0,0,0,24" />
                                                         <ContentControl x:Name="SuccessStory_PluginCompactLocked" Margin="0,0,0,24" />
                                                         <ContentControl x:Name="SuccessStory_PluginUserStats" Margin="0,0,0,24" />
-                                                        <ContentControl x:Name="SuccessStory_PluginList" Margin="0,0,0,24" MinHeight="300"  />
+                                                        <ContentControl x:Name="SuccessStory_PluginList" Margin="0,0,0,24" MinHeight="300" />
                                                         <ContentControl x:Name="SuccessStory_PluginChart" Margin="0,0,0,24" />
                                                     </StackPanel>
                                                 </TabItem>
