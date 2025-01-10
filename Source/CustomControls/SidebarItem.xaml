@@ -17,12 +17,12 @@
                                      BorderThickness="0" Background="Transparent"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <Border Background="{TemplateBinding Background}" HorizontalAlignment="Center"
-                                Width="32" Height="32"
-                                Padding="8" CornerRadius="18"
+                                MinWidth="36" Height="36" Padding="4" 
+                                CornerRadius="{DynamicResource ControlCornerRadius}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}">
                             <Viewbox>
-                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3"/>
                             </Viewbox>
                         </Border>
                     </Grid>
@@ -32,10 +32,10 @@
         <Style.Triggers>
             <DataTrigger Binding="{Binding Selected}" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
-                <Setter Property="Background" Value="{DynamicResource ControlSelectedBackgroundBrush}"/>
+                <Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}"/>
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource ControlFilledHoverBackgroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource HoverBrush}"/>
             </Trigger>
             <MultiTrigger>

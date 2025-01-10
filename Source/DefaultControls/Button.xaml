@@ -38,7 +38,7 @@
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
-                <Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" />
+                <!--<Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" />-->
             </Trigger>
         </Style.Triggers>
     </Style>                  
