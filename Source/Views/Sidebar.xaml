@@ -12,7 +12,7 @@
                             x:Name="BorderContentHolder" Margin="{TemplateBinding Padding}">
                         <DockPanel x:Name="DockContentHolder">
                             <Border x:Name="PART_ElemMainMenu" Background="Transparent"
-                                    Width="60" Height="60"
+                                    Width="60" Height="60" Margin="0,0,0,8"
                                     DockPanel.Dock="Top" Padding="10" Cursor="Hand"
                                     WindowChrome.IsHitTestVisibleInChrome="True">
                                 <Image Source="{ThemeFile 'Images/applogo.png'}"

@@ -6,4 +6,10 @@ Packages:
     PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_8.pthm
     Changelog: 
       - Initial release.
+  - Version: 0.82
+    RequiredApiVersion: 2.6.0
+    ReleaseDate: 2025-01-10
+    PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_82.pthm
+    Changelog: 
+      - Initial release.
 

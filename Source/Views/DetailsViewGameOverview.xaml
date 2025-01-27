@@ -236,8 +236,8 @@
                                                     <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}" />
                                                     <ItemsControl Name="PART_ItemsGenres" />
 
-                                                    <Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
-                                                    <ItemsControl Name="PART_ItemsTags" />
+                                                    <!--<Label Name="PART_ElemTags" Content="{DynamicResource LOCTagsLabel}" />
+                                                    <ItemsControl Name="PART_ItemsTags" />-->
 
                                                     <Label Name="PART_ElemDevelopers" Content="{DynamicResource LOCDeveloperLabel}" />
                                                     <ItemsControl Name="PART_ItemsDevelopers" />
@@ -285,6 +285,87 @@
 
                                         </StackPanel>
                                         <!--Details Panel Ends-->
+
+                                        <!--Features-->
+                                        <StackPanel Name="PART_ElemFeatures" Margin="0,0,0,32">
+                                            <Label Content="{DynamicResource LOCFeaturesLabel}" FontWeight="Bold" FontSize="{DynamicResource FontSize}"/>
+                                            <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                                    Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
+                                                <StackPanel Margin="16,8,16,16">
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Settings DetailsVisibility.Features}" Value="False">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Game.Features}" Value="{x:Null}">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+
+                                                    <ItemsControl ItemsSource="{Binding Game.Features}" Margin="0,8,0,0">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Button Content="{Binding Name}" Margin="0,2,4,2"
+                                                                        Style="{DynamicResource PropertyItemTagButton}"
+                                                                        Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SetFeatureFilterCommand}" CommandParameter="{Binding}"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                        
+                                        <!--Features Ends-->
+
+                                        <!--Tags-->
+                                        <StackPanel Name="PART_ElemTags" Margin="0,0,0,32">
+                                            <Label Margin="0,2,0,0" Content="{DynamicResource LOCTagsLabel}" FontWeight="Bold"
+                                                   FontSize="{DynamicResource FontSize}"/>
+                                            <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                                    Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
+                                                <StackPanel Margin="16,8,16,16">
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Settings DetailsVisibility.Tags}" Value="False">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Game.Tags}" Value="{x:Null}">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+
+                                                    <ItemsControl ItemsSource="{Binding Game.Tags}" Margin="0,8,0,0">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Button Content="{Binding Name}" Margin="0,2,4,2"
+                    Style="{DynamicResource PropertyItemTagButton}"
+                    Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SetFeatureFilterCommand}" CommandParameter="{Binding}"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                        <!--Tags Ends-->
 
                                         <!--Ratings-->
                                         <StackPanel Margin="0,0,0,32">

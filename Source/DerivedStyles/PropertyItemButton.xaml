@@ -103,7 +103,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Padding="4,2,4,2" CornerRadius="4" BorderThickness="1"  Background="{TemplateBinding Background}"
+                    <Border Padding="8,4,8,4" CornerRadius="4" BorderThickness="1"  Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <TextBlock FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" 
                                    Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}" TextWrapping="Wrap"/>

@@ -7,26 +7,21 @@
         <Setter Property="Padding" Value="8,0,8,0" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Focusable" Value="False" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TopPanelItem}">
-                    <Grid>
+                    <Grid Height="{TemplateBinding Height}" MinWidth="{TemplateBinding Height}">
                         <Border x:Name="HoverBg" Background="{DynamicResource ControlIdleBackgroundBrush}" 
                                 Opacity="0" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Border x:Name="SelectedBg" Background="{DynamicResource ControlSelectedBackgroundBrush}"
                                 Visibility="Collapsed" CornerRadius="{DynamicResource ControlCornerRadius}"/>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True">
-                            <ContentPresenter.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="Red"/>
-                                </Style>
-                            </ContentPresenter.Resources>
-                        </ContentPresenter>
+                        <Viewbox Width="20" Height="20"
+                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <ContentPresenter RecognizesAccessKey="True"/>
+                        </Viewbox>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -98,6 +93,7 @@
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="2"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.6" />
