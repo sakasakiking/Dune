@@ -113,7 +113,7 @@
                                         <StackPanel Margin="0,0,0,32" Visibility="{PluginSettings Plugin=HowLongToBeat, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                 <TextBlock Text="{DynamicResource LOCHowLongToBeat}" Style="{DynamicResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="14"/>
 
-                                                <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                                <Border CornerRadius="{DynamicResource ControlCornerRadiusLarge}" 
                                                         Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
 
                                                     <StackPanel Margin="0,0,0,0">
@@ -225,7 +225,7 @@
                                             <TextBlock Text="{DynamicResource LOCGameDetails}" Margin="0,0,0,0"
                                                        Style="{DynamicResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="14"/>
 
-                                            <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                            <Border CornerRadius="{DynamicResource ControlCornerRadiusLarge}" 
                                                     Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
                                                 <GridEx x:Name="GDGrid" Margin="16,4,16,16" ColumnCount="2" StarColumns="1" 
                                                         RowCount="25" AutoLayoutColumns="2">
@@ -289,7 +289,7 @@
                                         <!--Features-->
                                         <StackPanel Name="PART_ElemFeatures" Margin="0,0,0,32">
                                             <Label Content="{DynamicResource LOCFeaturesLabel}" FontWeight="Bold" FontSize="{DynamicResource FontSize}"/>
-                                            <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
+                                            <Border CornerRadius="{DynamicResource ControlCornerRadiusLarge}" 
                                                     Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
                                                 <StackPanel Margin="16,8,16,16">
                                                     <StackPanel.Style>
@@ -618,80 +618,92 @@
                                         <!--Hero Ends-->
 
                                         <StackPanel Margin="0,0,0,40">
-                                            <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
-                                                    Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
-                                                <Grid Margin="16,12,16,14">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.Resources>
-                                                        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                                                            <Setter Property="Margin" Value="0,4,0,2" />
-                                                            <Setter Property="VerticalAlignment" Value="Top" />
-                                                            <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
-                                                            <Setter Property="FontSize" Value="{DynamicResource FontSizeSmall}"/>
-                                                        </Style>
-                                                        <Style TargetType="Image">
-                                                            <Setter Property="VerticalAlignment" Value="Center"/>
-                                                            <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant"/>
-                                                            <Setter Property="Height" Value="40"/>
-                                                            <Setter Property="Margin" Value="0,0,10,0"/>
-                                                        </Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="FontWeight" Value="Bold"/>
-                                                        </Style>
-                                                    </Grid.Resources>
-                                                    
-                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemLastPlayed, Mode=OneWay}" Grid.Column="0">
-                                                        <Image Source="{ThemeFile 'Images/3DIcons/calendar.png'}"  DockPanel.Dock="Left"/>
-                                                        <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" DockPanel.Dock="Top"/>
-                                                        <TextBlock Name="PART_TextLastActivity" DockPanel.Dock="Top"/>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.Resources>
+                                                    <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                                                        <Setter Property="Margin" Value="0,0,0,0" />
+                                                        <Setter Property="VerticalAlignment" Value="Top" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+                                                        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+                                                    </Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
+                                                        <Setter Property="Height" Value="40" />
+                                                        <Setter Property="Margin" Value="0,0,10,0" />
+                                                    </Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="FontWeight" Value="Medium" />
+                                                        <Setter Property="Margin" Value="0,12,0,4" />
+                                                        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge18}" />
+                                                    </Style>
+                                                </Grid.Resources>
+                                                <!--Last Played-->
+                                                <Border Grid.Column="0" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" 
+                                                        Style="{DynamicResource DetailViewCardBorder}" Margin="0,0,16,0">
+                                                    <DockPanel Margin="24" Visibility="{Binding Visibility, ElementName=PART_ElemLastPlayed, Mode=OneWay}">
+                                                        <Image Source="{ThemeFile 'Images/3DIcons/calendar.png'}" DockPanel.Dock="top" HorizontalAlignment="Left" />
+                                                        <TextBlock Name="PART_TextLastActivity" DockPanel.Dock="Top" />
+                                                        <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" DockPanel.Dock="Top" />
                                                     </DockPanel>
-
-                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemPlayTime, Mode=OneWay}" Grid.Column="1">
-                                                        <Image Source="{ThemeFile 'Images/3DIcons/clock.png'}"  DockPanel.Dock="Left"/>
-                                                        <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" DockPanel.Dock="Top"/>
-                                                        <TextBlock Name="PART_TextPlayTime" DockPanel.Dock="Top"/>
+                                                </Border>
+                                                <!--Time Played-->
+                                                <Border Grid.Column="1" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
+                                                        Margin="0,0,16,0">
+                                                    <DockPanel Margin="24" Visibility="{Binding Visibility, ElementName=PART_ElemPlayTime, Mode=OneWay}">
+                                                        <Image Source="{ThemeFile 'Images/3DIcons/clock.png'}" DockPanel.Dock="Top" HorizontalAlignment="Left" />
+                                                        <TextBlock Name="PART_TextPlayTime" DockPanel.Dock="Top" />
+                                                        <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" DockPanel.Dock="Top" />
                                                     </DockPanel>
-
-                                                    <DockPanel Visibility="{Binding Visibility, ElementName=PART_ElemCompletionStatus, Mode=OneWay}" Grid.Column="2">
-                                                        <Image Source="{ThemeFile 'Images/3DIcons/check.png'}"  DockPanel.Dock="Left"/>
-                                                        <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" DockPanel.Dock="Top"/>
-                                                        <Button Name="PART_ButtonCompletionStatus" DockPanel.Dock="Top" FontWeight="Bold" Margin="0,1,0,0"
-                                                                Style="{DynamicResource PropertyItemSmallButton}" FontSize="14"/>
+                                                </Border>
+                                                <!--Completion Status-->
+                                                <Border Grid.Column="2" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
+                                                        Margin="0,0,16,0">
+                                                    <DockPanel Margin="24" Visibility="{Binding Visibility, ElementName=PART_ElemCompletionStatus, Mode=OneWay}">
+                                                        <Image Source="{ThemeFile 'Images/3DIcons/check.png'}" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
+                                                        <Button Name="PART_ButtonCompletionStatus" DockPanel.Dock="Top" FontWeight="Medium" Margin="0,12,0,4"
+                                                                Style="{DynamicResource PropertyItemSmallButton}" FontSize="{DynamicResource FontSizeLarge18}" />
+                                                        <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" DockPanel.Dock="Top" />
                                                     </DockPanel>
-
-                                                    <DockPanel Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="3" >
-                                                        <Image Source="{ThemeFile 'Images/3DIcons/trophy.png'}"  DockPanel.Dock="Left"/>
+                                                </Border>
+                                                <!--Achievements-->
+                                                <Border Grid.Column="3" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
+                                                        Margin="0,0,0,0">
+                                                    <DockPanel Margin="24"
+                                                            Visibility="{PluginSettings Plugin=SuccessStory, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <Image Source="{ThemeFile 'Images/3DIcons/trophy.png'}" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
                                                         <StackPanel Name="PART_SuccessStory" DockPanel.Dock="Top">
-                                                            
-                                                            <Label Content="{DynamicResource LOCSuccessStoryAchievements}"/>
-                                                            
                                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue='-'}"/>
-                                                                <TextBlock Text="/"/>
-                                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue='-'}"/>
-                                                                <ProgressBar x:Name="progressBar" FontSize="10" Margin="4,0,0,0" VerticalAlignment="Center"
-                                                                             Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue=0}" Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue=0}" HorizontalAlignment="Left"
-                                                                             Background="{DynamicResource ControlHoverBackgroundBrush }" Foreground="{DynamicResource GlyphBrush}" Width="60" Height="10" Style="{DynamicResource RoundedProgressBar}">
+                                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue='-'}" />
+                                                                <TextBlock Text="/" />
+                                                                <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue='-'}" />
+                                                                <!--<ProgressBar x:Name="progressBar" FontSize="10" Margin="4,0,0,0" VerticalAlignment="Center"
+                                                                        Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue=0}"
+                                                                        Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue=0}" HorizontalAlignment="Left"
+                                                                        Background="{DynamicResource ControlHoverBackgroundBrush }" Foreground="{DynamicResource GlyphBrush}"
+                                                                        Width="60" Height="10" Style="{DynamicResource RoundedProgressBar}">
                                                                     <ProgressBar.Resources>
                                                                         <Style x:Key="RoundedProgressBar" TargetType="ProgressBar">
-                                                                            <Setter Property="Background" Value="{DynamicResource NormalBrushDark}"/>
-                                                                            <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}"/>
+                                                                            <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
+                                                                            <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
                                                                             <Setter Property="Template">
                                                                                 <Setter.Value>
                                                                                     <ControlTemplate TargetType="{x:Type ProgressBar}">
                                                                                         <Border BorderThickness="{TemplateBinding BorderThickness}"
                                                                                                 CornerRadius="{DynamicResource ControlCornerRadius}">
                                                                                             <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                                                                                <Rectangle Fill="{TemplateBinding Background}" RadiusY="4" RadiusX="4"/>
-                                                                                                <Rectangle x:Name="PART_Track" Margin="0" RadiusY="4" RadiusX="4"/>
-                                                                                                <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                                                                                <Rectangle Fill="{TemplateBinding Background}" RadiusY="4" RadiusX="4" />
+                                                                                                <Rectangle x:Name="PART_Track" Margin="0" RadiusY="4" RadiusX="4" />
+                                                                                                <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left"
+                                                                                                        VerticalAlignment="Stretch">
                                                                                                     <Grid>
-                                                                                                        <Rectangle Fill="{TemplateBinding Foreground}" RadiusY="4" RadiusX="4"/>
+                                                                                                        <Rectangle Fill="{TemplateBinding Foreground}" RadiusY="4" RadiusX="4" />
                                                                                                     </Grid>
                                                                                                 </Decorator>
                                                                                             </Grid>
@@ -701,15 +713,14 @@
                                                                             </Setter>
                                                                         </Style>
                                                                     </ProgressBar.Resources>
-                                                                </ProgressBar>
+                                                                </ProgressBar>-->
                                                             </StackPanel>
-
+                                                            <Label Content="{DynamicResource LOCSuccessStoryAchievements}" />
                                                         </StackPanel>
                                                     </DockPanel>
+                                                </Border>
 
-                                                </Grid>
-                                                
-                                            </Border>
+                                            </Grid>
                                         </StackPanel>
 
                                         <!--Tab Table-->
