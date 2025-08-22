@@ -1,4 +1,6 @@
 Constants:
+    - "Appearance"
+    - ThemeDarkStyle: 'Use dark style theme'
     - "Details View"
     - DetailsViewGameOverviewMaxWidth(1024,2400): 'Maximum width of DetailViewGameOverview'
     - "Grid View Covers"

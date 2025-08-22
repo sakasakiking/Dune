@@ -3,6 +3,8 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--ThemeModifier Options-->
+    <sys:Boolean x:Key="ThemeDarkStyle">False</sys:Boolean>
+
     <sys:Double x:Key="DetailsViewGameOverviewMaxWidth">1024</sys:Double>
 
     <sys:Boolean x:Key="GridViewImageCoverUseRoundedCorners">True</sys:Boolean>
@@ -114,6 +116,9 @@
     <SolidColorBrush x:Key="SecondaryButtonHoverBackgroundBrush" Color="#CCCCCC" />
     <SolidColorBrush x:Key="SecondaryButtonBrush" Color="#212121" />
     <!--ButtonStyle Ends-->
+
+    <SolidColorBrush x:Key="TagIdleBackgroundBrush" Color="#EFEFEF" />
+    <SolidColorBrush x:Key="TagHoverBackgroundBrush" Color="#CCCCCC" />
 
     <SolidColorBrush x:Key="DisabledBrush" Color="#CCCCCC" />
     <SolidColorBrush x:Key="LinkButtonBrush" Color="#6800D1" />

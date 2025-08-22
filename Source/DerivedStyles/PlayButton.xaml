@@ -43,17 +43,18 @@
     </Style>
 
     <Style x:Key="PlayIconButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge24}"/>
+        <Setter Property="FontWeight" Value="Heavy" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="8,0,8,0" />
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="HoverBg"
+                    <Border x:Name="HoverBg" Width="{TemplateBinding Width}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
@@ -80,14 +81,14 @@
     </Style>
 
     <Style x:Key="DetailPlayButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Height" Value="48"/>
-        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge20}"/>
+        <Setter Property="Height" Value="56"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge24}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Background" Value="{DynamicResource PlayButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ButtonBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Padding" Value="0,0,0,2" />
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
