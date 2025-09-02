@@ -117,8 +117,8 @@
     <SolidColorBrush x:Key="SecondaryButtonBrush" Color="#212121" />
     <!--ButtonStyle Ends-->
 
-    <SolidColorBrush x:Key="TagIdleBackgroundBrush" Color="#EFEFEF" />
-    <SolidColorBrush x:Key="TagHoverBackgroundBrush" Color="#CCCCCC" />
+    <SolidColorBrush x:Key="TagIdleBackgroundBrush" Color="#F3F3F3" />
+    <SolidColorBrush x:Key="TagHoverBackgroundBrush" Color="#EFEFEF" />
 
     <SolidColorBrush x:Key="DisabledBrush" Color="#CCCCCC" />
     <SolidColorBrush x:Key="LinkButtonBrush" Color="#6800D1" />
@@ -181,9 +181,11 @@
         </ImageBrush.ImageSource>
     </ImageBrush>
 
+    <SolidColorBrush x:Key="PlayButtonBrush" Color="#212121" />
+    <SolidColorBrush x:Key="PlayButtonHoverBackgroundBrush" Color="#DBDBDB" />
     <LinearGradientBrush x:Key="PlayButtonBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5,1" >
-        <GradientStop Color="#212121" Offset="0"/>
-        <GradientStop Color="#212121" Offset="1"/>
+        <GradientStop Color="#FFFFFF" Offset="0"/>
+        <GradientStop Color="#EFEFEF" Offset="1"/>
     </LinearGradientBrush>
     
     <LinearGradientBrush x:Key="WindowBackgroundBrush" StartPoint="0.5,-0.2" EndPoint="0.5,1" >

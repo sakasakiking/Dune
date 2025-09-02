@@ -46,7 +46,7 @@
         <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets"/>
-        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge24}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge20}"/>
         <Setter Property="FontWeight" Value="Heavy" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="8,0,8,0" />
@@ -81,15 +81,14 @@
     </Style>
 
     <Style x:Key="DetailPlayButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Height" Value="56"/>
-        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge24}"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Background" Value="{DynamicResource PlayButtonBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource ButtonBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="0,0,0,2" />
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="0,0,16,4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -112,8 +111,8 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource ButtonBrush}" />
-                <Setter Property="Background" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PlayButtonHoverBackgroundBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -122,12 +121,11 @@
         <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets"/>
-        <Setter Property="Background" Value="{DynamicResource ButtonIdleBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource ButtonBrush}" />
-        <Setter Property="BorderBrush" Value="#444444" />
+        <Setter Property="Background" Value="{DynamicResource PlayButtonBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
+        <Setter Property="BorderBrush" Value="#CCCCCC" />
         <Setter Property="BorderThickness" Value="1,0,0,0" />
-        <Setter Property="Padding" Value="12,9,12,8" />
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -151,8 +149,47 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource ButtonBrush}" />
-                <Setter Property="Background" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PlayButtonHoverBackgroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DetailEditButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Height" Value="48" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Background" Value="#29FFFFFF" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0,0,0,4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="Grid">
+                        <Border x:Name="DefaultBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<TextBlock Text="&#xe115;" FontSize="{DynamicResource FontSizeLarge}" Margin="0,0,16,0" Foreground="{TemplateBinding Foreground}"
+                                    Style="{DynamicResource IconFontStyle}" />-->
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="True" />
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="Grid" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
+                <Setter Property="Background" Value="{DynamicResource PlayButtonHoverBackgroundBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
