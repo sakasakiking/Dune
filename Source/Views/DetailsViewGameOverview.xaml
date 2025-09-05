@@ -26,7 +26,7 @@
                                 <Grid MaxWidth="{DynamicResource DetailsViewGameOverviewMaxWidth}" MinWidth="300" Margin="24,0,24,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <!--<RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>-->
@@ -187,7 +187,7 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </StackPanel.Style>
-                                                    <ItemsControl ItemsSource="{Binding Game.Genres}" Margin="0,0,0,0">
+                                                    <ItemsControl ItemsSource="{Binding Game.Genres}" Margin="0,2,0,0">
                                                         <ItemsControl.ItemsPanel>
                                                             <ItemsPanelTemplate>
                                                                 <WrapPanel Orientation="Horizontal" />
@@ -211,7 +211,7 @@
 
                                     
                                     <!--Right Side-->
-                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="0">
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="0" Width="{DynamicResource GameDetailInfoWidth}">
                                         
                                         
                                             

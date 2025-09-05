@@ -1,9 +1,12 @@
 Constants:
     - "Appearance"
     - ThemeDarkStyle: 'Use dark style theme'
-    - "Details View"
-    - DetailsViewGameOverviewMaxWidth(1024,2400): 'Maximum width of DetailViewGameOverview'
+    - "Layouts"
+    - GameOverviewWidth(1024,2400): 'Maximum width of overview'
+    - GameDetailInfoWidth(200,800): 'Maximum width of details'
+  
     - "Grid View Covers"
     - GridViewListShowFavorite: 'Show favorites icon'
     - GridViewImageCoverShowPlatformBanner: 'Show platform banners ("ThemeExtras" extension needed)'
     - GridViewImageCoverUseRoundedCorners: 'Use rounded corners on game image covers (May reduce app performance)'
+  
