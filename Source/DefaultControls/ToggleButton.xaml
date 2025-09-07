@@ -147,4 +147,36 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="IconRoundedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="#33000000" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="#33FFFFFF"
+                            Background="{TemplateBinding Background}" Width="40" Height="40" CornerRadius="20">
+                        <Viewbox>
+                            <TextBlock Text="{TemplateBinding Tag}" Foreground="{TemplateBinding Foreground}" Style="{StaticResource IconFontStyle}" />
+                        </Viewbox>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
 </ResourceDictionary>

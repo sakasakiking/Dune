@@ -48,4 +48,28 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="TransparentRadioButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border x:Name="ButtonBorder" BorderBrush="#29FFFFFF" BorderThickness="2" CornerRadius="{DynamicResource ControlCornerRadius}" Background="Transparent">
+                        <ContentPresenter RecognizesAccessKey="True" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#99FFFFFF" TargetName="ButtonBorder" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#99FFFFFF" TargetName="ButtonBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

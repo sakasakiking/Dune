@@ -23,7 +23,7 @@
                                       d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}"
                                       x:Name="PART_ScrollViewHost">
 
-                                <Grid MaxWidth="{DynamicResource DetailsViewGameOverviewMaxWidth}" MinWidth="300" Margin="24,0,24,0">
+                                <Grid MaxWidth="{DynamicResource GameOverviewWidth}" MinWidth="300" Margin="24,0,24,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
@@ -35,6 +35,9 @@
                                     </Grid.RowDefinitions>
 
                                     <Grid Margin="0,0,0,40" Grid.ColumnSpan="2" Grid.Row="0">
+                                        <Grid.Resources>
+                                            <VisualBrush x:Key="ClonedVisualBrush" Visual="{Binding ElementName=PART_ImageBackground}" />
+                                        </Grid.Resources>
 
                                         <Grid x:Name="HeroBanner">
                                             <Grid.OpacityMask>
@@ -47,19 +50,16 @@
                                                 </VisualBrush>
                                             </Grid.OpacityMask>
 
+                                            <!--Game background image-->
                                             <Grid ClipToBounds="True">
-                                                <Grid.Resources>
-                                                    <VisualBrush x:Key="ClonedVisualBrush" Visual="{Binding ElementName=PART_ImageBackground}" />
-                                                </Grid.Resources>
-
+                                                <!--Blurred Layer-->
                                                 <Rectangle Fill="{DynamicResource ClonedVisualBrush}">
                                                     <Rectangle.Effect>
                                                         <BlurEffect Radius="120" />
                                                     </Rectangle.Effect>
                                                 </Rectangle>
 
-                                                <Border Background="#33000000" />
-
+                                                <!--Gradient Layer-->
                                                 <Grid>
                                                     <Grid.OpacityMask>
                                                         <RadialGradientBrush GradientOrigin="0.5,1" Center="0.5,1" RadiusX="1.2" RadiusY="0.6">
@@ -72,6 +72,41 @@
                                                     <FadeImage x:Name="PART_ImageBackground" Stretch="UniformToFill" />
                                                 </Grid>
                                             </Grid>
+                                            <!--Game background image Ends-->
+
+                                            <!--Game video-->
+                                            <Grid x:Name="GameVideo">
+                                                <Grid.Style>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=VideoThumbnail, Path=IsChecked}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding ElementName=ImageThumbnail, Path=IsChecked}" Value="True">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Grid.Style>
+                                                <Rectangle>
+                                                    <Rectangle.Fill>
+                                                        <VisualBrush Visual="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl}" Stretch="UniformToFill" />
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                            <!--Game video Ends-->
+
+                                            <!--Daken Layer-->
+                                            <Border Background="#99000000">
+                                                <Border.OpacityMask>
+                                                    <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                                        <GradientStop Color="White" Offset="0" />
+                                                        <GradientStop Color="Transparent" Offset="0.5" />
+                                                    </LinearGradientBrush>
+                                                </Border.OpacityMask>
+                                            </Border>
+
                                         </Grid>
 
                                         <!--Extra Logo-->
@@ -121,24 +156,104 @@
                                         </Grid>
                                         <!--Extra Logo Ends-->
 
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40">
-                                            
-                                            <StackPanel>
-                                                <Grid Width="200" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                                    <Button Name="PART_ButtonPlayAction" Style="{DynamicResource DetailPlayButton}" />
-                                                    <Button Name="PART_ButtonContextAction" Style="{DynamicResource DetailPlayButton}" />
-                                                    <Button Name="PART_ButtonMoreActions" HorizontalAlignment="Right" Content="&#xe228;"
-                                                            Style="{DynamicResource DetailPlayButtonRightPart}" />
+                                        <Grid VerticalAlignment="Bottom" Margin="40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Bottom">
+                                                <StackPanel.Style>
+                                                    <Style TargetType="StackPanel">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableVideoPlayer, FallbackValue=False}"
+                                                                    Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsAnyVideoAvailable, FallbackValue=False}"
+                                                                    Value="True">
+                                                                <Setter Property="Control.Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                    Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableAlternativeDetailsVideoPlayer, FallbackValue=False}"
+                                                                    Value="True">
+                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </StackPanel.Style>
+                                                <!--Image Thumbnail-->
+                                                <Grid Width="120" Height="68">
+                                                    <Grid Margin="4">
+                                                        <Grid.OpacityMask>
+                                                            <VisualBrush>
+                                                                <VisualBrush.Visual>
+                                                                    <Border Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                                                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Grid.OpacityMask>
+                                                        <Rectangle>
+                                                            <Rectangle.Fill>
+                                                                <VisualBrush Visual="{Binding ElementName=PART_ImageBackground}" Stretch="UniformToFill" />
+                                                            </Rectangle.Fill>
+                                                        </Rectangle>
+                                                    </Grid>
+                                                    <Border Background="Transparent" BorderBrush="White" BorderThickness="2" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                                            Visibility="{Binding ElementName=ImageThumbnail, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                    <RadioButton Name="ImageThumbnail" GroupName="ThumbnailControl"
+                                                            Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand}"
+                                                            Style="{DynamicResource TransparentRadioButton}" />
                                                 </Grid>
-                                                <Button x:Name="PART_ButtonEditGame" Width="200" Margin="0,16,0,0" Focusable="False" Content="{DynamicResource LOCEditGame}" 
-                                                        Style="{StaticResource DetailEditButton}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                <!--Video Thumbnail-->
+                                                <Grid Margin="16,0,0,0" Width="120" Height="68">
+                                                    <Grid Margin="4">
+                                                        <Grid.OpacityMask>
+                                                            <VisualBrush>
+                                                                <VisualBrush.Visual>
+                                                                    <Border Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                                                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Grid.OpacityMask>
+                                                        <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl">
+                                                            <ContentControl.Template>
+                                                                <ControlTemplate TargetType="ContentControl">
+                                                                    <Viewbox Stretch="UniformToFill" VerticalAlignment="Top">
+                                                                        <Grid>
+                                                                            <ContentPresenter />
+                                                                            <Border Background="Transparent" />
+                                                                        </Grid>
+                                                                    </Viewbox>
+                                                                </ControlTemplate>
+                                                            </ContentControl.Template>
+                                                        </ContentControl>
+                                                    </Grid>
+                                                    
+                                                    <Border Background="#99000000" BorderBrush="#33FFFFFF" BorderThickness="1" Width="44" Height="44" CornerRadius="22"
+                                                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <Viewbox Name="ThumbnailPlay" Margin="13,12,11,12">
+                                                            <TextBlock Text="&#xf5b0;" Foreground="White" Style="{StaticResource IconFontStyle}"/>
+                                                        </Viewbox>
+                                                    </Border>
+                                                    <Border Background="Transparent" BorderBrush="White" BorderThickness="2" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                                            Visibility="{Binding ElementName=VideoThumbnail, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                    <RadioButton Name="VideoThumbnail" GroupName="ThumbnailControl" IsChecked="True"
+                                                            Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayCommand}"
+                                                            Style="{DynamicResource TransparentRadioButton}"/>
+                                                </Grid>
+
                                             </StackPanel>
 
                                             <!--GameInfo-->
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="24,0,0,0">
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="24,0,24,0">
                                                 <Button Name="PART_ButtonReleaseDate" Margin="0,0,4,0" Padding="0,0,0,0" BorderThickness="0" Background="{x:Null}"
                                                         Style="{DynamicResource PropertyItemSmallButton}" />
-                                                
+
                                                 <StackPanel Name="PART_ElemPlatform" Orientation="Horizontal">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
@@ -170,9 +285,9 @@
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </StackPanel>
-                                                
-                                                <Button Name="PART_ButtonSource" Margin="4,0,4,0" Padding="0" Style="{DynamicResource PropertyItemOutlinedButton}"/>
-                                                
+
+                                                <Button Name="PART_ButtonSource" Margin="4,2,4,0" Padding="0" Style="{DynamicResource PropertyItemOutlinedButton}" />
+
                                                 <StackPanel Name="PART_ElemGenres" Orientation="Horizontal">
                                                     <StackPanel.Style>
                                                         <Style TargetType="StackPanel">
@@ -203,19 +318,62 @@
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </StackPanel>
+                                                
                                             </StackPanel>
 
+                                            <!--Action Buttons-->
+                                            <StackPanel Grid.Column="0">
+                                                <Grid Width="200" HorizontalAlignment="right" VerticalAlignment="Center">
+                                                    <Button Name="PART_ButtonPlayAction" Style="{DynamicResource DetailPlayButton}" />
+                                                    <Button Name="PART_ButtonContextAction" Style="{DynamicResource DetailPlayButton}" />
+                                                    <Button Name="PART_ButtonMoreActions" HorizontalAlignment="Right" Content="&#xe228;"
+                                                            Style="{DynamicResource DetailPlayButtonRightPart}" />
+                                                </Grid>
+                                                <Button x:Name="PART_ButtonEditGame" Width="200" Margin="0,8,0,0" Focusable="False" Content="{DynamicResource LOCEditGame}"
+                                                        Style="{StaticResource DetailEditButton}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                            </StackPanel>
+
+                                        </Grid>
+
+
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,64,120">
+
+                                            <Viewbox Margin="0,4,0,16">
+                                                <CheckBox
+                                                        IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.IsPlayerMuted, Mode=TwoWay, FallbackValue={StaticResource True}}">
+                                                    <CheckBox.Template>
+                                                        <ControlTemplate TargetType="CheckBox">
+                                                            <Border Background="#29FFCC00" Width="48" Height="48" CornerRadius="24">
+                                                                <TextBlock x:Name="NotMuted" Text="&#xe994;" Style="{StaticResource IconFontStyle}" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                    <Setter Property="Text" TargetName="NotMuted" Value="&#xe198;" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </CheckBox.Template>
+                                                </CheckBox>
+                                            </Viewbox>
+
+                                            <ToggleButton HorizontalAlignment="Left" x:Name="TrailerPauseButton" Tag="&#xe103;"
+                                                    Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"
+                                                    Visibility="{Binding ElementName=TrailerPlayButton, Path=IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" Style="{DynamicResource IconRoundedToggleButton}">
+
+                                            </ToggleButton>
+                                            <ToggleButton HorizontalAlignment="Left" x:Name="TrailerPlayButton" Tag="&#xe102;"
+                                                    Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayCommand, FallbackValue={x:Null}}"
+                                                    Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    Style="{DynamicResource IconRoundedToggleButton}">
+
+                                            </ToggleButton>
                                         </StackPanel>
-                                       
                                     </Grid>
 
                                     
                                     <!--Right Side-->
                                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="0" Width="{DynamicResource GameDetailInfoWidth}">
-                                        
-                                        
-                                            
-                                        
+                                                                                                                   
 
                                         <!--HowLongToBeat-->
                                         <StackPanel Margin="0,0,0,32" Visibility="{PluginSettings Plugin=HowLongToBeat, Path=HasData, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
