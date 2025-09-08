@@ -152,19 +152,20 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="10" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="#33FFFFFF"
-                            Background="{TemplateBinding Background}" Width="40" Height="40" CornerRadius="20">
-                        <Viewbox>
+                            Background="{TemplateBinding Background}" Width="36" Height="36" CornerRadius="18">
+                        <Viewbox Margin="{TemplateBinding Padding}">
                             <TextBlock Text="{TemplateBinding Tag}" Foreground="{TemplateBinding Foreground}" Style="{StaticResource IconFontStyle}" />
                         </Viewbox>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Background" Value="#33000000" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -172,8 +173,8 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-                <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#66000000" />
             </Trigger>
         </Style.Triggers>
     </Style>

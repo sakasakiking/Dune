@@ -336,25 +336,7 @@
                                         </Grid>
 
 
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,64,120">
-
-                                            <Viewbox Margin="0,4,0,16">
-                                                <CheckBox
-                                                        IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.IsPlayerMuted, Mode=TwoWay, FallbackValue={StaticResource True}}">
-                                                    <CheckBox.Template>
-                                                        <ControlTemplate TargetType="CheckBox">
-                                                            <Border Background="#29FFCC00" Width="48" Height="48" CornerRadius="24">
-                                                                <TextBlock x:Name="NotMuted" Text="&#xe994;" Style="{StaticResource IconFontStyle}" />
-                                                            </Border>
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger Property="IsChecked" Value="True">
-                                                                    <Setter Property="Text" TargetName="NotMuted" Value="&#xe198;" />
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
-                                                        </ControlTemplate>
-                                                    </CheckBox.Template>
-                                                </CheckBox>
-                                            </Viewbox>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,120">
 
                                             <ToggleButton HorizontalAlignment="Left" x:Name="TrailerPauseButton" Tag="&#xe103;"
                                                     Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"
@@ -367,6 +349,22 @@
                                                     Style="{DynamicResource IconRoundedToggleButton}">
 
                                             </ToggleButton>
+
+                                            <CheckBox Margin="8,0,0,0"
+                                                    IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.IsPlayerMuted, Mode=TwoWay, FallbackValue={StaticResource True}}">
+                                                <CheckBox.Template>
+                                                    <ControlTemplate TargetType="CheckBox">
+                                                        <Border BorderThickness="1" BorderBrush="#33FFFFFF" Background="#33000000" Width="36" Height="36" CornerRadius="18">
+                                                            <TextBlock x:Name="NotMuted" Text="&#xe994;" Style="{StaticResource IconFontStyle}" Margin="8" Foreground="White" />
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsChecked" Value="True">
+                                                                <Setter Property="Text" TargetName="NotMuted" Value="&#xe198;" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </CheckBox.Template>
+                                            </CheckBox>
                                         </StackPanel>
                                     </Grid>
 
@@ -539,10 +537,45 @@
                                                         <Button Name="PART_ButtonInstallDirectory" VerticalAlignment="Center" />
                                                         <TextBlock Name="PART_TextInstallSize" Foreground="{StaticResource PromptBrush}" FontSize="{StaticResource FontSizeSmall}" />
                                                     </StackPanel>
-                                                   
-       
-                                                    <!--<Label Name="PART_ElemFeatures" Content="{DynamicResource LOCFeaturesLabel}" />
-                                                    <ItemsControl Name="PART_ItemsFeatures" />-->
+
+                                                    <!--Features-->
+                                                    <StackPanel Name="PART_ElemFeatures" Grid.ColumnSpan="2">
+                                                        <Separator Background="{StaticResource PanelSeparatorBrush}" Height="1" Margin="0,16,0,4" />
+                                                        <Label Content="{DynamicResource LOCFeaturesLabel}" FontWeight="Bold" FontSize="{DynamicResource FontSize}" />
+                                                        <Border CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
+                                                                Margin="0,12,0,0">
+                                                            <StackPanel Margin="16,8,16,16">
+                                                                <StackPanel.Style>
+                                                                    <Style TargetType="StackPanel">
+                                                                        <Setter Property="Visibility" Value="Visible" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Settings DetailsVisibility.Features}" Value="False">
+                                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Game.Features}" Value="{x:Null}">
+                                                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </StackPanel.Style>
+
+                                                                <ItemsControl ItemsSource="{Binding Game.Features}" Margin="0,8,0,0">
+                                                                    <ItemsControl.ItemsPanel>
+                                                                        <ItemsPanelTemplate>
+                                                                            <WrapPanel Orientation="Horizontal" />
+                                                                        </ItemsPanelTemplate>
+                                                                    </ItemsControl.ItemsPanel>
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Button Content="{Binding Name}" Margin="0,2,4,2" Style="{DynamicResource PropertyItemTagButton}"
+                                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SetFeatureFilterCommand}"
+                                                                                    CommandParameter="{Binding}" />
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </StackPanel>
 
                                                 </GridEx>
                                             </Border>
@@ -550,43 +583,7 @@
                                         </StackPanel>
                                         <!--Details Panel Ends-->
 
-                                        <!--Features-->
-                                        <StackPanel Name="PART_ElemFeatures" Margin="0,0,0,32">
-                                            <Label Content="{DynamicResource LOCFeaturesLabel}" FontWeight="Bold" FontSize="{DynamicResource FontSize}"/>
-                                            <Border CornerRadius="{DynamicResource ControlCornerRadiusLarge}" 
-                                                    Style="{DynamicResource DetailViewCardBorder}" Margin="0,12,0,0">
-                                                <StackPanel Margin="16,8,16,16">
-                                                    <StackPanel.Style>
-                                                        <Style TargetType="StackPanel">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Settings DetailsVisibility.Features}" Value="False">
-                                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Game.Features}" Value="{x:Null}">
-                                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </StackPanel.Style>
-
-                                                    <ItemsControl ItemsSource="{Binding Game.Features}" Margin="0,8,0,0">
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel Orientation="Horizontal" />
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Button Content="{Binding Name}" Margin="0,2,4,2"
-                                                                        Style="{DynamicResource PropertyItemTagButton}"
-                                                                        Command="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext.SetFeatureFilterCommand}" CommandParameter="{Binding}"/>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                            </Border>
-                                        </StackPanel>
+                                        
                                         
                                         <!--Features Ends-->
 
