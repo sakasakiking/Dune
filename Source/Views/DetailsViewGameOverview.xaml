@@ -367,12 +367,16 @@
                                                     IsChecked="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.IsPlayerMuted, Mode=TwoWay, FallbackValue={StaticResource True}}">
                                                 <CheckBox.Template>
                                                     <ControlTemplate TargetType="CheckBox">
-                                                        <Border BorderThickness="1" BorderBrush="#33FFFFFF" Background="#33000000" Width="36" Height="36" CornerRadius="18">
+                                                        <Border Name="Border" BorderThickness="1" BorderBrush="#33FFFFFF" Background="#33000000" Width="36" Height="36" CornerRadius="18">
                                                             <TextBlock x:Name="NotMuted" Text="&#xe198;" Style="{StaticResource IconFontStyle}" Margin="8" Foreground="White" />
                                                         </Border>
                                                         <ControlTemplate.Triggers>
                                                             <Trigger Property="IsChecked" Value="True">
                                                                 <Setter Property="Text" TargetName="NotMuted" Value="&#xe994;" />
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#66000000" TargetName="Border"/>
+                                                                <Setter Property="BorderBrush" Value="#66FFFFFF" TargetName="Border" />
                                                             </Trigger>
                                                         </ControlTemplate.Triggers>
                                                     </ControlTemplate>
@@ -442,8 +446,6 @@
 
                                                             <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                                             <Button Name="PART_ButtonLibrary" Margin="0,12,0,0" />
-
-                                                            
 
                                                         </GridEx>
                                                     </StackPanel>
@@ -661,14 +663,13 @@
                                                     <Style TargetType="TextBlock">
                                                         <Setter Property="FontWeight" Value="Medium" />
                                                         <Setter Property="Margin" Value="0,16,0,2" />
-                                                        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge24}" />
+                                                        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge18}" />
                                                     </Style>
                                                 </Grid.Resources>
                                                 <!--Last Played-->
                                                 <Border Grid.Column="0" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" 
                                                         Style="{DynamicResource DetailViewCardBorder}" Margin="0,0,16,0">
                                                     <DockPanel Margin="24" Visibility="{Binding Visibility, ElementName=PART_ElemLastPlayed, Mode=OneWay}">
-                                                        <!--<Image Source="{ThemeFile 'Images/3DIcons/calendar.png'}" DockPanel.Dock="top" HorizontalAlignment="Left" />-->
                                                         <TextBlock Text="&#xe163;" FontSize="{DynamicResource FontSizeLarge24}" DockPanel.Dock="Top"
                                                                    Margin="0,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource IconFontStyle}" />
                                                         <TextBlock Name="PART_TextLastActivity" DockPanel.Dock="Top" />
@@ -679,7 +680,6 @@
                                                 <Border Grid.Column="1" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
                                                         Margin="0,0,16,0">
                                                     <DockPanel Margin="24" Visibility="{Binding Visibility, ElementName=PART_ElemPlayTime, Mode=OneWay}">
-                                                        <!--<Image Source="{ThemeFile 'Images/3DIcons/clock.png'}" DockPanel.Dock="Top" HorizontalAlignment="Left" />-->
                                                         <TextBlock Text="&#xed5a;" FontSize="{DynamicResource FontSizeLarge24}" DockPanel.Dock="Top" 
                                                                    Margin="0,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource IconFontStyle}" />
                                                         <TextBlock Name="PART_TextPlayTime" DockPanel.Dock="Top" />
@@ -690,11 +690,10 @@
                                                 <Border Grid.Column="2" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
                                                         Margin="0,0,16,0">
                                                     <DockPanel Margin="24" Visibility="{Binding Visibility, ElementName=PART_ElemCompletionStatus, Mode=OneWay}">
-                                                        <!--<Image Source="{ThemeFile 'Images/3DIcons/check.png'}" DockPanel.Dock="Top" HorizontalAlignment="Left"/>-->
                                                         <TextBlock Text="&#xe129;" FontSize="{DynamicResource FontSizeLarge24}" DockPanel.Dock="Top" 
                                                                    Margin="0,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource IconFontStyle}" />
                                                         <Button Name="PART_ButtonCompletionStatus" DockPanel.Dock="Top" FontWeight="Medium" Margin="0,16,0,2"
-                                                                Style="{DynamicResource PropertyItemSmallButton}" FontSize="{DynamicResource FontSizeLarge24}" />
+                                                                Style="{DynamicResource PropertyItemButton}" FontSize="{DynamicResource FontSizeLarge18}" />
                                                         <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" DockPanel.Dock="Top" />
                                                     </DockPanel>
                                                 </Border>
@@ -702,7 +701,6 @@
                                                 <Border Grid.Column="3" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" Style="{DynamicResource DetailViewCardBorder}"
                                                         Margin="0,0,0,0">
                                                     <DockPanel Margin="24">
-                                                        <!--<Image Source="{ThemeFile 'Images/3DIcons/trophy.png'}" DockPanel.Dock="Top" HorizontalAlignment="Left"/>-->
                                                         <TextBlock Text="&#xf272;" FontSize="{DynamicResource FontSizeLarge24}" DockPanel.Dock="Top" 
                                                                    Margin="0,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource IconFontStyle}" />
                                                         <StackPanel Name="PART_SuccessStory" DockPanel.Dock="Top">
