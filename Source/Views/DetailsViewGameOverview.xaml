@@ -336,7 +336,8 @@
                                         </Grid>
 
 
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,120">
+                                        <StackPanel Name="VideoControlButton" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,120"
+                                                Visibility="{Binding ElementName=VideoThumbnail, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                                             <ToggleButton HorizontalAlignment="Left" x:Name="TrailerPauseButton" Tag="&#xe103;"
                                                     Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPauseCommand, FallbackValue={x:Null}}"
@@ -355,11 +356,11 @@
                                                 <CheckBox.Template>
                                                     <ControlTemplate TargetType="CheckBox">
                                                         <Border BorderThickness="1" BorderBrush="#33FFFFFF" Background="#33000000" Width="36" Height="36" CornerRadius="18">
-                                                            <TextBlock x:Name="NotMuted" Text="&#xe994;" Style="{StaticResource IconFontStyle}" Margin="8" Foreground="White" />
+                                                            <TextBlock x:Name="NotMuted" Text="&#xe198;" Style="{StaticResource IconFontStyle}" Margin="8" Foreground="White" />
                                                         </Border>
                                                         <ControlTemplate.Triggers>
                                                             <Trigger Property="IsChecked" Value="True">
-                                                                <Setter Property="Text" TargetName="NotMuted" Value="&#xe198;" />
+                                                                <Setter Property="Text" TargetName="NotMuted" Value="&#xe994;" />
                                                             </Trigger>
                                                         </ControlTemplate.Triggers>
                                                     </ControlTemplate>
