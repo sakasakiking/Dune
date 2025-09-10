@@ -6,52 +6,51 @@
                     mc:Ignorable="d">
 
     <DataTemplate x:Key="TopPanelGeneralViewSettingsTemplate">
-        <TextBlock Text="&#xe9e9;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe9e9;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelFilterPresetsSelectionTemplate">
-        <TextBlock Text="&#xe1cb;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe1cb;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelGroupSettingsTemplate">
-        <TextBlock Text="&#xe12f;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe12f;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSortSettingsTemplate">
-        <TextBlock Text="&#xec8f;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xec8f;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSwitchDetailsViewTemplate">
-        <TextBlock Text="&#xe145;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe145;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSwitchGridViewTemplate">
-        <TextBlock Text="&#xf0e2;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xf0e2;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSwitchListViewTemplate">
-        <TextBlock Text="&#xe292;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe292;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
     
     <DataTemplate x:Key="TopPanelUpdateButtonTemplate">
-        <TextBlock Foreground="OrangeRed" FontWeight="Bold"
-                   Text="&#xe118;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Foreground="OrangeRed" FontWeight="Bold" Text="&#xe118;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelExplorerSwitchTemplate">
-        <TextBlock Text="&#xe128;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe128;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSelectRandomGameButtonTemplate">
-        <TextBlock Text="&#xed59;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xed59;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelViewSelectRandomGameButtonTemplate">
-        <TextBlock Text="&#xe14b;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe14b;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
     
     <DataTemplate x:Key="TopPanelSearchButtonTemplate">
-        <TextBlock Text="&#xe773;" Style="{StaticResource TopPanelIconFontStyle}"/>
+        <TextBlock Text="&#xe773;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
     </DataTemplate>
 
     <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">
@@ -82,19 +81,25 @@
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Margin" Value="4,0,0,0" />
-        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <Border Name="HoverBg" Background="{DynamicResource ControlIdleBackgroundBrush}" 
+                        <Border Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}" Tag="{DynamicResource ThemeDarkStyle}"
                                 CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
-                        <TextBlock Text="&#xe16e;" FontSize="16" Foreground="{TemplateBinding Foreground}"
+                        <TextBlock Text="&#xe16e;" FontSize="16" Tag="{DynamicResource ThemeDarkStyle}"
                                    Style="{DynamicResource IconFontStyle}"/>
                         <Ellipse Name="TextFilter" Margin="22,-24,0,0" Width="10" Height="10" Fill="{DynamicResource AccentSelectedBrush}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger Property="Tag" Value="{StaticResource True}">
                             <Setter Property="Visibility" Value="Visible" TargetName="TextFilter" />
                         </Trigger>
@@ -107,7 +112,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="HoverBg"
                                                          Storyboard.TargetProperty="Opacity" 
-                                                         To="1" Duration="0:0:0.4">
+                                                         To="0.16" Duration="0:0:0.4">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut"/>
                                             </DoubleAnimation.EasingFunction>
@@ -135,7 +140,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -145,33 +150,39 @@
         <Setter Property="Width" Value="32" />
         <Setter Property="Height" Value="32" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <Border Name="HoverBg" Background="{DynamicResource ControlIdleBackgroundBrush}" 
+                        <Border Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}" Tag="{DynamicResource ThemeDarkStyle}"
                                 CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
-                        <TextBlock Text="&#xea8f;" FontSize="16"
-                                       Foreground="{TemplateBinding Foreground}" 
+                        <TextBlock Text="&#xea8f;" FontSize="16" Tag="{DynamicResource ThemeDarkStyle}"
                                        Style="{DynamicResource IconFontStyle}"/>
                         <Border CornerRadius="8" Width="16" Height="16" 
                                 Margin="3,-3,0,0" Background="OrangeRed" HorizontalAlignment="Right" VerticalAlignment="Top">
                             <TextBlock Text="{Api Notifications.Count}" FontSize="9" FontWeight="Bold"
-                                           Foreground="#FFFFFF"
+                                           Foreground="White"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="HoverBg"
                                                          Storyboard.TargetProperty="Opacity" 
-                                                         To="1" Duration="0:0:0.6">
+                                                         To="0.16" Duration="0:0:0.6">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut"/>
                                             </DoubleAnimation.EasingFunction>
@@ -202,7 +213,7 @@
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -233,6 +244,11 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                    <Setter Property="Foreground" Value="Red" />
+                                </Style>
+                            </Grid.Resources>
 
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Border x:Name="PART_ElemMainMenu" Margin="0,0,0,0" Cursor="Hand" VerticalAlignment="Center"

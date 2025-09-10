@@ -1,6 +1,13 @@
 Constants:
+    - "Colors"
+    - GlyphBrush: 'Primary color'
+    - HighlightGlyphBrush: 'Accent color'
+    - WindowBackgroundBrush: 'Window background color'
+    - TextColor: 'Text color'
+  
     - "Appearance"
     - ThemeDarkStyle: 'Use dark style theme'
+  
     - "Layouts"
     - GameOverviewWidth(1024,2400): 'Maximum width of overview'
     - GameDetailInfoWidth(200,800): 'Maximum width of details'

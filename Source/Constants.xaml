@@ -3,19 +3,34 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--ThemeModifier Options-->
-    <sys:Boolean x:Key="ThemeDarkStyle">False</sys:Boolean>
+        <sys:Boolean x:Key="ThemeDarkStyle">False</sys:Boolean>
 
-    <sys:Double x:Key="GameOverviewWidth">1024</sys:Double>
-    <sys:Double x:Key="GameDetailInfoWidth">1024</sys:Double>
+        <sys:Double x:Key="GameOverviewWidth">1024</sys:Double>
+        <sys:Double x:Key="GameDetailInfoWidth">1024</sys:Double>
 
-    <sys:Boolean x:Key="GridViewImageCoverUseRoundedCorners">True</sys:Boolean>
-    <sys:Boolean x:Key="GridViewImageCoverShowPlatformBanner">True</sys:Boolean>
-    <sys:Boolean x:Key="GridViewListShowFavorite">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewImageCoverUseRoundedCorners">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewImageCoverShowPlatformBanner">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewListShowFavorite">True</sys:Boolean>
 
-    <SolidColorBrush x:Key="GridViewItemMaskBackgroundBrush" Color="#1e1e1e" />
-    <CornerRadius x:Key="GridViewCoverCornerRadius">6</CornerRadius>
-    <CornerRadius x:Key="GridViewCoverGridBackgroundDisabledCornerRadius">8,8,8,8</CornerRadius>
-    <CornerRadius x:Key="GridViewSelectionBorderCornerRadius">8</CornerRadius>
+        <SolidColorBrush x:Key="GridViewItemMaskBackgroundBrush" Color="#1e1e1e" />
+        <CornerRadius x:Key="GridViewCoverCornerRadius">6</CornerRadius>
+        <CornerRadius x:Key="GridViewCoverGridBackgroundDisabledCornerRadius">8,8,8,8</CornerRadius>
+        <CornerRadius x:Key="GridViewSelectionBorderCornerRadius">8</CornerRadius>
+
+        <!--ThemeModifier Theme-->
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="DarkWindowBackgroundBrush" Color="#000000" />
+        <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#000000" />
+        <SolidColorBrush x:Key="DarkControlBackgroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+        <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
+        <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
+        <SolidColorBrush x:Key="NormalBrush" Color="#29FFFFFF" />
+        <SolidColorBrush x:Key="NormalBrushDark" Color="Transparent" />
+        <SolidColorBrush x:Key="NormalBorderBrush" Color="Transparent" />
+        <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
+        <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
+
     <!--ThemeModifier Options Ends-->
 
     <sys:Double x:Key="FontSizeSmaller">10</sys:Double>
@@ -45,9 +60,9 @@
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>
-    <Color x:Key="TextColor">#212121</Color>
-    <Color x:Key="TextColorDarker">#a3a3a3</Color>
-    <Color x:Key="TextColorDark">#FF000000</Color>
+    <Color x:Key="TextColor">#000000</Color>
+    <Color x:Key="TextColorDarker">#99FFFFFF</Color>
+    <Color x:Key="TextColorDark">#FFFFFF</Color>
     <Color x:Key="MainColor">#2C3A67</Color>
     <Color x:Key="MainColorDark">#0D1225</Color>
     <Color x:Key="HoverColor">#247BA0</Color>
@@ -62,7 +77,7 @@
     <Color x:Key="BackgroundToneColor">#FFCC00</Color>
     <Color x:Key="GridItemBackgroundColor">#151e3d</Color>
 
-    <Color x:Key="PanelSeparatorColor">#E3E3E3</Color>
+    <Color x:Key="PanelSeparatorColor">#14000000</Color>
 
     <Color x:Key="WindowPanelSeparatorColor">#14ffffff</Color>
     <Color x:Key="DataChangeNotifColor">#ffa500</Color>
@@ -77,15 +92,15 @@
     <Color x:Key="BrownDark">#280B0A</Color>
     <!--Dune Newly Added Color Ends-->
 
-    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#66000000" />
+    
 
     <SolidColorBrush x:Key="GlobalBackgroundBrush" Color="Transparent" />
     
     <!--InputStyle-->
-    <SolidColorBrush x:Key="ControlIdleBackgroundBrush" Color="#E3E3E3" />
+    <SolidColorBrush x:Key="ControlIdleBackgroundBrush" Color="#29000000" />
     <SolidColorBrush x:Key="ControlIdleBorderBrush" Color="#CCCCCC" />
 
-    <SolidColorBrush x:Key="ControlHoverBackgroundBrush" Color="#F6F6F6" />
+    <SolidColorBrush x:Key="ControlHoverBackgroundBrush" Color="#33000000" />
     <SolidColorBrush x:Key="ControlHoverBorderBrush" Color="#CCCCCC" />
 
     <SolidColorBrush x:Key="ControlSelectedBackgroundBrush" Color="#CCCCCC" />
@@ -102,7 +117,7 @@
 
     <SolidColorBrush x:Key="ControlFilledHoverBackgroundBrush" Color="{DynamicResource 24%White}" />
 
-    <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
+
 
     <SolidColorBrush x:Key="WhiteBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="White60Brush" Color="#99FFFFFF" />
@@ -118,9 +133,6 @@
     <SolidColorBrush x:Key="SecondaryButtonBrush" Color="#212121" />
     <!--ButtonStyle Ends-->
 
-    <SolidColorBrush x:Key="TagIdleBackgroundBrush" Color="#F3F3F3" />
-    <SolidColorBrush x:Key="TagHoverBackgroundBrush" Color="#EFEFEF" />
-
     <SolidColorBrush x:Key="DisabledBrush" Color="#CCCCCC" />
     <SolidColorBrush x:Key="LinkButtonBrush" Color="#6800D1" />
     <SolidColorBrush x:Key="PromptBrush" Color="#999999" />
@@ -133,13 +145,7 @@
     <SolidColorBrush x:Key="AccentHoverBrush" Color="{DynamicResource AccentSelectedColor}" />
     <SolidColorBrush x:Key="AccentDisabledBrush" Color="#024DA3" />
 
-    <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
-    <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
-    <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
-    <SolidColorBrush x:Key="NormalBrush" Color="#29FFFFFF" />
-    <SolidColorBrush x:Key="NormalBrushDark" Color="Transparent" />
-    <SolidColorBrush x:Key="NormalBorderBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
+    
 
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#0a0e1e" />
@@ -189,10 +195,6 @@
         <GradientStop Color="#EFEFEF" Offset="1"/>
     </LinearGradientBrush>
     
-    <LinearGradientBrush x:Key="WindowBackgroundBrush" StartPoint="0.5,-0.2" EndPoint="0.5,1" >
-        <GradientStop Color="#F1F1F1" Offset="0"/>
-        <GradientStop Color="#F1F1F1" Offset="1"/>
-    </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="LightTagBrush" StartPoint="0.5,0" EndPoint="0.5,1" >
         <GradientStop Color="#33FFFFFF" Offset="0.8"/>

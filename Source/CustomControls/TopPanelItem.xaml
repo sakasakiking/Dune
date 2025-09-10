@@ -13,9 +13,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TopPanelItem}">
                     <Grid Height="{TemplateBinding Height}" MinWidth="{TemplateBinding Height}">
-                        <Border x:Name="HoverBg" Background="{DynamicResource ControlIdleBackgroundBrush}" 
+                        <Border x:Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}" Tag="{DynamicResource ThemeDarkStyle}"
                                 Opacity="0" CornerRadius="{DynamicResource ControlCornerRadius}"/>
-                        <Border x:Name="SelectedBg" Background="{DynamicResource ControlSelectedBackgroundBrush}"
+                        <Border x:Name="SelectedBg" Background="{TemplateBinding Background}" Opacity="0.08" Tag="{DynamicResource ThemeDarkStyle}"
                                 Visibility="Collapsed" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Viewbox Width="20" Height="20"
                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -24,6 +24,18 @@
                         </Viewbox>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, ElementName=SelectedBg}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="SelectedBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, ElementName=SelectedBg}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
+                        </DataTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
@@ -34,7 +46,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="HoverBg"
                                                         Storyboard.TargetProperty="Opacity" 
-                                                        To="1" Duration="0:0:0.4">
+                                                        To="0.16" Duration="0:0:0.4">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut"/>
                                             </DoubleAnimation.EasingFunction>
@@ -88,7 +100,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="TopPanelIconFontStyle" TargetType="TextBlock">
+    <Style x:Key="TopPanelIconFontStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
         <Setter Property="VerticalAlignment" Value="Center"/>
