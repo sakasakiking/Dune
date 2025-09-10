@@ -50,8 +50,8 @@
         <Setter Property="AllowDrop" Value="True" />
         <Setter Property="CaretBrush" Value="{DynamicResource HoverBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlIdleBorderBrush}"/>
+        <Setter Property="Background" Value="#29000000"/>
+        <Setter Property="BorderBrush" Value="#29FFFFFF"/>
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
@@ -70,7 +70,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="HoverBg"
                                                         Storyboard.TargetProperty="Background.Color"
-                                                        To="#F6F6F6" Duration="0:0:0.4">
+                                                        To="#33000000" Duration="0:0:0.3">
                                         </ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -80,7 +80,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="HoverBg"
                                                         Storyboard.TargetProperty="Background.Color"
-                                                        To="#E3E3E3" Duration="0:0:0.4">
+                                                        To="#29000000" Duration="0:0:0.3">
                                         </ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -92,7 +92,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}"/>
+                <Setter Property="Background" Value="#29000000"/>
             </Trigger>
         </Style.Triggers>
     </Style>

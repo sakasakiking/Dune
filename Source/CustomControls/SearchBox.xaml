@@ -37,11 +37,10 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" IsHitTestVisible="False">
                             <ContentControl x:Name="PART_SeachIcon" ContentTemplate="{DynamicResource SearchTextIconTemplate}" 
                                             FontSize="{DynamicResource FontSizeLarge}" Margin="14,1,4,0"
-                                            Foreground="{DynamicResource PromptBrush}" />
+                                            Foreground="#66FFFFFF" />
 
                             <TextBlock x:Name="Prompt" Text="{DynamicResource LOCSearchLabel}" 
-                                       Margin="0,0,0,0" FontSize="{DynamicResource FontSize}"
-                                       Foreground="{DynamicResource PromptBrush}"/>
+                                       Margin="0,0,0,0" FontSize="{DynamicResource FontSize}" Foreground="#66FFFFFF"/>
 
                         </StackPanel>
                         <ContentControl x:Name="PART_ClearTextIcon"
