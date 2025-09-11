@@ -6,51 +6,51 @@
                     mc:Ignorable="d">
 
     <DataTemplate x:Key="TopPanelGeneralViewSettingsTemplate">
-        <TextBlock Text="&#xe9e9;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe9e9;" Style="{StaticResource TopPanelIconFontStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelFilterPresetsSelectionTemplate">
-        <TextBlock Text="&#xe1cb;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe1cb;" Style="{StaticResource TopPanelIconFontStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelGroupSettingsTemplate">
-        <TextBlock Text="&#xe12f;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe12f;" Style="{StaticResource TopPanelIconFontStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSortSettingsTemplate">
-        <TextBlock Text="&#xec8f;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xec8f;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSwitchDetailsViewTemplate">
-        <TextBlock Text="&#xe145;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe145;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSwitchGridViewTemplate">
-        <TextBlock Text="&#xf0e2;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xf0e2;" Style="{StaticResource TopPanelIconFontStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSwitchListViewTemplate">
-        <TextBlock Text="&#xe292;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe292;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
     
     <DataTemplate x:Key="TopPanelUpdateButtonTemplate">
-        <TextBlock Foreground="OrangeRed" FontWeight="Bold" Text="&#xe118;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Foreground="OrangeRed" FontWeight="Bold" Text="&#xe118;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelExplorerSwitchTemplate">
-        <TextBlock Text="&#xe128;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe128;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelSelectRandomGameButtonTemplate">
-        <TextBlock Text="&#xed59;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xed59;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
 
     <DataTemplate x:Key="TopPanelViewSelectRandomGameButtonTemplate">
-        <TextBlock Text="&#xe14b;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe14b;" Style="{StaticResource TopPanelIconFontStyle}"  />
     </DataTemplate>
     
     <DataTemplate x:Key="TopPanelSearchButtonTemplate">
-        <TextBlock Text="&#xe773;" Style="{StaticResource TopPanelIconFontStyle}" Tag="{DynamicResource ThemeDarkStyle}" />
+        <TextBlock Text="&#xe773;" Style="{StaticResource TopPanelIconFontStyle}" />
     </DataTemplate>
 
     <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">
@@ -81,25 +81,27 @@
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Margin" Value="4,0,0,0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Tag" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid>
-                        <Border Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}" Tag="{DynamicResource ThemeDarkStyle}"
+                    <Grid Name="TPFilterToggleGrid" Tag="{DynamicResource ThemeDarkStyle}">
+                        <Border Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}"
                                 CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
-                        <TextBlock Text="&#xe16e;" FontSize="16" Tag="{DynamicResource ThemeDarkStyle}"
-                                   Style="{DynamicResource IconFontStyle}"/>
-                        <Ellipse Name="TextFilter" Margin="22,-24,0,0" Width="10" Height="10" Fill="{DynamicResource AccentSelectedBrush}"/>
+                        <TextBlock Name="Iconfont" Text="&#xe16e;" FontSize="16" Foreground="{TemplateBinding Foreground}" Style="{DynamicResource IconFontStyle}"/>
+                        <Ellipse Name="TextFilter" Margin="22,-24,0,0" Width="10" Height="10" Fill="OrangeRed"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="True">
+                        <DataTrigger Binding="{Binding Tag, ElementName=TPFilterToggleGrid}" Value="True">
                             <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" TargetName="Iconfont" />
                         </DataTrigger>
 
-                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="False">
+                        <DataTrigger Binding="{Binding Tag, ElementName=TPFilterToggleGrid}" Value="False">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" TargetName="Iconfont" />
                         </DataTrigger>
+                        
                         <Trigger Property="Tag" Value="{StaticResource True}">
                             <Setter Property="Visibility" Value="Visible" TargetName="TextFilter" />
                         </Trigger>
@@ -138,11 +140,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
     </Style>
 
     <Style x:Key="TopPanelNotificationsToggle" TargetType="ToggleButton">
@@ -150,16 +152,14 @@
         <Setter Property="Width" Value="32" />
         <Setter Property="Height" Value="32" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid>
+                    <Grid Name="TPNotificationsToggleGrid" Tag="{DynamicResource ThemeDarkStyle}">
                         <Border Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}" Tag="{DynamicResource ThemeDarkStyle}"
                                 CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
-                        <TextBlock Text="&#xea8f;" FontSize="16" Tag="{DynamicResource ThemeDarkStyle}"
-                                       Style="{DynamicResource IconFontStyle}"/>
+                        <TextBlock Name="Iconfont" Text="&#xea8f;" FontSize="16" Style="{DynamicResource IconFontStyle}"/>
                         <Border CornerRadius="8" Width="16" Height="16" 
                                 Margin="3,-3,0,0" Background="OrangeRed" HorizontalAlignment="Right" VerticalAlignment="Top">
                             <TextBlock Text="{Api Notifications.Count}" FontSize="9" FontWeight="Bold"
@@ -168,12 +168,14 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="True">
+                        <DataTrigger Binding="{Binding Tag, ElementName=TPNotificationsToggleGrid}" Value="True">
                             <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" TargetName="Iconfont" />
                         </DataTrigger>
 
-                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="False">
+                        <DataTrigger Binding="{Binding Tag, ElementName=TPNotificationsToggleGrid}" Value="False">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" TargetName="Iconfont" />
                         </DataTrigger>
                         
                         <Trigger Property="IsMouseOver" Value="True">
@@ -210,11 +212,8 @@
         </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Api Notifications.Count}" Value="0">
-                <Setter Property="Visibility" Value="Collapsed"/>
+                <Setter Property="Visibility" Value="Collapsed" />
             </DataTrigger>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -240,15 +239,10 @@
 
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                    <Setter Property="Foreground" Value="Red" />
-                                </Style>
-                            </Grid.Resources>
 
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Border x:Name="PART_ElemMainMenu" Margin="0,0,0,0" Cursor="Hand" VerticalAlignment="Center"

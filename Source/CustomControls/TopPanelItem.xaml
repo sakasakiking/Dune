@@ -8,14 +8,15 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Focusable" Value="False" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TopPanelItem}">
                     <Grid Height="{TemplateBinding Height}" MinWidth="{TemplateBinding Height}">
-                        <Border x:Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}" Tag="{DynamicResource ThemeDarkStyle}"
+                        <Border x:Name="HoverBg" Background="{DynamicResource ControlBackgroundBrush}"
                                 Opacity="0" CornerRadius="{DynamicResource ControlCornerRadius}"/>
-                        <Border x:Name="SelectedBg" Background="{TemplateBinding Background}" Opacity="0.08" Tag="{DynamicResource ThemeDarkStyle}"
+                        <Border x:Name="SelectedBg" Background="{TemplateBinding Background}" Opacity="0.08"
                                 Visibility="Collapsed" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Viewbox Width="20" Height="20"
                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -24,16 +25,12 @@
                         </Viewbox>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Tag, ElementName=SelectedBg}" Value="True">
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
                             <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="SelectedBg" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Tag, ElementName=HoverBg}" Value="False">
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Tag, ElementName=SelectedBg}" Value="False">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
                         </DataTrigger>
                         <MultiTrigger>
@@ -76,6 +73,13 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
             <!--<Trigger Property="IsToggled" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
             </Trigger>
@@ -100,11 +104,11 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="TopPanelIconFontStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+    <Style x:Key="TopPanelIconFontStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Margin" Value="2"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">

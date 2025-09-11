@@ -48,40 +48,47 @@
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="AllowDrop" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Background" Value="#29000000"/>
-        <Setter Property="BorderBrush" Value="#29FFFFFF"/>
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}" CornerRadius="18" BorderBrush="{TemplateBinding BorderBrush}">
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                  VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
-                                  HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"/>
-                    </Border>
+                    <Grid>
+                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="18"
+                                BorderBrush="{TemplateBinding BorderBrush}" Opacity="0.16"/>
+                        <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                                HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="HoverBg"
-                                                        Storyboard.TargetProperty="Background.Color"
-                                                        To="#33000000" Duration="0:0:0.3">
-                                        </ColorAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg"
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        To="0.2" Duration="0:0:0.3">
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="HoverBg"
-                                                        Storyboard.TargetProperty="Background.Color"
-                                                        To="#29000000" Duration="0:0:0.3">
-                                        </ColorAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" 
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        To="0.16" Duration="0:0:0.3">
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
@@ -94,6 +101,15 @@
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
                 <Setter Property="Background" Value="#29000000"/>
             </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

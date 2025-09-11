@@ -23,30 +23,30 @@
         </Setter>
     </Style>
 
-    <Style x:Key="TopPanelSearchBox" TargetType="{x:Type SearchBox}" BasedOn="{StaticResource {x:Type SearchBox}}">
+    <Style x:Key="TopPanelSearchBox" TargetType="{x:Type SearchBox}">
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MinHeight" Value="24" />
         <Setter Property="Width" Value="300"/>
         <Setter Property="Height" Value="36"/>
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type SearchBox}">
                     <Grid x:Name="BoxGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="False">
+                        
                         <TextBox x:Name="PART_TextInpuText" Style="{DynamicResource SearchTextBox}" Width="120" HorizontalAlignment="Left"
                                  VerticalContentAlignment="Center" Padding="12,0,32,0"/>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" IsHitTestVisible="False">
-                            <ContentControl x:Name="PART_SeachIcon" ContentTemplate="{DynamicResource SearchTextIconTemplate}" 
-                                            FontSize="{DynamicResource FontSizeLarge}" Margin="14,1,4,0"
-                                            Foreground="#66FFFFFF" />
+                            <ContentControl x:Name="PART_SeachIcon" ContentTemplate="{DynamicResource SearchTextIconTemplate}" FontSize="{DynamicResource FontSizeLarge}"
+                                    Margin="14,1,4,0" Opacity="0.6" />
 
                             <TextBlock x:Name="Prompt" Text="{DynamicResource LOCSearchLabel}" 
-                                       Margin="0,0,0,0" FontSize="{DynamicResource FontSize}" Foreground="#66FFFFFF"/>
+                                       Margin="0,0,0,0" FontSize="{DynamicResource FontSize}" Opacity="0.6"/>
 
                         </StackPanel>
                         <ContentControl x:Name="PART_ClearTextIcon"
-                                        ContentTemplate="{DynamicResource ClearTextIconTemplate}" Cursor="Hand"
-                                        FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0" 
-                                        Foreground="{DynamicResource PromptBrush}" />
+                                        ContentTemplate="{DynamicResource ClearTextIconTemplate}" Cursor="Hand" Opacity="0.8"
+                                        FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding ElementName=PART_SeachIcon, Path=Visibility}" Value="Collapsed">
@@ -83,9 +83,13 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsFocused" Value="True">
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
 
-            </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

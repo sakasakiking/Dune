@@ -2,8 +2,6 @@ Constants:
     - "Colors"
     - GlyphBrush: 'Primary color'
     - HighlightGlyphBrush: 'Accent color'
-    - WindowBackgroundBrush: 'Window background color'
-    - TextColor: 'Text color'
   
     - "Appearance"
     - ThemeDarkStyle: 'Use dark style theme'
