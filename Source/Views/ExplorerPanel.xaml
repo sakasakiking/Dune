@@ -31,7 +31,7 @@
                                        Background="{DynamicResource PanelSeparatorBrush}" Margin="16,0,16,0"
                                        Focusable="False" SnapsToDevicePixels="True"/>
                             <ListBox Name="PART_SelectItems"
-                                 DockPanel.Dock="Top" ItemContainerStyle="{StaticResource MenuListBoxItem}"
+                                 DockPanel.Dock="Top" ItemContainerStyle="{StaticResource ExplorerPanelListBoxItem}"
                                  BorderThickness="0" Padding="16,8,16,8"
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             </ListBox>

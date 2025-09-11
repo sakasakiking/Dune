@@ -24,6 +24,7 @@
         <SolidColorBrush x:Key="DarkControlBackgroundBrush" Color="#FFFFFF" />
         <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
         <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
+        <SolidColorBrush x:Key="TextBrushLighter" Color="{DynamicResource TextColorLighter}" />
         <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
         <SolidColorBrush x:Key="NormalBrush" Color="#29FFFFFF" />
         <SolidColorBrush x:Key="NormalBrushDark" Color="Transparent" />
@@ -61,7 +62,8 @@
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>
     <Color x:Key="TextColor">#000000</Color>
-    <Color x:Key="TextColorDarker">#99FFFFFF</Color>
+    <Color x:Key="TextColorDarker">#66FFFFFF</Color>
+    <Color x:Key="TextColorLighter">#99000000</Color>
     <Color x:Key="TextColorDark">#FFFFFF</Color>
     <Color x:Key="MainColor">#2C3A67</Color>
     <Color x:Key="MainColorDark">#0D1225</Color>
