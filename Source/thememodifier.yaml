@@ -2,6 +2,8 @@ Constants:
     - "Colors"
     - GlyphBrush: 'Primary color'
     - HighlightGlyphBrush: 'Accent color'
+    - WindowBackgroundBrush: 'Light theme background color'
+    - DarkWindowBackgroundBrush: 'Dark theme background color'
   
     - "Appearance"
     - ThemeDarkStyle: 'Use dark style theme'
@@ -9,6 +11,9 @@ Constants:
     - "Layouts"
     - GameOverviewWidth(1024,2400): 'Maximum width of overview'
     - GameDetailInfoWidth(200,800): 'Maximum width of details'
+  
+    - "General Settings"
+    - ShowIconTextOnLink: 'Show full link name next to the icon'
   
     - "Grid View Covers"
     - GridViewListShowFavorite: 'Show favorites icon'

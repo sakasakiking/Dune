@@ -3,66 +3,89 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <ControlTemplate x:Key="FilterSelectionBoxTemplate" TargetType="{x:Type FilterSelectionBoxBase}">
-        <Border x:Name="Root" Style="{DynamicResource HighlightBorder}">
-            <Grid>
-                <DockPanel>
-                    <TextBlock Text="&#xf08e;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" 
-                               FontSize="{DynamicResource FontSizeSmaller}"
-                               Foreground="{DynamicResource SubtalBrush}" Margin="0,0,8,0"
-                               DockPanel.Dock="Right" VerticalAlignment="Center"/>
-                    
-                    <TextBlock x:Name="PART_TextFilterString"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
-                               VerticalAlignment="Center" DockPanel.Dock="Left"
-                               Margin="8,0,20,0"/>
-                </DockPanel>
-                <ToggleButton x:Name="MainToggle" BorderThickness="0" Focusable="False"
-                              HorizontalContentAlignment="Stretch"  Background="Transparent">
-                    <ToggleButton.Style>
-                        <Style TargetType="ToggleButton">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                        <Border Background="Transparent">
-                                            <ContentPresenter />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ToggleButton.Style>
-                </ToggleButton>
-                <TextBox x:Name="PART_TextFilterInput" BorderThickness="0" Background="Transparent"
-                         VerticalAlignment="Center" Margin="0,0,40,0"/>
-                <Button x:Name="PART_ButtonClearFilter"
-                        Margin="0,1,24,0" FontSize="12"
-                        Background="Transparent" HorizontalAlignment="Right"
-                        BorderThickness="0" Padding="4,0,4,0"
-                        Foreground="{DynamicResource PromptBrush}"
-                        ContentTemplate="{DynamicResource ClearTextIconTemplate}">
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
-                       IsOpen="{Binding IsChecked, ElementName=MainToggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
-                       MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
-                    <Border Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"
-                            BorderThickness="{DynamicResource PopupBorderThickness}" 
-                            BorderBrush="{DynamicResource PopupBorderBrush}">
-                        <ItemsControl x:Name="PART_ItemsPanel"/>
-                    </Border>
-                </Popup>
-            </Grid>
-        </Border>
+
+        <Grid>
+            <Border x:Name="HoverBg" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.08" BorderThickness="0" />
+            <Border x:Name="SelectedBg" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.2" BorderThickness="{DynamicResource ControlBorderThickness}" Background="Transparent"/>
+            <DockPanel>
+                <!--Arrow-->
+                <TextBlock Text="&#xf08e;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="{DynamicResource FontSizeSmaller}"
+                        Foreground="{DynamicResource SubtalBrush}" Margin="0,0,8,0" DockPanel.Dock="Right" VerticalAlignment="Center" />
+
+                <TextBlock x:Name="PART_TextFilterString" Style="{StaticResource BaseTextBlockStyle}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" DockPanel.Dock="Left" Margin="8,0,20,0" />
+            </DockPanel>
+            <ToggleButton x:Name="MainToggle" BorderThickness="0" Focusable="False" HorizontalContentAlignment="Stretch" Background="Transparent">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="Transparent">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+            <TextBox x:Name="PART_TextFilterInput" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="0,0,40,0" />
+            <Button x:Name="PART_ButtonClearFilter" Margin="0,1,24,0" FontSize="12" Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Padding="4,0,4,0"
+                    Foreground="{DynamicResource PromptBrush}" ContentTemplate="{DynamicResource ClearTextIconTemplate}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup" IsOpen="{Binding IsChecked, ElementName=MainToggle, Mode=TwoWay, Delay=100}"
+                    StaysOpen="False" MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
+                <Border Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                        BorderThickness="{DynamicResource PopupBorderThickness}" BorderBrush="{DynamicResource PopupBorderBrush}">
+                    <ItemsControl x:Name="PART_ItemsPanel" />
+                </Border>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="SelectedBg" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="SelectedBg" />
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.12" Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.08" Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="FilterSelectionBoxItemStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -71,19 +94,61 @@
 
     <Style TargetType="{x:Type FilterEnumSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Height" Value="28" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
     <Style TargetType="{x:Type FilterStringSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Height" Value="28" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type FilterSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Height" Value="28" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

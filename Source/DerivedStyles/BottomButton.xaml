@@ -2,39 +2,58 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="BottomButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Margin" Value="4,4,4,4" />
         <Setter Property="Padding" Value="16,8,16,8" />
         <Setter Property="MinWidth" Value="72" />
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="HoverBg" Background="{DynamicResource SecondaryButtonIdleBackgroundBrush}" 
-                            CornerRadius="{DynamicResource ControlCornerRadius}">
+                    <Grid Margin="8,0,8,8">
+                        <Border x:Name="HoverBg" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.08" />
 
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
-                    </Border>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
+
+                    </Grid>
+
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" TargetName="HoverBg" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.4">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.08" Duration="0:0:0.4">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
     
 </ResourceDictionary>

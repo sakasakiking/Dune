@@ -11,6 +11,7 @@
         <sys:Boolean x:Key="GridViewImageCoverUseRoundedCorners">True</sys:Boolean>
         <sys:Boolean x:Key="GridViewImageCoverShowPlatformBanner">True</sys:Boolean>
         <sys:Boolean x:Key="GridViewListShowFavorite">True</sys:Boolean>
+        <sys:Boolean x:Key="ShowIconTextOnLink">True</sys:Boolean>
 
         <SolidColorBrush x:Key="GridViewItemMaskBackgroundBrush" Color="#1e1e1e" />
         <CornerRadius x:Key="GridViewCoverCornerRadius">6</CornerRadius>
@@ -18,15 +19,28 @@
         <CornerRadius x:Key="GridViewSelectionBorderCornerRadius">8</CornerRadius>
 
         <!--ThemeModifier Theme-->
-        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFFFFF" />
-        <SolidColorBrush x:Key="DarkWindowBackgroundBrush" Color="#000000" />
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#EBEBEB" />
+        <SolidColorBrush x:Key="DarkWindowBackgroundBrush" Color="#141414" />
+
         <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#000000" />
         <SolidColorBrush x:Key="DarkControlBackgroundBrush" Color="#FFFFFF" />
+
+        <SolidColorBrush x:Key="PopupSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
+    
+        <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#E0E0E0" />
+        <SolidColorBrush x:Key="DarkPopupBackgroundBrush" Color="#1F1F1F" />
+
+        <SolidColorBrush x:Key="PopupBorderBrush" Color="#14000000" />
+        <SolidColorBrush x:Key="DarkPopupBorderBrush" Color="#29FFFFFF" />
+
+        <SolidColorBrush x:Key="ControlBorderBrush" Color="#000000" />
+        <SolidColorBrush x:Key="DarkControlBorderBrush" Color="#FFFFFF" />
+    
         <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
         <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
         <SolidColorBrush x:Key="TextBrushLighter" Color="{DynamicResource TextColorLighter}" />
         <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
-        <SolidColorBrush x:Key="NormalBrush" Color="#29FFFFFF" />
+        <SolidColorBrush x:Key="NormalBrush" Color="{DynamicResource MainColor}" />
         <SolidColorBrush x:Key="NormalBrushDark" Color="Transparent" />
         <SolidColorBrush x:Key="NormalBorderBrush" Color="Transparent" />
         <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
@@ -49,8 +63,8 @@
     <FontFamily x:Key="MonospaceFontFamily">Consolas</FontFamily>
 
     <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
-    <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
     <CornerRadius x:Key="ControlCornerRadiusSmall">4</CornerRadius>
+    <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
     <CornerRadius x:Key="ControlCornerRadiusLarge">16</CornerRadius>
     <CornerRadius x:Key="ControlCornerRadiusLargeX">24</CornerRadius>
     
@@ -73,13 +87,10 @@
     <Color x:Key="AccentIdleColor">#FF0379FF</Color>
     <Color x:Key="AccentSelectedColor">#FF04A5FF</Color>
 
-    <Color x:Key="PopupBackgroundColor">#FFFFFF</Color>
-    <Color x:Key="PopupBorderColor">#CCCCCC</Color>
-    
     <Color x:Key="BackgroundToneColor">#FFCC00</Color>
     <Color x:Key="GridItemBackgroundColor">#151e3d</Color>
 
-    <Color x:Key="PanelSeparatorColor">#14000000</Color>
+    <Color x:Key="PanelSeparatorColor">#33808080</Color>
 
     <Color x:Key="WindowPanelSeparatorColor">#14ffffff</Color>
     <Color x:Key="DataChangeNotifColor">#ffa500</Color>
@@ -107,15 +118,6 @@
 
     <SolidColorBrush x:Key="ControlSelectedBackgroundBrush" Color="#CCCCCC" />
     <!--InputStyle Ends-->
-
-    <!--PopupStyle-->
-    <SolidColorBrush x:Key="PopupIdleBackgroundBrush" Color="#E3E3E3" />
-    <SolidColorBrush x:Key="PopupHoverBackgroundBrush" Color="#CCCCCC" />
-
-    <SolidColorBrush x:Key="PopupSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
-    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{DynamicResource PopupBackgroundColor}" />
-    <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
-    <!--PopupStyle Ends-->
 
     <SolidColorBrush x:Key="ControlFilledHoverBackgroundBrush" Color="{DynamicResource 24%White}" />
 

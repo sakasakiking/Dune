@@ -8,34 +8,38 @@
 
     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlIdleBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
-                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                    <Border x:Name="CheckboxBorder" Background="Transparent" Padding="{TemplateBinding Padding}" Tag="{DynamicResource ThemeDarkStyle}">
                         <DockPanel>
-                            <Border x:Name="BulletBorder" DockPanel.Dock="Left" VerticalAlignment="Center" Cursor="Hand"
-                                    CornerRadius="{DynamicResource ControlCornerRadiusSmall}"
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    Background="{DynamicResource ControlIdleBackgroundBrush}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid DockPanel.Dock="Left" VerticalAlignment="Center">
+                                <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadiusSmall}" BorderThickness="0" Opacity="0.08"/>
+                                <Border x:Name="BulletHoverBorder" CornerRadius="{DynamicResource ControlCornerRadiusSmall}" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Opacity="0.2"/>
                                 <Grid Width="20" Height="20">
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
-                                        <TextBlock Text="&#xf13e;" Foreground="{DynamicResource WhiteBrush}" Margin="1,0,0,1"
-                                                   Style="{DynamicResource IconFontStyle}"/>
+                                        <TextBlock Text="&#xf13e;" Margin="1,0,0,1" Style="{DynamicResource IconFontStyle}" />
                                     </Viewbox>
                                     <Viewbox x:Name="IndeterminateIcon" Visibility="Collapsed" Margin="2">
-                                        <TextBlock Text="g" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="g" FontFamily="Marlett" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Viewbox>
                                 </Grid>
-                            </Border>
+                            </Grid>
                             <ContentPresenter DockPanel.Dock="Left" RecognizesAccessKey="True" Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DockPanel>
                     </Border>                    
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=CheckboxBorder}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="BulletBorder" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="BulletHoverBorder" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, ElementName=CheckboxBorder}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="BulletBorder" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="BulletHoverBorder" />
+                        </DataTrigger>
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="{x:Null}" />
@@ -45,16 +49,14 @@
                         </MultiTrigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
-                            <Setter Property="Background" Value="{DynamicResource IdleBrush}" TargetName="BulletBorder" />
-                            <Setter Property="BorderBrush" Value="Transparent" TargetName="BulletBorder" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="False" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="BulletBorder" />
-                            <Setter Property="Foreground" Value="{DynamicResource HoverBrush}"/>
+                            <Setter Property="Opacity" Value="0.16" TargetName="BulletBorder" />
+                            <Setter Property="Opacity" Value="0.24" TargetName="BulletHoverBorder" />
                         </MultiTrigger>
                         <Trigger Property="IsFocused" Value="True">
                         </Trigger>
@@ -62,5 +64,17 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
     </Style>                  
 </ResourceDictionary>

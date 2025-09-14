@@ -5,28 +5,28 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type NotificationPanel}">
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="NotificationPanel">
-                    <Border Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="1" BorderBrush="{DynamicResource PopupBorderBrush}"
-                            CornerRadius="{DynamicResource ControlCornerRadiusLarge}"
-                            d:DesignWidth="260" d:DesignHeight="400"
-                            d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Black" BlurRadius="12" ShadowDepth="4" Opacity="0.16" Direction="270"/>
-                        </Border.Effect>
+                    <Grid>
+                        <Grid.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="80" ShadowDepth="12" Opacity="0.24" Direction="270" />
+                        </Grid.Effect>
+                        <Border x:Name="PopBg" BorderThickness="1" BorderBrush="{DynamicResource PopupBorderBrush}"
+                                CornerRadius="{DynamicResource ControlCornerRadiusLarge}" d:DesignWidth="260" d:DesignHeight="400"
+                                d:DataContext="{x:Static DesignMainViewModel.DesignIntance}" />
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <DockPanel Margin="16,16,16,16" Grid.Row="0">
                                 <Button Name="PART_ButtonClose" Content="&#xe106;" Background="{DynamicResource SecondaryButtonIdleBackgroundBrush}"
-                                        Style="{DynamicResource IconfontButton}"
-                                        DockPanel.Dock="Right" Margin="16,0,0,0" />
+                                        Style="{DynamicResource IconfontButton}" DockPanel.Dock="Right" Margin="16,0,0,0" />
                                 <TextBlock Text="{DynamicResource LOCNotifications}" DockPanel.Dock="Left" VerticalAlignment="Center"
-                                           Style="{StaticResource PanelTitleTextBlockStyle}"/>
+                                        Style="{StaticResource PanelTitleTextBlockStyle}" />
                             </DockPanel>
                             <ItemsControl Name="PART_ItemsMessages" Grid.Row="1" Margin="0,0,0,0">
                                 <ItemsControl.ItemTemplate>
@@ -36,19 +36,27 @@
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.Template>
                                     <ControlTemplate>
-                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="16,0,16,0"
-                                                      VerticalScrollBarVisibility="Auto">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Padding="16,0,16,0" VerticalScrollBarVisibility="Auto">
                                             <ItemsPresenter />
                                         </ScrollViewer>
                                     </ControlTemplate>
                                 </ItemsControl.Template>
                             </ItemsControl>
-                            <Button Name="PART_ButtonDismissAll" Grid.Row="2"
-                                 HorizontalAlignment="Stretch" Margin="16,0,16,16"
-                                 Style="{StaticResource PrimaryButton}"
-                                 Content="{DynamicResource LOCDismissAll}" />
+                            <Button Name="PART_ButtonDismissAll" Grid.Row="2" HorizontalAlignment="Stretch" Margin="16,0,16,16" Style="{StaticResource PrimaryButton}"
+                                    Content="{DynamicResource LOCDismissAll}" />
                         </Grid>
-                    </Border>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkPopupBackgroundBrush}" TargetName="PopBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkPopupBorderBrush}" TargetName="PopBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" TargetName="PopBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" TargetName="PopBg" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -8,12 +8,39 @@
 
     <Style TargetType="{x:Type ToolTip}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
-        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Padding" Value="12,8,12,8" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToolTip}">
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="{DynamicResource ControlCornerRadius}">
+                        <ContentPresenter Margin="{TemplateBinding Padding}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkPopupBackgroundBrush}" TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkPopupBorderBrush}" TargetName="Border" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" TargetName="Border" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

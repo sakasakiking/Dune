@@ -19,32 +19,40 @@
     <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.6" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="PanelTitleTextBlockStyle" TargetType="TextBlock">
+    <Style x:Key="PanelTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
-        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
-        <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-        </Style.Triggers>
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
     <Style x:Key="IconFontStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.6" />
             </Trigger>
@@ -58,14 +66,39 @@
     </Style>
 
     <Style x:Key="DetailViewCardBorder" TargetType="Border">
-        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <!--<Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="2" Color="Black" Opacity="0.2" ShadowDepth="1" Direction="270"/>
-            </Setter.Value>
-        </Setter>-->
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" />
+                <Setter Property="Opacity" Value="0.04" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" />
+                <Setter Property="Opacity" Value="1" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    
+
+    <Style TargetType="{x:Type ItemsControl}">
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="0,8,0,0" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

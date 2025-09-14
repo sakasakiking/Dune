@@ -9,23 +9,28 @@
     <Style TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="Auto" />
         <Setter Property="Height" Value="Auto" />
-        <Setter Property="Background" Value="{DynamicResource SecondaryButtonIdleBackgroundBrush}" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Grid>
-                        <Rectangle x:Name="HoverRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                   Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" RadiusX="2" RadiusY="2"
-                                   Stroke="{x:Null}" Margin="0" MinHeight="12"
-                                   Fill="{TemplateBinding Background}" />
+                        <Border x:Name="HoverRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.08"
+                                   Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CornerRadius="2"
+                                   Margin="0" MinHeight="12" BorderThickness="0"/>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverRectangle" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverRectangle" />
+                        </DataTrigger>
                         <Trigger Property="IsFocused" Value="True" />
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" TargetName="HoverRectangle" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverRectangle" />
                         </Trigger>
                         <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Track}}" Value="True">
-                            <Setter Property="Fill" Value="{DynamicResource SecondaryButtonHoverBackgroundBrush}" TargetName="HoverRectangle" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverRectangle" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

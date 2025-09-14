@@ -7,65 +7,84 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ControlIdleBorderBrush}"/>
-        <Setter Property="Height" Value="28"/>
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{DynamicResource ControlCornerRadius}" Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}">
+                    <Grid>
+                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Opacity="0"
+                                CornerRadius="{DynamicResource ControlCornerRadius}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" />
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press"
-                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                    IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                                 <ToggleButton.Template>
                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                                         <DockPanel LastChildFill="False" Background="Transparent">
                                             <Viewbox DockPanel.Dock="Right" Width="10" Margin="0,0,12,0">
-                                                <TextBlock Text="&#xf08e;" Style="{DynamicResource IconFontStyle}" 
-                                                           Foreground="{DynamicResource SubtalBrush}" 
-                                                           FontSize="{DynamicResource FontSizeSmaller}" />
+                                                <TextBlock Text="&#xf08e;" Style="{DynamicResource IconFontStyle}" Foreground="{DynamicResource SubtalBrush}"
+                                                        FontSize="{DynamicResource FontSizeSmaller}" />
                                             </Viewbox>
                                         </DockPanel>
                                     </ControlTemplate>
                                 </ToggleButton.Template>
                             </ToggleButton>
-                            <ContentPresenter x:Name="ContentSite" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                              Margin="8,0,28,0" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
-                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" VerticalAlignment="Center"
-                                     HorizontalAlignment="Stretch" Margin="0,0,28,0" Focusable="True"
-                                     BorderThickness="0" Background="{TemplateBinding Background}"
-                                     IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{DynamicResource IdleBrush}">
+                            <ContentPresenter x:Name="ContentSite" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,28,0" IsHitTestVisible="False"
+                                    Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,28,0" Focusable="True"
+                                    BorderThickness="0" Background="{TemplateBinding Background}" IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{DynamicResource IdleBrush}">
                             </TextBox>
-                            <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}"
-                                   Placement="Bottom"
-                                   Focusable="False" AllowsTransparency="True">
+                            <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}"
-                                            BorderThickness="{DynamicResource PopupBorderThickness}"
-                                            Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="16" >
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}" BorderThickness="{DynamicResource PopupBorderThickness}"
+                                            Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="16">
                                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="8,8,8,8">
                                             <ItemsPresenter Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
-                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                         </ScrollViewer>
                                     </Border>
                                 </Grid>
                             </Popup>
                         </Grid>
-                    </Border>
+                    </Grid>                    
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="Border" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="Border" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsEditable" Value="True">
                             <Setter Property="IsTabStop" Value="False" />
@@ -76,6 +95,18 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type ComboBoxItem}">
@@ -122,15 +153,12 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="ExplorerComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+    <Style x:Key="ExplorerComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
-                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}" Height="28" Opacity="0"/>
+                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}" Height="28" Opacity="0" />
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press"
                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
@@ -179,7 +207,7 @@
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
                         </DataTrigger>
-                        
+
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
@@ -187,7 +215,7 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.4">
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
@@ -198,7 +226,7 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.4">
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
@@ -216,14 +244,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

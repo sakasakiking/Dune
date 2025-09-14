@@ -3,7 +3,6 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <Style x:Key="MainWindowStyle" TargetType="WindowBase">
-        <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
@@ -48,6 +47,9 @@
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, ElementName=WindowBorder}" Value="True">
                             <Setter Property="Background" Value="{DynamicResource DarkWindowBackgroundBrush}" TargetName="WindowBorder" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, ElementName=WindowBorder}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}" TargetName="WindowBorder" />
                         </DataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="&#xf5ef;" TargetName="PART_ButtonMaximize"/>

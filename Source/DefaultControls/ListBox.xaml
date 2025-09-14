@@ -9,12 +9,12 @@
     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="Padding" Value="8,0,8,0"/>
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBox}">
@@ -92,21 +92,13 @@
     </Style>
 
 
-    <Style x:Key="ExplorerPanelListBoxItem" TargetType="ListBoxItem">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+    <Style x:Key="ExplorerPanelListBoxItem" TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
                     <Grid>
-                        <Border x:Name="HoverBg" Padding="{TemplateBinding Padding}" CornerRadius="{DynamicResource ControlCornerRadius}" MinHeight="28" Opacity="0"/>
-                        <Border x:Name="SelectedBg" Padding="{TemplateBinding Padding}" CornerRadius="{DynamicResource ControlCornerRadius}" MinHeight="28" Opacity="0"/>
+                        <Border x:Name="HoverBg" Padding="{TemplateBinding Padding}" CornerRadius="{DynamicResource ControlCornerRadius}" MinHeight="28" Opacity="0" />
+                        <Border x:Name="SelectedBg" Padding="{TemplateBinding Padding}" CornerRadius="{DynamicResource ControlCornerRadius}" MinHeight="28" Opacity="0" />
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" Margin="12,0,12,0" />
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -118,12 +110,12 @@
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
                         </DataTrigger>
-                        
+
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Opacity" Value="0.08" TargetName="SelectedBg" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Opacity" Value="0.08" TargetName="SelectedBg"/>
+                            <Setter Property="Opacity" Value="0.08" TargetName="SelectedBg" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -133,11 +125,9 @@
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg"
-                                                         Storyboard.TargetProperty="Opacity" 
-                                                         To="0.16" Duration="0:0:0.4">
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
-                                                <QuadraticEase EasingMode="EaseOut"/>
+                                                <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
                                     </Storyboard>
@@ -146,11 +136,9 @@
                             <MultiTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg"
-                                                         Storyboard.TargetProperty="Opacity" 
-                                                         To="0" Duration="0:0:0.4">
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
-                                                <QuadraticEase EasingMode="EaseOut"/>
+                                                <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
                                     </Storyboard>
@@ -161,15 +149,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

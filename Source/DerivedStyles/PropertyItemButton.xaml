@@ -4,7 +4,7 @@
     <Style x:Key="PropertyItemButton" TargetType="Button">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="Margin" Value="0,4,0,0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -16,12 +16,18 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Opacity" Value="0.6" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+                <Setter Property="Opacity" Value="0.6" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -87,72 +93,125 @@
 
     <Style x:Key="PropertyItemLinkButton" TargetType="Button">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="Margin" Value="0,4,0,0" />
-        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="Padding" Value="4,4,4,4" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="{DynamicResource ControlCornerRadius}" Background="{TemplateBinding Background}" Margin="5,0,5,8">
-                        <DockPanel HorizontalAlignment="Center">
-                            <Viewbox DockPanel.Dock="Left" Width="20" Height="20" x:Name="ViewBoxLink"
-                                 VerticalAlignment="Center" Margin="8,8,8,8"
-                                 Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}"
-                                 RenderOptions.ClearTypeHint="Enabled" RenderOptions.BitmapScalingMode="Fant">
+                    <Grid Margin="0,0,8,8">
+                        <Border x:Name="HoverBg" CornerRadius="{DynamicResource ControlCornerRadius}" BorderThickness="0" Background="{TemplateBinding Background}" Opacity="0" />
+                        <StackPanel Orientation="Horizontal" Margin="8,4,8,4">
+                            
+                            <Viewbox x:Name="ViewBoxLink" Width="16" Height="16" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"
+                                    Visibility="{PluginStatus Plugin=felixkmh_Extras_Plugin, Status=Installed}" RenderOptions.ClearTypeHint="Enabled"
+                                    RenderOptions.BitmapScalingMode="Fant" Tag="{DynamicResource ShowIconTextOnLink}">
                                 <ContentControl Content="{Binding Value, TargetNullValue={StaticResource LinksIcon}}"
-                                                DataContext="{Binding Url, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}"/>
+                                        DataContext="{Binding Url, Converter={PluginConverter Plugin=ThemeExtras, Converter=UrlToAsyncIconConverter}}" />
                             </Viewbox>
 
-                            <TextBlock FontSize="{TemplateBinding FontSize}" Name="LinkName" Margin="8,8,8,8"
-                                       Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center"
-                                       Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}"
-                                       TextWrapping="Wrap"/>
-                        </DockPanel>
-                    </Border>
+                            <TextBlock Name="LinkName" FontSize="{TemplateBinding FontSize}" VerticalAlignment="Center"
+                                    Margin="{TemplateBinding Padding}" Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=ViewBoxLink, Path=Visibility}" Value="Visible">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="LinkName"/>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=ViewBoxLink, Path=Tag}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="LinkName" />
+                            <Setter Property="Margin" Value="0,0,8,0" TargetName="LinkName" />
+                            <Setter Property="Opacity" Value="0" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=ViewBoxLink, Path=Visibility}" Value="Visible" />
+                                <Condition Binding="{Binding ElementName=ViewBoxLink, Path=Tag}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="LinkName" />
+                            <Setter Property="Opacity" Value="0" TargetName="HoverBg" />
+                        </MultiDataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-                <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
-                <Setter Property="Cursor" Value="Hand" />
-            </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
+                <Setter Property="Opacity" Value="0.6" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="PropertyItemTagButton" TargetType="Button">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="#0A000000" />
         <Setter Property="Padding" Value="4,2,4,2" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="{StaticResource ControlCornerRadiusSmall}"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                    <Grid>
+                        <Border x:Name="HoverBg" CornerRadius="{StaticResource ControlCornerRadiusSmall}" Background="{TemplateBinding Background}" Opacity="0.04"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" />
                         <TextBlock FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}"
-                                   Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}" TextWrapping="Wrap"/>
-                    </Border>
+                                Text="{TemplateBinding Content, Converter={StaticResource ObjectToStringConverter}}" TextWrapping="Wrap" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.08" TargetName="HoverBg"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-                <Setter Property="Background" Value="#14000000" />
-                <Setter Property="BorderBrush" Value="#66000000" />
-                <Setter Property="Cursor" Value="Hand" />
-            </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

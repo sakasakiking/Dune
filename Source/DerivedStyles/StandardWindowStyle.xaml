@@ -8,10 +8,10 @@
     </Style>
 
     <Style x:Key="StandardWindowStyle" TargetType="WindowBase">
-        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CaptionHeight="24" CornerRadius="0" ResizeBorderThickness="4"
@@ -25,9 +25,7 @@
                         <sys:Boolean x:Key="True">True</sys:Boolean>
                     </ControlTemplate.Resources>
                     <AdornerDecorator>
-                        <Border x:Name="WindowBorder" BorderBrush="{DynamicResource PopupBorderBrush}" CornerRadius="0"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}">
+                        <Border x:Name="WindowBorder" CornerRadius="{DynamicResource ControlCornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" >
                             <Grid>
                                 <ContentPresenter Margin="0,24,0,0"/>
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
@@ -53,6 +51,14 @@
                         </Border>
                     </AdornerDecorator>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkPopupBackgroundBrush}" TargetName="WindowBorder" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkPopupBorderBrush}" TargetName="WindowBorder" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" TargetName="WindowBorder" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" TargetName="WindowBorder" />
+                        </DataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="&#xf5ef;" TargetName="PART_ButtonMaximize"/>
                             <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>

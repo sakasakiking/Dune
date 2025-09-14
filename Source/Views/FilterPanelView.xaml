@@ -13,12 +13,13 @@
         </Style.Triggers>
     </Style>
     
-    <Style x:Key="FilterPanelLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+    <Style x:Key="FilterPanelLabel" TargetType="Label">
         <Setter Property="Margin" Value="16,12,16,4" />
-        <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="Foreground" Value="#808080" />
         <Style.Triggers>
             <Trigger Property="Tag" Value="{StaticResource False}">
-                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="Opacity" Value="0.6" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -41,11 +42,10 @@
 
     <Style x:Key="FilterPresetButtonAction" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
         <Setter Property="Height" Value="28"/>
         <Setter Property="Width" Value="28"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="DockPanel.Dock" Value="Right" />
     </Style>
@@ -54,7 +54,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type FilterPanel}">
-                    <Border BorderBrush="{DynamicResource PanelSeparatorBrush}" Background="{DynamicResource GlobalBackgroundBrush}"
+                    <Border BorderBrush="{DynamicResource PanelSeparatorBrush}" 
                             d:DesignWidth="200">
                         <Border.Style>
                             <Style TargetType="Border">
@@ -70,15 +70,17 @@
                             </Style>
                         </Border.Style>
                         <DockPanel Background="{TemplateBinding Background}">
+                            <!--Row 1-->
                             <DockPanel Margin="16,16,16,0" DockPanel.Dock="Top">
                                 <Button Name="PART_ButtonClose" DockPanel.Dock="Right" 
-                                        Content="&#xe106;" Background="{DynamicResource SecondaryButtonIdleBackgroundBrush}"
+                                        Content="&#xe106;" 
                                         FontSize="{DynamicResource FontSizeSmall}" VerticalAlignment="Top" Margin="0,0,0,0"
                                         Style="{StaticResource IconfontButton}"/>
                                 <Button Name="PART_ButtonClear" DockPanel.Dock="Left" Height="28"
                                         Content="{StaticResource LOCClearFilters}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0"
                                         Style="{StaticResource SecondaryButton}"/>
                             </DockPanel>
+                            <!--Row 2-->
                             <DockPanel Margin="16,16,16,0" DockPanel.Dock="Top">
                                 <Button x:Name="PART_ButtonDeleteFilter"
                                         Content="&#xe107;" Style="{DynamicResource FilterPresetButtonAction}" />
@@ -89,9 +91,8 @@
                                 <ComboBox x:Name="PART_ComboFilterPresets" Margin="0,0,4,0" 
                                           DockPanel.Dock="Left" VerticalAlignment="Center" />
                             </DockPanel>
-                            <Separator Height="1" DockPanel.Dock="Top"
-                                       Background="{DynamicResource PanelSeparatorBrush}" Margin="16,16,16,0"
-                                       Focusable="False" SnapsToDevicePixels="True"/>
+                            <Separator Height="1" DockPanel.Dock="Top" Background="{DynamicResource PanelSeparatorBrush}" Margin="16,16,16,0" Focusable="False"
+                                    SnapsToDevicePixels="True" />
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
                                       DockPanel.Dock="Top">
                                 <StackPanel x:Name="PART_PanelItemsHost" Margin="0,16,0,16"/>
