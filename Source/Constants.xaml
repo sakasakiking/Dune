@@ -24,17 +24,18 @@
 
         <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#000000" />
         <SolidColorBrush x:Key="DarkControlBackgroundBrush" Color="#FFFFFF" />
+    
+        <SolidColorBrush x:Key="ControlBorderBrush" Color="#000000" />
+        <SolidColorBrush x:Key="DarkControlBorderBrush" Color="#FFFFFF" />
 
         <SolidColorBrush x:Key="PopupSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     
         <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#E0E0E0" />
         <SolidColorBrush x:Key="DarkPopupBackgroundBrush" Color="#1F1F1F" />
 
-        <SolidColorBrush x:Key="PopupBorderBrush" Color="#14000000" />
-        <SolidColorBrush x:Key="DarkPopupBorderBrush" Color="#29FFFFFF" />
+        <SolidColorBrush x:Key="PopupBorderBrush" Color="#BCBCBC" />
+        <SolidColorBrush x:Key="DarkPopupBorderBrush" Color="#4C4C4C" />
 
-        <SolidColorBrush x:Key="ControlBorderBrush" Color="#000000" />
-        <SolidColorBrush x:Key="DarkControlBorderBrush" Color="#FFFFFF" />
     
         <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
         <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />

@@ -9,4 +9,42 @@
     <Style TargetType="Border">
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
+
+    <Style x:Key="PopupBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkPopupBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkPopupBorderBrush}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DetailViewCardBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" />
+                <Setter Property="Opacity" Value="0.04" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" />
+                <Setter Property="Opacity" Value="1" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    
 </ResourceDictionary>

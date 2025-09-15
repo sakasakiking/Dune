@@ -10,31 +10,44 @@
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="AllowDrop" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlIdleBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Padding" Value="6,4,6,4" />
         <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
-                                CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}" BorderBrush="{TemplateBinding BorderBrush}" />
+                        <Border x:Name="HoverBg" BorderThickness="0" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.08"/>
+                        <Border x:Name="SelectedBg" BorderThickness="{DynamicResource ControlBorderThickness}" Background="Transparent" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0" />
                         <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
                                 HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="SelectedBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
                 <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
             </DataTrigger>
 
             <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
             </DataTrigger>
             <Trigger Property="IsEnabled" Value="False">
@@ -50,8 +63,8 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="AllowDrop" Value="True" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
-        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Padding" Value="0" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -119,7 +132,6 @@
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="AllowDrop" Value="True" />
-        <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -132,17 +144,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
-                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="DetailViewTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">

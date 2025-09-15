@@ -80,7 +80,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="4" CornerRadius="{DynamicResource ControlCornerRadius}"
-                    Background="{DynamicResource ControlIdleBackgroundBrush}" Visibility="Collapsed"  />
+                    Opacity="0"  />
             
             <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="8,0,0,0" MaxHeight="16" MaxWidth="16" 
                               VerticalAlignment="Center" ContentSource="Icon" />
@@ -106,8 +106,7 @@
             
             <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right"
                    Focusable="False" AllowsTransparency="True" VerticalOffset="-10">
-                <Border BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}"
-                        BorderThickness="{DynamicResource PopupBorderThickness}" CornerRadius="16">
+                <Border Style="{DynamicResource PopupBorder}">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
                                   Padding="8">
                         <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
@@ -116,6 +115,12 @@
             </Popup>
         </Grid>
         <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBorder" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBorder" />
+            </DataTrigger>
             <Trigger Property="Icon" Value="{x:Null}">
                 <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
             </Trigger>
@@ -124,7 +129,7 @@
                 <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Visibility" Value="Visible" TargetName="HoverBorder" />
+                <Setter Property="Opacity" Value="0.08" TargetName="HoverBorder" />
             </Trigger>
             <Trigger Property="InputGestureText" Value="">
                 <Setter Property="Visibility" Value="Collapsed" TargetName="GestureText" />
@@ -132,35 +137,39 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <!-- SubmenuItem -->
+    <!-- T1 Menuitem without children-->
     <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="{x:Type MenuItem}">
-        <Border x:Name="HoverBorder" Background="{DynamicResource ControlIdleBackgroundBrush}" Height="28" CornerRadius="{DynamicResource ControlCornerRadius}">
+        <Grid>
+            <Border x:Name="HoverBorder" Height="28" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.08"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
-                    <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" MinWidth="120"/>
+                    <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" MinWidth="120" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemShortcutColumnGroup" />
                 </Grid.ColumnDefinitions>
-                
-                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="8,0,0,0"
-                                  MaxHeight="16" MaxWidth="16"
-                                  VerticalAlignment="Center" ContentSource="Icon" />
-                
+
+                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="8,0,0,0" MaxHeight="16" MaxWidth="16" VerticalAlignment="Center" ContentSource="Icon" />
+
                 <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed" Margin="8,0,0,0" VerticalAlignment="Center">
                     <TextBlock Text="&#xf13e;" Style="{DynamicResource IconFontStyle}" />
                 </Grid>
-                
+
                 <TextBlock VerticalAlignment="Center" Grid.Column="1" Margin="8,0,8,0" Padding="0" Style="{DynamicResource BaseTextBlockStyle}"
-                           Foreground="{TemplateBinding Foreground}">
-                    <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
+                        Foreground="{TemplateBinding Foreground}">
+            <ContentPresenter RecognizesAccessKey="True" ContentSource="Header" />
                 </TextBlock>
-                
-                <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"
-                           TextAlignment="Left" HorizontalAlignment="Stretch"
-                           VerticalAlignment="Center" Margin="20,0,8,0" Opacity="0.6" />
+
+                <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}" TextAlignment="Left" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" Margin="20,0,8,0" Opacity="0.6" />
             </Grid>
-        </Border>
+        </Grid>
         <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBorder" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBorder" />
+            </DataTrigger>
             <Trigger Property="Icon" Value="{x:Null}">
                 <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
             </Trigger>
@@ -169,7 +178,7 @@
                 <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="False">
-                <Setter Property="Background" Value="Transparent" TargetName="HoverBorder" />
+                <Setter Property="Opacity" Value="0" TargetName="HoverBorder" />
             </Trigger>
             <!--<Trigger Property="InputGestureText" Value="">
                 <Setter Property="Visibility" Value="Collapsed" TargetName="GestureText" />
@@ -182,6 +191,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}" />
@@ -196,6 +206,13 @@
             <Trigger Property="Role" Value="SubmenuItem">
                 <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
             </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

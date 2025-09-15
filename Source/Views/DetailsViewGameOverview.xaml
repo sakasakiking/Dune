@@ -468,6 +468,15 @@
                                                             <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                                             <Button Name="PART_ButtonLibrary" Margin="0,12,0,0" />
 
+                                                            <Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}" />
+                                                            <TextBlock Name="PART_TextCommunityScore" Margin="0,12,0,0" Style="{DynamicResource TextBlockGameScore}" />
+
+                                                            <Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />
+                                                            <TextBlock Name="PART_TextCriticScore" Margin="0,12,0,0" Style="{DynamicResource TextBlockGameScore}" />
+
+                                                            <Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />
+                                                            <TextBlock Name="PART_TextUserScore" Margin="0,12,0,0" Style="{DynamicResource TextBlockGameScore}" />
+
                                                         </GridEx>
                                                     </StackPanel>
                                                     <!--InstallDirectory-->
@@ -556,75 +565,7 @@
                                             </Grid>
 
                                         </StackPanel>
-                                        <!--Details Panel Ends-->
-
-
-                                        
-
-                                        <!--Ratings-->
-                                        <StackPanel Margin="0,0,0,32">
-
-                                            <Border CornerRadius="{DynamicResource ControlCornerRadius}" 
-                                                    Style="{DynamicResource DetailViewCardBorder}" Margin="0,0,0,0">
-
-                                                <Grid Margin="16,12,16,12">
-                                                    <Grid.Resources>
-                                                        <Style TargetType="Label">
-                                                            <Setter Property="FontSize" Value="{StaticResource FontSizeSmaller}"/>
-                                                            <Setter Property="Foreground" Value="{StaticResource IdleBrush}"/>
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        </Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="FontSize" Value="{StaticResource FontSizeLarge20}"/>
-                                                            <Setter Property="Foreground" Value="{StaticResource IdleBrush}"/>
-                                                            <Setter Property="FontWeight" Value="Bold"/>
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        </Style>
-                                                    </Grid.Resources>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <StackPanel Grid.Column="0">
-                                                        <!--<Label Name="PART_ElemCommunityScore" Content="{DynamicResource LOCCommunityScore}"/>-->
-                                                        <Label Content="{DynamicResource LOCCommunityScore}"/>
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                                                            <TextBlock Text="&#xe00a;" Style="{StaticResource IconFontStyle}" Margin="0,0,4,0"/>
-                                                            <TextBlock Text="{Binding Game.CommunityScore, TargetNullValue='- -', FallbackValue='- -'}"
-                               VerticalAlignment="Center" Margin="4,0,0,0"/>
-                                                            <!--<TextBlock Name="PART_TextCommunityScore" VerticalAlignment="Center" />-->
-                                                        </StackPanel>
-                                                    </StackPanel>
-
-                                                    <StackPanel Grid.Column="1">
-                                                        <!--<Label Name="PART_ElemCriticScore" Content="{DynamicResource LOCCriticScore}" />-->
-                                                        <Label Content="{DynamicResource LOCCriticScore}" />
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                            <TextBlock Text="&#xe00a;" Style="{StaticResource IconFontStyle}" Margin="0,0,4,0"/>
-                                                            <TextBlock Text="{Binding Game.CriticScore, TargetNullValue='- -', FallbackValue='- -'}"
-                               VerticalAlignment="Center" Margin="4,0,0,0"/>
-                                                            <!--<TextBlock Name="PART_TextCriticScore" VerticalAlignment="Center" />-->
-                                                        </StackPanel>
-                                                    </StackPanel>
-
-                                                    <StackPanel Grid.Column="2">
-                                                        <!--<Label Name="PART_ElemUserScore" Content="{DynamicResource LOCUserScore}" />-->
-                                                        <Label Content="{DynamicResource LOCUserScore}" />
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                            <TextBlock Text="&#xe00a;" Style="{StaticResource IconFontStyle}" Margin="0,0,4,0"/>
-                                                            <TextBlock Text="{Binding Game.UserScore, TargetNullValue='- -', FallbackValue='- -'}" 
-                               VerticalAlignment="Center" Margin="4,0,0,0"/>
-                                                            <!--<TextBlock Name="PART_TextUserScore" VerticalAlignment="Center" />-->
-                                                        </StackPanel>
-                                                    </StackPanel>
-
-                                                </Grid>
-                                            </Border>
-                                        </StackPanel>
-                                        <!--Ratings Ends-->
-                
+                                        <!--Details Panel Ends-->          
 
                                     </StackPanel>
                                     <!--Right Side Ends-->
@@ -775,7 +716,7 @@
                                                         </StackPanel>
 
                                                         <!--Game relations-->
-                                                        <StackPanel Margin="0,24,0,0" Visibility="{Binding ElementName=GameRelationsVisibilityProxy, Path=Tag}">
+                                                        <!--<StackPanel Margin="0,24,0,0" Visibility="{Binding ElementName=GameRelationsVisibilityProxy, Path=Tag}">
 
                                                             <TextBlock Text="{DynamicResource LOCGameRelations_RelatedGamesLabel}" Margin="0,0,0,16"
                                                                        FontSize="{DynamicResource FontSizeLarge20}" FontWeight="Bold" Foreground="{DynamicResource SelectedBrush}"/>
@@ -828,7 +769,7 @@
                                   Visibility="{PluginSettings Plugin=GameRelations, Path=SamePublisherControlSettings.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
                                                                 <ContentControl x:Name="GameRelations_SamePublisherControl" Margin="0,16,0,0" />
                                                             </Expander>
-                                                        </StackPanel>
+                                                        </StackPanel>-->
 
                                                     </StackPanel>
                                                 </TabItem>

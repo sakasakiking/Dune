@@ -16,8 +16,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
-                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Opacity="0"
+                        <Border x:Name="HoverBg" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Opacity="0.08"
                                 CornerRadius="{DynamicResource ControlCornerRadius}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" />
+                        <!--<Border x:Name="SelectedBg" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Opacity="0"
+                                CornerRadius="{DynamicResource ControlCornerRadius}" Height="{TemplateBinding Height}" Background="Transparent" />-->
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press"
                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
@@ -41,13 +43,12 @@
                             <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}" BorderThickness="{DynamicResource PopupBorderThickness}"
-                                            Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="16">
-                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="8,8,8,8">
-                                            <ItemsPresenter Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
-                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                        </ScrollViewer>
-                                    </Border>
+                                    <Border Style="{DynamicResource PopupBorder}" />
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="8,8,8,8">
+                                        <ItemsPresenter Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </ScrollViewer>
+
                                 </Grid>
                             </Popup>
                         </Grid>
@@ -55,12 +56,15 @@
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
                             <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <!--<Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="SelectedBg" />-->
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <!--<Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="SelectedBg" />-->
                         </DataTrigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+                            <Setter Property="Opacity" Value="0.08" TargetName="HoverBg" />
+                            <!--<Setter Property="Opacity" Value="0.16" TargetName="SelectedBg" />-->
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
@@ -77,7 +81,7 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.08" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
@@ -110,26 +114,27 @@
     </Style>
 
     <Style TargetType="{x:Type ComboBoxItem}">
-        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="12,0,12,0" />
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                     <Grid Height="28">
-                        <Border x:Name="HoverBg" IsHitTestVisible="False" CornerRadius="{DynamicResource ControlCornerRadius}"
-                                   Visibility="Collapsed" Background="{DynamicResource PopupIdleBackgroundBrush}" />
-                        <Border x:Name="SelectedBg" IsHitTestVisible="False" CornerRadius="{DynamicResource ControlCornerRadius}"
-                                   Visibility="Collapsed" Background="{DynamicResource PopupHoverBackgroundBrush}" />
+                        <Border x:Name="HoverBg" IsHitTestVisible="False" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
                         <Border Padding="{TemplateBinding Padding}">
                             <ContentPresenter VerticalAlignment="Center" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBg" />
-                            <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}"/>
+                            <Setter Property="Opacity" Value="0.08" TargetName="HoverBg" />
                         </Trigger>
 
                         <MultiTrigger>
@@ -137,9 +142,28 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="Selector.IsSelected" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Visible" TargetName="HoverBg" />
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="SelectedBg" />
-                            <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}"/>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
                         </MultiTrigger>
                         
                     </ControlTemplate.Triggers>
@@ -147,9 +171,16 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="Selector.IsSelected" Value="True">
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+            <!--<Trigger Property="Selector.IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource SelectedBrush}" />
-            </Trigger>
+            </Trigger>-->
         </Style.Triggers>
     </Style>
 
@@ -158,7 +189,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
-                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}" Height="28" Opacity="0" />
+                        <Border x:Name="HoverBg" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}" Height="28" Opacity="0.08" />
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press"
                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
@@ -189,13 +220,12 @@
                             <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}" BorderThickness="{DynamicResource PopupBorderThickness}"
-                                            Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="{DynamicResource ControlCornerRadiusLarge}">
-                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="8,8,8,8">
-                                            <ItemsPresenter Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
-                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                        </ScrollViewer>
-                                    </Border>
+                                    <Border Style="{DynamicResource PopupBorder}"/>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="8,8,8,8">
+                                        <ItemsPresenter Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </ScrollViewer>
+
                                 </Grid>
                             </Popup>
                         </Grid>
@@ -209,7 +239,7 @@
                         </DataTrigger>
 
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+                            <Setter Property="Opacity" Value="0.08" TargetName="HoverBg" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
@@ -226,7 +256,7 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.08" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>

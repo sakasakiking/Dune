@@ -30,7 +30,7 @@
                     </Style>
                 </ToggleButton.Style>
             </ToggleButton>
-            <TextBox x:Name="PART_TextFilterInput" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="0,0,40,0" />
+            <TextBox x:Name="PART_TextFilterInput" BorderThickness="0" VerticalAlignment="Center" Margin="0,0,40,0" Style="{DynamicResource SearchSmallTextBox}"/>
             <Button x:Name="PART_ButtonClearFilter" Margin="0,1,24,0" FontSize="12" Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Padding="4,0,4,0"
                     Foreground="{DynamicResource PromptBrush}" ContentTemplate="{DynamicResource ClearTextIconTemplate}">
                 <Button.Style>
@@ -46,10 +46,10 @@
             </Button>
             <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup" IsOpen="{Binding IsChecked, ElementName=MainToggle, Mode=TwoWay, Delay=100}"
                     StaysOpen="False" MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
-                <Border Background="{DynamicResource PopupBackgroundBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"
-                        BorderThickness="{DynamicResource PopupBorderThickness}" BorderBrush="{DynamicResource PopupBorderBrush}">
+                <Grid>
+                    <Border Style="{DynamicResource PopupBorder}" />
                     <ItemsControl x:Name="PART_ItemsPanel" />
-                </Border>
+                </Grid>
             </Popup>
         </Grid>
         <ControlTemplate.Triggers>

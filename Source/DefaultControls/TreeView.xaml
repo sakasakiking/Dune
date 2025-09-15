@@ -30,19 +30,17 @@
 
     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="Padding" Value="0,0,0,0" />
         <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                    <StackPanel Margin="0,0,0,8">
-                        <Border x:Name="SelectionBorder"
-                                Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
+                    <StackPanel x:Name="Root" Margin="0,0,0,8" Tag="{DynamicResource ThemeDarkStyle}">
+                        <Border x:Name="SelectionBorder" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
                             <DockPanel>
                                 <ToggleButton x:Name="Expander" ClickMode="Press" DockPanel.Dock="Left" Margin="0,0,6,0"
-                                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
+                                        IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
                                     <ToggleButton.Style>
                                         <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
                                             <Setter Property="Focusable" Value="False" />
@@ -50,11 +48,11 @@
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                                                         <Grid>
-                                                            <Viewbox x:Name="IsExpandedPath" Visibility="Visible" >
-                                                                <TextBlock Text="&#xe00f;" Style="{StaticResource IconFontStyle}" FontSize="14"/>
+                                                            <Viewbox x:Name="IsExpandedPath" Visibility="Visible">
+                                                                <TextBlock Text="&#xe00f;" Style="{StaticResource IconFontStyle}" FontSize="14" />
                                                             </Viewbox>
-                                                            <Viewbox x:Name="ExpandPath" Visibility="Collapsed" >
-                                                                <TextBlock Text="&#xe011;" Style="{StaticResource IconFontStyle}" FontSize="14"/>
+                                                            <Viewbox x:Name="ExpandPath" Visibility="Collapsed">
+                                                                <TextBlock Text="&#xe011;" Style="{StaticResource IconFontStyle}" FontSize="14" />
                                                             </Viewbox>
                                                         </Grid>
                                                         <ControlTemplate.Triggers>
@@ -69,13 +67,19 @@
                                         </Style>
                                     </ToggleButton.Style>
                                 </ToggleButton>
-                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" Height="Auto"
-                                                  DockPanel.Dock="Left"/>
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" Height="Auto" DockPanel.Dock="Left" />
                             </DockPanel>
                         </Border>
                         <ItemsPresenter x:Name="ItemsHost" Margin="18,8,0,0" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, ElementName=Root}" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Tag, ElementName=Root}" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                        </DataTrigger>
                         <Trigger Property="IsExpanded" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="ItemsHost" />
                         </Trigger>

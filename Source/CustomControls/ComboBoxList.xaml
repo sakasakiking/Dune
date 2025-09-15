@@ -68,82 +68,79 @@
         </Border>
     </ControlTemplate>
 
+    <!--Selector in Edit panle-->
     <ControlTemplate x:Key="FilterComboBoxListTemplate" TargetType="{x:Type ComboBoxListBase}">
-        <Border BorderThickness="{DynamicResource ControlBorderThickness}"
-                CornerRadius="{DynamicResource ControlCornerRadius}"
-                Style="{DynamicResource HighlightBorder}"
-                Background="{TemplateBinding Background}"
-                x:Name="Root">
-            <Grid>
-                <DockPanel>
-                    <Viewbox Margin="0,0,12,0" DockPanel.Dock="Right" Width="10">
-                        <TextBlock Text="&#xf08e;" Foreground="{DynamicResource SubtalBrush}" FontSize="{DynamicResource FontSizeSmaller}"
-                                   Style="{StaticResource IconFontStyle}"/>
-                    </Viewbox>
-                    <TextBlock x:Name="PART_TextFilterString"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
-                               VerticalAlignment="Center" DockPanel.Dock="Left"
-                               Margin="8,0,24,0"/>
-                </DockPanel>
-                <ToggleButton x:Name="MainToggle"
-                              BorderThickness="0" Focusable="False"
-                              HorizontalContentAlignment="Stretch"
-                              Background="Transparent">
-                    <ToggleButton.Style>
-                        <Style TargetType="ToggleButton">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                        <Border Background="Transparent">
-                                            <ContentPresenter />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ToggleButton.Style>
-                </ToggleButton>
-                <Button x:Name="PART_ButtonClearFilter" Foreground="{DynamicResource PromptBrush}"
-                        Margin="0,1,26,0" FontSize="12" Background="Transparent" 
-                        HorizontalAlignment="Right" VerticalAlignment="Center"
-                        BorderThickness="0" Padding="4,0,4,0"
-                        ContentTemplate="{DynamicResource ClearTextIconTemplate}">
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
-                       IsOpen="{Binding IsChecked, ElementName=MainToggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
-                       MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
-                    <Border Background="{DynamicResource PopupBackgroundBrush}"
-                            BorderThickness="{DynamicResource PopupBorderThickness}"
-                            BorderBrush="{DynamicResource PopupBorderBrush}" CornerRadius="16">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <DockPanel Grid.Row="0" Margin="8" Name="PART_ElemSearchHost">
-                                <CheckBox DockPanel.Dock="Right"
-                                          x:Name="PART_ToggleSelectedOnly"
-                                          ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
-                                          FontFamily="{DynamicResource FontIcoFont}" />
-                                <SearchBox DockPanel.Dock="Left" Margin="0,0,8,0" x:Name="PART_SearchBox" />
-                            </DockPanel>
-                            <ItemsControl x:Name="PART_ItemsPanel" Grid.Row="1" />
-                        </Grid>
-                    </Border>
-                </Popup>
-            </Grid>
-        </Border>
+        <Grid x:Name="Root">
+            <Border x:Name="HoverBg" BorderThickness="0" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.08"/>
+            <Border x:Name="SelectedBg" BorderThickness="{DynamicResource ControlBorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}" Background="Transparent" Opacity="0"/>
+            <DockPanel>
+                <Viewbox Margin="0,0,12,0" DockPanel.Dock="Right" Width="10">
+                    <TextBlock Text="&#xf08e;" Foreground="{DynamicResource SubtalBrush}" FontSize="{DynamicResource FontSizeSmaller}" Style="{StaticResource IconFontStyle}" />
+                </Viewbox>
+                <TextBlock x:Name="PART_TextFilterString" Style="{StaticResource BaseTextBlockStyle}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" DockPanel.Dock="Left" Margin="8,0,24,0" />
+            </DockPanel>
+            <ToggleButton x:Name="MainToggle" BorderThickness="0" Focusable="False" HorizontalContentAlignment="Stretch" Background="Transparent">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="Transparent">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+            <Button x:Name="PART_ButtonClearFilter" Margin="0,1,26,0" FontSize="12" Background="Transparent" HorizontalAlignment="Right" Opacity="0.4"
+                    VerticalAlignment="Center" BorderThickness="0" Padding="0" ContentTemplate="{DynamicResource ClearTextIconTemplate}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Setter Property="Background" Value="Transparent" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup" IsOpen="{Binding IsChecked, ElementName=MainToggle, Mode=TwoWay, Delay=100}"
+                    StaysOpen="False" MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
+                <Border Style="{DynamicResource PopupBorder}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0" Margin="8" Name="PART_ElemSearchHost">
+                            <CheckBox DockPanel.Dock="Right" x:Name="PART_ToggleSelectedOnly" ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
+                                    FontFamily="{DynamicResource FontIcoFont}" />
+                            <SearchBox DockPanel.Dock="Left" Margin="0,0,8,0" x:Name="PART_SearchBox" />
+                        </DockPanel>
+                        <ItemsControl x:Name="PART_ItemsPanel" Grid.Row="1" />
+                    </Grid>
+                </Border>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="SelectedBg" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="ComboBoxListItemStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -160,12 +157,16 @@
     <Style TargetType="{x:Type DdItemListSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Height" Value="28" />
-        <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template" Value="{DynamicResource FilterComboBoxListTemplate}" />
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" />
-            </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
