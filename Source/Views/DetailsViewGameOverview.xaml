@@ -792,9 +792,7 @@
                                                             </TextBlock.Style>
                                                         </TextBlock>
 
-                                                        <TextBox Name="PART_TextNotes" IsReadOnly="True" BorderThickness="0"
-                                                                 AcceptsReturn="True" TextWrapping="Wrap"
-                                                                 Margin="-1,5,-1,5" Padding="0" Background="Transparent" FontWeight="Normal"/>
+                                                        <TextBox Name="PART_TextNotes" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"/>
                                                     </StackPanel>
                                                 </TabItem>
                                                 <!--Tab Notes Ends-->

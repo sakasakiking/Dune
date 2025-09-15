@@ -5,5 +5,15 @@ Packages:
     ReleaseDate: 2024-12-04
     PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_8.pthm
     Changelog: 
-      - Initial release.
+    - Initial release.
+  - Version: 0.9.1
+    RequiredApiVersion: 2.8.0
+    ReleaseDate: 2025-09-15
+    PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_9_1.pthm
+    Changelog: 
+    - Second release since the first one after nearly 1 year.
+    - Basically, Dune is still a light theme, but this time you could switch it to ..Dune Night.., give it a shot via ThemeModifier.
+    - New layouts, New UI
+    - Fixed lots of issues.
+    - Continuing to optimize the theme...
 
