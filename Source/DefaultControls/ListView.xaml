@@ -6,16 +6,16 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 
-    <Style TargetType="{x:Type GridViewColumnHeader}">
+    <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                    <Grid Margin="2,0,2,0">
-                        <Border x:Name="HoverBg" Height="28" Opacity="0.08" CornerRadius="{DynamicResource ControlCornerRadiusSmall}"/>
+                    <Grid Margin="2,0,0,0">
+                        <Border x:Name="HoverBg" BorderThickness="1,1,0,0" Height="28" CornerRadius="{DynamicResource ControlCornerRadiusSmall}" Opacity="0.08" />
+                        <Border x:Name="SelectedBg" BorderThickness="0" Height="28" CornerRadius="{DynamicResource ControlCornerRadiusSmall}" Opacity="0" />
                         <TextBlock x:Name="ColumnHeader" Style="{DynamicResource BaseTextBlockStyle}" VerticalAlignment="Center" Margin="8,0,8,0">
                                 <ContentPresenter VerticalAlignment="Center" />
                         </TextBlock>
@@ -40,16 +40,18 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="HoverBg" />
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="SelectedBg" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="HoverBg" />
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
                         </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>
@@ -60,7 +62,7 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.08" Duration="0:0:0.2">
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseOut" />
                                             </DoubleAnimation.EasingFunction>

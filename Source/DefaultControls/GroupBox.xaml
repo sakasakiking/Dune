@@ -8,29 +8,28 @@
 
     <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="#F9F9F9" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="16,10,16,12" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupBox}">
-                    <Border DockPanel.Dock="Top" Margin="2"
-                            Padding="{TemplateBinding Padding}" 
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{StaticResource ControlCornerRadius}">
+                    <Grid>
+                        <Border x:Name="HoverBg" Margin="2" BorderThickness="0" CornerRadius="{StaticResource ControlCornerRadius}" Opacity="0.04"/>
                         <DockPanel>
-                            <Border DockPanel.Dock="Top" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource PanelSeparatorBrush}" >
-                                <TextBlock Style="{DynamicResource BaseTextBlockStyle}" Margin="0,0,0,10">
-                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" ContentSource="Header"
-                                                      RecognizesAccessKey="True" />
-                                </TextBlock>
-                            </Border>
-                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" DockPanel.Dock="Top"
-                                              Margin="0,6,0,0"/>
+                            <TextBlock DockPanel.Dock="Top" Margin="16,12,16,12" FontSize="{DynamicResource FontSizeSmall}" FontWeight="Bold"
+                                    Style="{DynamicResource BaseTextBlockStyle}">
+                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" ContentSource="Header" RecognizesAccessKey="True" />
+                            </TextBlock>
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" DockPanel.Dock="Top" Margin="16,0,16,16" />
                         </DockPanel>
-                    </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

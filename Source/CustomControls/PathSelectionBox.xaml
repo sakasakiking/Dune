@@ -20,21 +20,29 @@
                                 MaxHeight="{TemplateBinding ActualHeight}"
                                 HorizontalAlignment="Center" VerticalAlignment="Center"
                                 ToolTip="{DynamicResource LOCSelectFileTitle}"/>
-                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="{StaticResource ControlCornerRadius}"
-                                Style="{DynamicResource HighlightBorder}" BorderBrush="{TemplateBinding BorderBrush}"
-                                DockPanel.Dock="Left">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
-                                          HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"/>
-                        </Border>
+                        <Grid DockPanel.Dock="Left">
+                            <Border x:Name="HoverBg" BorderThickness="0" CornerRadius="{StaticResource ControlCornerRadius}" Opacity="0.08"/>
+                            <Border x:Name="SelectedBg" BorderThickness="1" Background="Transparent" CornerRadius="{StaticResource ControlCornerRadius}" Opacity="0"/>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                                    HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" />
+
+                        </Grid>
                     </DockPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="Border" />
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="SelectedBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBackgroundBrush}" TargetName="SelectedBg" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="Border" />
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

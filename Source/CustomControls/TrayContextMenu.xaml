@@ -3,16 +3,11 @@
 
     <Style TargetType="{x:Type TrayContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TrayContextMenu}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="16" Padding="8"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Grid.IsSharedSizeScope="True">
+                    <Border Padding="8" Grid.IsSharedSizeScope="True"
+                            Style="{DynamicResource PopupBorder}">
                         <ItemsPresenter />
                     </Border>
                 </ControlTemplate>

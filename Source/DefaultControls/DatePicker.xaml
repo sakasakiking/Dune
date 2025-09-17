@@ -8,68 +8,60 @@
 
     <Style x:Key="CalendarItemStyle" TargetType="{x:Type CalendarItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarItem">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="{StaticResource ControlCornerRadiusLarge}" Padding="8"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                        <DockPanel Name="PART_Root" LastChildFill="True" >
-                            <DockPanel DockPanel.Dock="Top">
-                                <Button x:Name="PART_NextButton" DockPanel.Dock="Right"
-                                    FontWeight="Bold" FontFamily="Marlett" Padding="8,2,8,2"
-                                    Content="4" BorderThickness="0"
-                                    Focusable="False" Background="Transparent"/>
-                                <Button x:Name="PART_PreviousButton" DockPanel.Dock="Right"
-                                    FontWeight="Bold" FontFamily="Marlett" Padding="8,2,8,2"
-                                    Content="3" Focusable="False" BorderThickness="0"
-                                    Background="Transparent"/>
-                                <Button x:Name="PART_HeaderButton" DockPanel.Dock="Left"
-                                    Padding="2" Height="30" Focusable="False"
-                                    BorderThickness="0" Background="Transparent"/>
+                    <Grid>
+                        <Border Style="{DynamicResource PopupBorder}"/>
+                        <DockPanel Name="PART_Root" LastChildFill="True" Margin="8">
+                            <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                                <Button x:Name="PART_NextButton" DockPanel.Dock="Right" FontWeight="Bold" FontFamily="Marlett" Padding="8,2,8,2" Content="4" BorderThickness="0"
+                                        Focusable="False" />
+                                <Button x:Name="PART_PreviousButton" DockPanel.Dock="Right" FontWeight="Bold" FontFamily="Marlett" Padding="8,2,8,2" Content="3" Focusable="False"
+                                        BorderThickness="0" Margin="4,0,4,0" />
+                                <Button x:Name="PART_HeaderButton" DockPanel.Dock="Left" Padding="2" Height="30" Focusable="False" BorderThickness="0" Background="Transparent" />
                             </DockPanel>
                             <Grid>
                                 <Grid x:Name="PART_MonthView" Visibility="Visible">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                 </Grid>
-                                <Grid x:Name="PART_YearView"  Visibility="Hidden">
+                                <Grid x:Name="PART_YearView" Visibility="Hidden">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                 </Grid>
                             </Grid>
                         </DockPanel>
-                    </Border>
+
+                    </Grid>
+                    
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Calendar}}, Path=DisplayMode}" Value="Year">
                             <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
@@ -85,32 +77,56 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CalendarButtonStyle" TargetType="{x:Type CalendarButton}">
+    <Style x:Key="CalendarButtonStyle" TargetType="{x:Type CalendarButton}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}"/>
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="Width" Value="40" />
-        <Setter Property="Height" Value="40" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarButton}">
-                    <Border>
-                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}"
-                                  ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                                  ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
-                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                TextElement.Foreground="{TemplateBinding Foreground}" />
-                    </Border>
+                    <Grid Margin="8">
+                        <Border x:Name="HoverBg" BorderThickness="0" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                TextElement.Foreground="{TemplateBinding Foreground}" />
+
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger Property="IsInactive" Value="True">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.6" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource AccentIdleBrush}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0.16" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverBg" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -118,42 +134,42 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CalendarDayButtonStyle" TargetType="{x:Type CalendarDayButton}">
+    <Style x:Key="CalendarDayButtonStyle" TargetType="{x:Type CalendarDayButton}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}"/>
-        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarDayButton}">
-                    <Border x:Name="HoverBg" Background="Transparent" CornerRadius="{DynamicResource ControlCornerRadius}" Margin="2">
-                        <ContentPresenter
-                        Content="{TemplateBinding ContentControl.Content}"
-                        ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                        ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
-                        HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                        TextElement.Foreground="{TemplateBinding Foreground}">
+                    <Grid>
+                        <Border x:Name="HoverBg" CornerRadius="{DynamicResource ControlCornerRadius}" Margin="2" Opacity="0"/>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                TextElement.Foreground="{TemplateBinding Foreground}">
                         </ContentPresenter>
-                    </Border>
+
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger Property="IsToday" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
-                            <Setter Property="FontWeight" Value="Bold"/>
-                            <Setter Property="Background" Value="{DynamicResource ControlSelectedBackgroundBrush}" TargetName="HoverBg"/>
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
                         <Trigger Property="IsInactive" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledBrush}" />
+                            <Setter Property="Opacity" Value="0.6" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
+                            <Setter Property="Opacity" Value="0.08" TargetName="HoverBg"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource HoverBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}" TargetName="HoverBg"/>
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -181,68 +197,86 @@
 
     <Style TargetType="{x:Type DatePicker}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="TextBlock.FontFamily" Value="{DynamicResource FontFamily}" />
-        <Setter Property="TextBlock.FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource IdleBrush}" />
-        <Setter Property="TextBlock.Background" Value="{DynamicResource ControlIdleBackgroundBrush}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="CalendarStyle" Value="{StaticResource CalendarStyle}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlIdleBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
-        <Setter Property="Padding" Value="6,0,6,0" />
+        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DatePicker">
-                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
-                            Background="{DynamicResource ControlIdleBackgroundBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Height="28" CornerRadius="{StaticResource ControlCornerRadius}"
-                            Padding="{TemplateBinding Padding}">
-                        <DockPanel>
-                            <Popup x:Name="PART_Popup" StaysOpen="False" AllowsTransparency="True" Placement="Bottom"
-                                   PlacementTarget="{Binding ElementName=Border}" />
-                            <ToggleButton x:Name="PART_Button" DockPanel.Dock="Right" Content="&#xe163;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
-                                          BorderThickness="0" Padding="0,0,0,0" Background="Transparent"
-                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <DatePickerTextBox x:Name="PART_TextBox" DockPanel.Dock="Left" VerticalAlignment="Center"
-                                               Background="Transparent" BorderThickness="0"/>
+                    <Grid Height="28">
+                        <Border x:Name="HoverBg" BorderThickness="0"  CornerRadius="{StaticResource ControlCornerRadius}" Opacity="0.08"/>
+                        <Border x:Name="SelectedBg" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" CornerRadius="{StaticResource ControlCornerRadius}" Opacity="0"/>
+                        <DockPanel Margin="6,0,6,0">
+                            <Popup x:Name="PART_Popup" StaysOpen="False" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=Border}" />
+                            <ToggleButton x:Name="PART_Button" DockPanel.Dock="Right" Content="&#xe163;" 
+                                          FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" BorderThickness="0"
+                                          Padding="0,0,0,0" Background="Transparent" 
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <DatePickerTextBox x:Name="PART_TextBox" DockPanel.Dock="Left" VerticalAlignment="Center" />
                         </DockPanel>
-                    </Border>
+
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="SelectedBg" />
+                            <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="SelectedBg" />
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                        </DataTrigger>
                         <Trigger SourceName="PART_TextBox"  Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource ControlSelectedBorderBrush}" TargetName="Border" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg" />
                         </Trigger>
                         <Trigger SourceName="PART_Button"  Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource ControlSelectedBorderBrush}" TargetName="Border" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource ControlHoverBackgroundBrush}" TargetName="Border" />
+                            <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="TextBlock.Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type DatePickerTextBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="AllowDrop" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource IdleBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource IdleBrush}" />
-        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}">
-                        <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
-                                          HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"/>
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <Border x:Name="Border" BorderThickness="0" Background="Transparent"
+                                CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}" />
+
+                        <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                                      HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" />
+
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
