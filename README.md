@@ -1,7 +1,8 @@
 ![DownloadCount](https://img.shields.io/github/downloads/sakasakiking/Dune/total.svg)
 
 # Dune
-Hi guys, Dune is a light style, super clean and simple (This's what I want it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. If you're tired of the dark themes, it might let you have a different option.
+### Now you can switch Dune to Dune Night！
+Hi guys, Dune is a dual color scheme theme (Light and Dark), super clean and simple (This's what I want it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. If you're tired of the dark themes, it might let you have a different option.
 
 ## what's mainly different points (May change in the future)
 - **1**: Can not change the global backgound instead of light grey one.
