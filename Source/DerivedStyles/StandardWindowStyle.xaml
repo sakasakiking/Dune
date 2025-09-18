@@ -15,7 +15,7 @@
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CaptionHeight="24" CornerRadius="0" ResizeBorderThickness="4"
-                              NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
+                              NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="1"/>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
@@ -25,7 +25,7 @@
                         <sys:Boolean x:Key="True">True</sys:Boolean>
                     </ControlTemplate.Resources>
                     <AdornerDecorator>
-                        <Border x:Name="WindowBorder" CornerRadius="{DynamicResource ControlCornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" >
+                        <Border x:Name="WindowBorder" Style="{DynamicResource PopupBorder}" >
                             <Grid>
                                 <ContentPresenter Margin="0,24,0,0"/>
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">

@@ -47,6 +47,9 @@
         <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
         <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
 
+        <SolidColorBrush x:Key="AccentBackgroundBrush" Color="{DynamicResource AccentIdleColor}" />
+        <SolidColorBrush x:Key="DarkAccentBackgroundBrush" Color="{DynamicResource AccentIdleColor}" />
+
     <!--ThemeModifier Options Ends-->
 
     <sys:Double x:Key="FontSizeSmaller">10</sys:Double>

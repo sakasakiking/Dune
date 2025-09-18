@@ -6,28 +6,35 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 
-    <Style TargetType="{x:Type ProgressBar}">
+    <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource ControlSelectedBackgroundBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ProgressBar}">
                     <Border BorderThickness="{TemplateBinding BorderThickness}" >
                         <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <Rectangle Fill="{TemplateBinding Background}" Height="24"/>
-                            <Rectangle Name="PART_Track" Margin="0" />
+                            <Grid.OpacityMask>
+                                <VisualBrush>
+                                    <VisualBrush.Visual>
+                                        <Border Background="Black" CornerRadius="{DynamicResource ControlCornerRadiusSmall}"
+                                                Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Grid.OpacityMask>
+                            <Rectangle Fill="{TemplateBinding Background}" Stroke="Red" />
+                            <Rectangle Name="PART_Track" Margin="0" Fill="Green"/>
                             <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                 <Grid>
-                                    <Rectangle Fill="{TemplateBinding Foreground}" Height="24"/>
+                                    <Rectangle x:Name="Slider"/>
                                     <Grid x:Name="Animation" Visibility="Hidden">
-                                        <Rectangle Fill="{TemplateBinding Background}" Margin="0,0,50,0" Height="24">
+                                        <Rectangle x:Name="LeftCover" Margin="0,0,50,0" Opacity="0.08">
                                             <Rectangle.RenderTransform>
                                                 <ScaleTransform x:Name="HiderPreTransform" ScaleX="0"/>
                                             </Rectangle.RenderTransform>
                                         </Rectangle>
-                                        <Rectangle Fill="{TemplateBinding Background}" RenderTransformOrigin="1, 0" Margin="50,0,0,0" Height="24" >
+                                        <Rectangle x:Name="RightCover" RenderTransformOrigin="1, 0" Margin="50,0,0,0" Opacity="0.08">
                                             <Rectangle.RenderTransform>
                                                 <ScaleTransform x:Name="HiderPostTransform" ScaleX="1" />
                                             </Rectangle.RenderTransform>
@@ -38,6 +45,16 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Rectangle.Fill" Value="{DynamicResource DarkControlBorderBrush}" TargetName="LeftCover" />
+                            <Setter Property="Rectangle.Fill" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="RightCover" />
+                            <Setter Property="Rectangle.Fill" Value="{DynamicResource AccentBackgroundBrush}" TargetName="Slider" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="Rectangle.Fill" Value="{DynamicResource ControlBorderBrush}" TargetName="LeftCover" />
+                            <Setter Property="Rectangle.Fill" Value="{DynamicResource ControlBackgroundBrush}" TargetName="RightCover" />
+                            <Setter Property="Rectangle.Fill" Value="{DynamicResource AccentBackgroundBrush}" TargetName="Slider" />
+                        </DataTrigger>
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="Animation" Property="Visibility" Value="Visible" />
                             <Trigger.EnterActions>
