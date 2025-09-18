@@ -2,39 +2,81 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ControlTemplate x:Key="NumericBoxTemplate" TargetType="{x:Type TextBox}">
-        <Border x:Name="HoverBg" Padding="3" Style="{DynamicResource HighlightBg}">
-            <ScrollViewer x:Name="PART_ContentHost"
-                          VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
-                          HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"/>
-        </Border>
+        <Grid>
+            <Border x:Name="HoverBg" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.08"/>
+            <Border x:Name="SelectedBg" BorderThickness="1" Background="Transparent" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0"/>
+            <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                    HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" Margin="3" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="SelectedBg" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="SelectedBg" />
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" Value="0.16" TargetName="HoverBg" />
+                <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+        
     </ControlTemplate>
 
-    <Style TargetType="{x:Type LongNumericBox}">
+    <Style TargetType="{x:Type LongNumericBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type UlongNumericBox}">
+    <Style TargetType="{x:Type UlongNumericBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type NullIntNumericBox}">
+    <Style TargetType="{x:Type NullIntNumericBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type DoubleNumericBox}">
+    <Style TargetType="{x:Type DoubleNumericBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlIdleBackgroundBrush}"/>
         <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
