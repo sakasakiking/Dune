@@ -92,7 +92,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="HoverBg"
                                                         Storyboard.TargetProperty="Opacity"
-                                                        To="0.2" Duration="0:0:0.3">
+                                                        To="0.2" Duration="0:0:0.2">
                                         </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -102,7 +102,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="HoverBg" 
                                                         Storyboard.TargetProperty="Opacity"
-                                                        To="0.16" Duration="0:0:0.3">
+                                                        To="0.16" Duration="0:0:0.2">
                                         </DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>

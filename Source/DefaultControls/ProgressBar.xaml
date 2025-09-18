@@ -23,8 +23,8 @@
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </Grid.OpacityMask>
-                            <Rectangle Fill="{TemplateBinding Background}" Stroke="Red" />
-                            <Rectangle Name="PART_Track" Margin="0" Fill="Green"/>
+                            <Rectangle Fill="{TemplateBinding Background}" />
+                            <Rectangle Name="PART_Track" Margin="0" Fill="Transparent"/>
                             <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                 <Grid>
                                     <Rectangle x:Name="Slider"/>
