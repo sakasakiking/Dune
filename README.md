@@ -2,23 +2,21 @@
 
 # Dune
 ### Now you can switch Dune to Dune Night！
-Hi guys, Dune is a dual color scheme theme (Light and Dark), super clean and simple (This's what I want it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. If you're tired of the dark themes, it might let you have a different option.
-
-## what's mainly different points (May change in the future)
-- **1**: Can not change the global backgound instead of light grey one.
-- **2**: Move the notification panel under the notificaiton icon at the top right of the window.
-- **3**: Remove the plugin icons （beside the system buttons at the top right of the window）.
-- **4**: Using some 3D icons.
+Hi guys, Dune is a dual color mode theme (Light and Dark), super clean and simple (This's what I hope it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. 
 
 ## Preparation and Settings
 It's using ``Segoe Fluent Icons`` for the theme, you might need to download the [Segoe Fluent Icons](https://learn.microsoft.com/zh-cn/windows/apps/design/downloads/#fonts)
+
 ## Screenshots
 ![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots01.jpg)
 ![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots02.jpg)
 ![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots03.jpg)
+![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots04.jpg)
+![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots05.jpg)
+![Screenshot](https://raw.githubusercontent.com/sakasakiking/Dune/refs/heads/main/Screenshots/Screenshots06.jpg)
 
 ## Recommended Playnite settings to avoid issues and reach the visual effect shown in the screenshots
-Making the new roles...
+Making...
 
 ## Support
 - If you found a bug or want to request a feature, please open a new issue in the [Issues Tracker](https://github.com/sakasakiking/FusionX/issues)
@@ -44,6 +42,7 @@ If you like what I've done...
 <a href='https://ko-fi.com/sakasaki30' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a> 
 
 **Special Thanks** 
+- Daryl Hornsby
 - adrian5683
 
 
