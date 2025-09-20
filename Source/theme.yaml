@@ -1,10 +1,10 @@
 ThemeApiVersion: 2.8.0
-Id: Dune_Local_267ceefe-e1d4-4817-ac57-0b4ae5b7f884
-Name: Dune_Local
+Id: Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884
+Name: Dune
 Author: sakasaki
-Version: 0.9.1
+Version: 0.9.2
 Links:
-- Name: GitHub 111
+- Name: GitHub
   Url: https://github.com/sakasakiking/Dune
 - Name: Issues Tracker
   Url: https://github.com/sakasakiking/FusionX/issues

@@ -16,4 +16,12 @@ Packages:
     - New layouts, New UI
     - Fixed lots of issues.
     - Continuing to optimize the theme...
+  - Version: 0.9.2
+    RequiredApiVersion: 2.8.0
+    ReleaseDate: 2025-09-21
+    PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_9_2.pthm
+    Changelog: 
+    - Fixed lots of UI issues.
+    - Enhanced the UI performance.
+    - Updated the screenshots.  
 
