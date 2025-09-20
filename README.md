@@ -1,7 +1,7 @@
 ![DownloadCount](https://img.shields.io/github/downloads/sakasakiking/Dune/total.svg)
 
 # Dune
-### Now you can switch Dune to Dune Night！
+### Now you can switch Dune to Dune Night！(ThemeModifier needed)
 Hi guys, Dune is a dual color mode theme (Light and Dark), super clean and simple (This's what I hope it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. 
 
 ## Preparation and Settings
