@@ -96,7 +96,9 @@
                                                                             </RadialGradientBrush.GradientStops>
                                                                         </RadialGradientBrush>
                                                                     </Grid.OpacityMask>
-                                                                    <FadeImage x:Name="PART_ImageBackground" Stretch="UniformToFill" />
+                                                                    <FadeImage x:Name="PART_ImageBackground" Stretch="UniformToFill" HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                                                            FlowDirection="LeftToRight" />
                                                                 </Grid>
                                                             </Grid>
                                                             <!--Game background image Ends-->
@@ -281,7 +283,8 @@
                                                                     <Border Background="Transparent" BorderBrush="White" BorderThickness="2"
                                                                             CornerRadius="{DynamicResource ControlCornerRadius}"
                                                                             Visibility="{Binding ElementName=VideoThumbnail, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                                                                    <RadioButton Name="VideoThumbnail" GroupName="ThumbnailControl" IsChecked="True"
+                                                                    <RadioButton Name="VideoThumbnail" GroupName="ThumbnailControl"
+                                                                            IsChecked="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsVideoPlaying}"
                                                                             Command="{Binding ElementName=ExtraMetadataLoader_VideoLoaderControl, Path=Content.VideoPlayCommand}"
                                                                             Style="{DynamicResource TransparentRadioButton}" />
                                                                 </Grid>
@@ -468,7 +471,7 @@
                                                                     <Setter Property="Margin" Value="0,12,12,0" />
                                                                     <Setter Property="VerticalAlignment" Value="Top" />
                                                                     <Setter Property="HorizontalAlignment" Value="Left" />
-                                                                    <Setter Property="Opacity" Value="0.4" />
+                                                                    <Setter Property="Opacity" Value="0.6" />
                                                                     <Setter Property="MaxWidth" Value="140" />
                                                                     <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
                                                                 </Style>
@@ -636,7 +639,7 @@
                                                                         <Setter Property="Margin" Value="0,0,0,0" />
                                                                         <Setter Property="VerticalAlignment" Value="Top" />
                                                                         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-                                                                        <Setter Property="Opacity" Value="0.4" />
+                                                                        <Setter Property="Opacity" Value="0.6" />
                                                                     </Style>
                                                                     <Style TargetType="Image">
                                                                         <Setter Property="VerticalAlignment" Value="Center" />

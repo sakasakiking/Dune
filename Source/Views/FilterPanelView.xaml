@@ -84,7 +84,7 @@
                             <DockPanel Margin="16,16,16,0" DockPanel.Dock="Top">
                                 <Button x:Name="PART_ButtonDeleteFilter"
                                         Content="&#xe107;" Style="{DynamicResource FilterPresetButtonAction}" />
-                                <Button x:Name="PART_ButtonRenameFilter"
+                                <Button x:Name="PART_ButtonRenameFilter" Margin="4,0,4,0"
                                         Content="&#xe104;" Style="{DynamicResource FilterPresetButtonAction}"/>
                                 <Button x:Name="PART_ButtonSaveFilter"
                                         Content="&#xe105;" Style="{DynamicResource FilterPresetButtonAction}" />

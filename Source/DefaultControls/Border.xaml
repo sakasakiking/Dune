@@ -38,7 +38,7 @@
 
             <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
                 <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" />
-                <Setter Property="Opacity" Value="1" />
+                <Setter Property="Opacity" Value="0.6" />
             </DataTrigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.6" />

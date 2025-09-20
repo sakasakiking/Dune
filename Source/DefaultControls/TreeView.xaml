@@ -28,11 +28,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource BaseStyle}">
+    <Style TargetType="{x:Type TreeViewItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="0,0,0,0" />
         <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">

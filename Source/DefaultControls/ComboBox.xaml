@@ -27,8 +27,7 @@
                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                                         <DockPanel LastChildFill="False" Background="Transparent">
                                             <Viewbox DockPanel.Dock="Right" Width="10" Margin="0,0,12,0">
-                                                <TextBlock Text="&#xf08e;" Style="{DynamicResource IconFontStyle}" Foreground="{DynamicResource SubtalBrush}"
-                                                        FontSize="{DynamicResource FontSizeSmaller}" />
+                                                <TextBlock Text="&#xf08e;" Style="{DynamicResource IconFontStyle}" FontSize="{DynamicResource FontSizeSmaller}" Opacity="0.6"/>
                                             </Viewbox>
                                         </DockPanel>
                                     </ControlTemplate>
@@ -38,7 +37,7 @@
                                     Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                     ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
                             <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,28,0" Focusable="True"
-                                    BorderThickness="0" Background="{TemplateBinding Background}" IsReadOnly="{TemplateBinding IsReadOnly}" Foreground="{DynamicResource IdleBrush}">
+                                    BorderThickness="0" Background="{TemplateBinding Background}" IsReadOnly="{TemplateBinding IsReadOnly}" >
                             </TextBox>
                             <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"

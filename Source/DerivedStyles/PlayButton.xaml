@@ -80,7 +80,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="DetailPlayButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+    <Style x:Key="DetailPlayButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="48"/>
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}"/>
         <Setter Property="FontWeight" Value="Bold"/>
@@ -103,7 +103,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="True" />
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="Grid" Value="0.5" />
+                            <Setter Property="Opacity" TargetName="Grid" Value="0.6" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -117,7 +117,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="DetailPlayButtonRightPart" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+    <Style x:Key="DetailPlayButtonRightPart" TargetType="{x:Type Button}" >
         <Setter Property="FontSize" Value="{DynamicResource FontSize}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets"/>
@@ -208,6 +208,9 @@
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
             </Trigger>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

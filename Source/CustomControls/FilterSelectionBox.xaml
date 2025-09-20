@@ -9,8 +9,7 @@
             <Border x:Name="SelectedBg" CornerRadius="{DynamicResource ControlCornerRadius}" Opacity="0.2" BorderThickness="{DynamicResource ControlBorderThickness}" Background="Transparent"/>
             <DockPanel>
                 <!--Arrow-->
-                <TextBlock Text="&#xf08e;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="{DynamicResource FontSizeSmaller}"
-                        Foreground="{DynamicResource SubtalBrush}" Margin="0,0,8,0" DockPanel.Dock="Right" VerticalAlignment="Center" />
+                <TextBlock Text="&#xf08e;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="{DynamicResource FontSizeSmaller}" Margin="0,0,8,0" DockPanel.Dock="Right" VerticalAlignment="Center" Opacity="0.6"/>
 
                 <TextBlock x:Name="PART_TextFilterString" Style="{StaticResource BaseTextBlockStyle}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch"
                         VerticalAlignment="Center" DockPanel.Dock="Left" Margin="8,0,20,0" />
