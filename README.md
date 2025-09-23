@@ -1,8 +1,7 @@
 ![DownloadCount](https://img.shields.io/github/downloads/sakasakiking/Dune/total.svg)
 
 # Dune
-### Now you can switch Dune to Dune Night！
-### [How to play with Dune?](https://github.com/sakasakiking/Dune/wiki/How-to-play-with-Dune-Theme%3F)
+### Now you can switch Dune to Dune Night！ [How to play with Dune?](https://github.com/sakasakiking/Dune/wiki/How-to-play-with-Dune-Theme%3F)
 Hi guys, Dune is a dual color mode theme (Light and Dark), super clean and simple (This's what I hope it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. 
 ## Preparation and Settings
 It's using ``Segoe Fluent Icons`` for the theme, you might need to download the [Segoe Fluent Icons](https://learn.microsoft.com/zh-cn/windows/apps/design/downloads/#fonts)
