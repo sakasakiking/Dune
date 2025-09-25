@@ -205,12 +205,13 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
-            </Trigger>
             <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
                 <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
             </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="{DynamicResource PlayButtonBrush}" />
+            </Trigger>
+
         </Style.Triggers>
     </Style>
 

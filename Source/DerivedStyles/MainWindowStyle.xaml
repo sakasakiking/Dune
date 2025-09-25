@@ -56,7 +56,7 @@
                             <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding HasChildWindow, Mode=OneWay, RelativeSource={RelativeSource Self}, TargetNullValue=False}" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" TargetName="WindowBorder"/>
+                            <Setter Property="BorderBrush" Value="red" TargetName="WindowBorder"/>
                             <Setter Property="Opacity" Value="0.4" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>

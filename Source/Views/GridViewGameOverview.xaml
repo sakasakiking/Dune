@@ -900,7 +900,7 @@
                                         Content="&#xe106;" 
                                         Width="32" Height="32"
                                         Background="{DynamicResource ControlIdleBackgroundBrush}"
-                                        Style="{DynamicResource LightFilledRoundButton}"
+                                        Style="{DynamicResource IconfontButton}"
                                         Command="{MainViewModel CloseGameSideBarCommand}"
                                         Margin="16,16,16,0" />
 

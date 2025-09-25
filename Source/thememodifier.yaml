@@ -13,6 +13,16 @@ Constants:
     - GameDetailInfoWidth(200,800): 'Maximum width of details'
   
     - "General Settings"
-    - ShowIconTextOnLink: 'Show full link name next to the icon'
+    - ShowIconTextOnLink: 'Show full link name next to the icon'  
+  
+    - "Grid View Settings"
+  
+    - GridViewGameCoverShowFavorite: 'Show favorite icon on game cover'
+    - GridViewGameCoverShowPlatformBanner: 'Show platform banners ("ThemeExtras" extension needed)'
+    - GridViewGameCoverUseRoundedCorners: 'Use rounded corners on game covers'
+    - GridViewGameCoverShowShineAnimation: 'Show luster on game cover when hover'
+    - GridViewGameCoverShowHighlightBorder: 'Show luster on the border of game cover when selected'
+    - GridViewGameCoverShowCompletionStatus: 'Display completion Status under game cover'
+    - GridViewGameCoverShowPlayedTime: 'Display played time under game covers'
   
   

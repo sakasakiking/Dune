@@ -11,6 +11,7 @@
     </Style>
 
     <Style x:Key="PopupBorder" TargetType="Border">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
         <Setter Property="Tag" Value="{DynamicResource ThemeDarkStyle}" />

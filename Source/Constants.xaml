@@ -16,9 +16,19 @@
         <SolidColorBrush x:Key="GridViewItemMaskBackgroundBrush" Color="#1e1e1e" />
         <CornerRadius x:Key="GridViewCoverCornerRadius">6</CornerRadius>
         <CornerRadius x:Key="GridViewCoverGridBackgroundDisabledCornerRadius">8,8,8,8</CornerRadius>
-        <CornerRadius x:Key="GridViewSelectionBorderCornerRadius">8</CornerRadius>
+        <CornerRadius x:Key="GridViewSelectionBorderCornerRadius">16</CornerRadius>
 
-        <!--ThemeModifier Theme-->
+        <!--ThemeModifier Grid View Settings-->
+        <sys:Boolean x:Key="GridViewGameCoverUseRoundedCorners">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewGameCoverShowPlatformBanner">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewGameCoverShowFavorite">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewGameCoverShowShineAnimation">True</sys:Boolean>
+        <sys:Boolean x:Key="GridViewGameCoverShowHighlightBorder">True</sys:Boolean>
+        <Visibility x:Key="GridViewGameCoverShowCompletionStatus">Visible</Visibility>
+        <Visibility x:Key="GridViewGameCoverShowPlayedTime">Visible</Visibility>
+
+
+    <!--ThemeModifier Theme-->
         <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#EBEBEB" />
         <SolidColorBrush x:Key="DarkWindowBackgroundBrush" Color="#141414" />
 
@@ -27,6 +37,9 @@
     
         <SolidColorBrush x:Key="ControlBorderBrush" Color="#000000" />
         <SolidColorBrush x:Key="DarkControlBorderBrush" Color="#FFFFFF" />
+
+        <SolidColorBrush x:Key="ControlAccentBorderBrush" Color="#000000" />
+        <SolidColorBrush x:Key="DarkControlAccentBorderBrush" Color="#FFFFFF" />
 
         <SolidColorBrush x:Key="PopupSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
     

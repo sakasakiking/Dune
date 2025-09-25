@@ -10,26 +10,93 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <StackPanel Margin="{Settings ItemSpacingMargin}">
-                        <Grid Background="{DynamicResource GridItemBackgroundBrush}"
-                              x:Name="ItemGrid">
+                        <Grid x:Name="ItemGrid" Background="{DynamicResource GridItemBackgroundBrush}">
+
                             <ContentPresenter />
-                            <Border x:Name="SelectionBorder" BorderThickness="4"   BorderBrush="Transparent"
-                                    Margin="-4"/>
+                            <Border x:Name="SelectedGlossHighlightBorder" BorderThickness="2" Margin="-4" Visibility="Collapsed" Style="{DynamicResource GlossHighlightBorder}"
+                                    Tag="{DynamicResource GridViewGameCoverUseRoundedCorners}">
+                            </Border>
+                            <Border x:Name="SelectedBorder" BorderThickness="2" Margin="-4" Visibility="Collapsed" Style="{DynamicResource SelectedCoverBorder}"
+                                    Tag="{DynamicResource GridViewGameCoverUseRoundedCorners}">
+                                <TextBlock x:Name="ThemeSwitchBorder" Visibility="Collapsed" Tag="{DynamicResource ThemeDarkStyle}" />
+                            </Border>
+                            <TextBlock Name="EnableHighlightBorder" Visibility="Collapsed" Tag="{DynamicResource GridViewGameCoverShowHighlightBorder}" />
                         </Grid>
-                        <TextBlock Text="{Binding DisplayName}"
-                                   Style="{DynamicResource BaseTextBlockStyle}"                                                                   
-                                   TextAlignment="Center" TextTrimming="CharacterEllipsis"
-                                   VerticalAlignment="Bottom"
-                                   Padding="2,8,2,8"
-                                   Width="{Settings GridItemWidth}" 
-                                   Visibility="{Settings ShowNamesUnderCovers}" />
+                        <StackPanel Margin="0,8,0,4">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=GameName, Path=Visibility}" Value="Collapsed" />
+                                                <Condition Binding="{Binding ElementName=PlayingStatus, Path=Visibility}" Value="Collapsed" />
+                                                <Condition Binding="{Binding ElementName=PlayedTime, Path=Visibility}" Value="Collapsed" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBlock x:Name="GameName" Text="{Binding DisplayName}" FontSize="{DynamicResource FontSizeSmall}" Style="{DynamicResource BaseTextBlockStyle}"
+                                    TextAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Bottom" Width="{Settings GridItemWidth}"
+                                    Visibility="{Settings ShowNamesUnderCovers}" Margin="0,0,0,4" />
+                            <!--Time Played-->
+                            <DockPanel x:Name="PlayedTime" Width="{Settings GridItemWidth}" Visibility="{DynamicResource GridViewGameCoverShowPlayedTime}" Margin="0,0,0,4">
+                                <TextBlock Text="&#xe121;" FontSize="{DynamicResource FontSizeSmall}" TextAlignment="Left" Margin="0,0,0,0"
+                                        Foreground="{DynamicResource PromptBrush}" Style="{StaticResource IconFontStyle}" />
+                                <TextBlock Text="{Binding Playtime, Mode=OneWay, Converter={StaticResource PlayTimeToStringConverter}, IsAsync=True}"
+                                        Foreground="{DynamicResource GridViewCoverSubtitleBrush}" FontSize="{DynamicResource FontSizeSmall}"
+                                        Style="{DynamicResource BaseTextBlockStyle}" TextAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
+                                        Margin="4,0,0,0" />
+                            </DockPanel>
+                            <!--Playing Status-->
+                            <DockPanel x:Name="PlayingStatus" Width="{Settings GridItemWidth}" Tag="{DynamicResource GridViewGameCoverShowCompletionStatus}" Margin="0,0,0,4">
+                                <DockPanel.Style>
+                                    <Style TargetType="DockPanel">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CompletionStatus.Name, TargetNullValue='', FallbackValue=''}" Value=''>
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="Collapsed">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DockPanel.Style>
+                                <TextBlock Text="&#xe129;" FontSize="{DynamicResource FontSizeSmall}" TextAlignment="Left" Margin="0,0,0,0"
+                                        Foreground="{DynamicResource PromptBrush}" Style="{StaticResource IconFontStyle}" />
+
+                                <TextBlock x:Name="CompletionStatusName" Text="{Binding CompletionStatus.Name, Mode=OneWay, IsAsync=True}" TextAlignment="Left"
+                                        TextTrimming="CharacterEllipsis" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                                        Foreground="{DynamicResource GridViewCoverSubtitleBrush}" FontSize="{DynamicResource FontSizeSmall}" VerticalAlignment="Center"
+                                        Margin="4,0,0,0" Style="{DynamicResource BaseTextBlockStyle}" />
+                            </DockPanel>
+                        </StackPanel>
+
+
                     </StackPanel>
-                    
+
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource AccentSelectedBrush}" TargetName="SelectionBorder"/>
-                            <Setter Property="Canvas.ZIndex" Value="990" />
-                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=EnableHighlightBorder, Path=Tag}" Value="True" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedGlossHighlightBorder" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=EnableHighlightBorder, Path=Tag}" Value="False" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                        </MultiDataTrigger>
+                        <!--<Trigger Property="IsSelected" Value="True">
+            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+            <Setter Property="Canvas.ZIndex" Value="990" />
+        </Trigger>-->
                         <DataTrigger Binding="{Settings ShowGridItemBackground}" Value="False">
                             <Setter Property="Background" Value="Transparent" TargetName="ItemGrid" />
                         </DataTrigger>
@@ -37,5 +104,54 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="GlossHighlightBorder" TargetType="Border">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#66FFFFFF" Offset="0" />
+                    <GradientStop Color="#66FFFFFF" Offset="0" />
+                    <GradientStop Color="#E0FFFFFF" Offset="0.2" />
+                    <GradientStop Color="#66FFFFFF" Offset="0.6" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag, Mode=OneWay}" Value="True">
+                <Setter Property="CornerRadius" Value="{DynamicResource GridViewSelectionBorderCornerRadius}" />
+            </DataTrigger>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever">
+                        <DoubleAnimation Storyboard.TargetProperty="BorderBrush.(GradientBrush.GradientStops)[1].(GradientStop.Offset)" From="-1.4" To="1.2" Duration="0:0:3.5">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseInOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetProperty="BorderBrush.(GradientBrush.GradientStops)[2].(GradientStop.Offset)" From="-1.2" To="1.4" Duration="0:0:3.5">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseInOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SelectedCoverBorder" TargetType="Border">
+        <Setter Property="CornerRadius" Value="0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag, Mode=OneWay}" Value="True">
+                <Setter Property="CornerRadius" Value="{DynamicResource GridViewSelectionBorderCornerRadius}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=ThemeSwitchBorder, Path=Tag, Mode=OneWay}" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkControlAccentBorderBrush}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=ThemeSwitchBorder, Path=Tag, Mode=OneWay}" Value="False">
+                <Setter Property="BorderBrush" Value="{DynamicResource ControlAccentBorderBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
