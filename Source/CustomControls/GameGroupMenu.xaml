@@ -9,10 +9,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GameGroupMenu}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="16" MinWidth="200" Padding="8"
+                    <Border Style="{DynamicResource PopupBorder}" CornerRadius="{DynamicResource ControlCornerRadiusLarge}" MinWidth="200" Padding="8"
                             Grid.IsSharedSizeScope="True">
                         <ItemsPresenter />
                     </Border>

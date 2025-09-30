@@ -89,18 +89,17 @@
                                 </StackPanel>
 
                                 <!--Game Not Installed-->
-                                <Border x:Name="TextGameName" Background="{DynamicResource ControlDarkHoverBackgroundBrush}"
-                                        CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}" Visibility="Collapsed">
+                                <Border x:Name="TextGameName" CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}" Visibility="Collapsed">
                                     <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" Margin="8" Style="{StaticResource BaseTextBlockStyle}"
                                             TextTrimming="CharacterEllipsis" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
 
-                                <Border x:Name="BorderMouseOver" Background="{DynamicResource GridViewItemHoverBackgroundBrush}"
+                                <Border x:Name="BorderMouseOver" Background="{DynamicResource DarkControlBackgroundBrush}"
                                         CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}" Opacity="0" />
 
-                                <Border x:Name="SelectedGameBorder" Background="{DynamicResource GridViewItemSelectedBackgroundBrush}"
+                                <Border x:Name="SelectedGameBorder" Background="{DynamicResource GridViewGameCoverSelectedBackgroundBrush}"
                                         CornerRadius="{Binding ElementName=Mask, Path=CornerRadius}" Opacity="0">
-                                    <Grid>
+                                    <Grid Margin="4">
                                         <Grid.Style>
                                             <Style TargetType="Grid">
                                                 <Style.Triggers>
@@ -114,11 +113,11 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Grid.Style>
-                                        <Rectangle Stroke="#29FFFFFF" StrokeDashArray="6,3" StrokeThickness="1" RadiusX="{Binding ElementName=Mask, Path=CornerRadius.TopLeft}"
+                                        <Rectangle Stroke="#3DFFFFFF" StrokeDashArray="6,3" StrokeThickness="1" RadiusX="{Binding ElementName=Mask, Path=CornerRadius.TopLeft}"
                                                 RadiusY="{Binding ElementName=Mask, Path=CornerRadius.TopLeft}" />
                                         <Canvas IsHitTestVisible="False">
                                             <Line X1="0" Y1="0" X2="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
-                                                    Y2="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" Stroke="#29FFFFFF" StrokeThickness="1" />
+                                                    Y2="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" Stroke="#3DFFFFFF" StrokeThickness="1" />
                                         </Canvas>
                                     </Grid>
                                 </Border>
@@ -194,7 +193,7 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="BorderMouseOver" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2">
+                                        <DoubleAnimation Storyboard.TargetName="BorderMouseOver" Storyboard.TargetProperty="Opacity" To="0.24" Duration="0:0:0.2">
                                             <DoubleAnimation.EasingFunction>
                                                 <QuadraticEase EasingMode="EaseInOut" />
                                             </DoubleAnimation.EasingFunction>

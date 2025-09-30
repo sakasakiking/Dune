@@ -215,7 +215,11 @@
         <GradientStop Color="#FFFFFF" Offset="0"/>
         <GradientStop Color="#EFEFEF" Offset="1"/>
     </LinearGradientBrush>
-    
+
+    <LinearGradientBrush x:Key="GridViewGameCoverSelectedBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#CC000000" Offset="0.3" />
+        <GradientStop Color="#99000000" Offset="1" />
+    </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="LightTagBrush" StartPoint="0.5,0" EndPoint="0.5,1" >
         <GradientStop Color="#33FFFFFF" Offset="0.8"/>

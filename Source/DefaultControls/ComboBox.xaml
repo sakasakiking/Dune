@@ -16,8 +16,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
-                        <Border x:Name="HoverBg" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Opacity="0.08"
-                                CornerRadius="{DynamicResource ControlCornerRadius}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" />
+                        <Border x:Name="HoverBg" Style="{DynamicResource HoverBg}" Opacity="0.08" />
                         <!--<Border x:Name="SelectedBg" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Opacity="0"
                                 CornerRadius="{DynamicResource ControlCornerRadius}" Height="{TemplateBinding Height}" Background="Transparent" />-->
                         <Grid>
@@ -27,7 +26,7 @@
                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                                         <DockPanel LastChildFill="False" Background="Transparent">
                                             <Viewbox DockPanel.Dock="Right" Width="10" Margin="0,0,12,0">
-                                                <TextBlock Text="&#xf08e;" Style="{DynamicResource IconFontStyle}" FontSize="{DynamicResource FontSizeSmaller}" Opacity="0.6"/>
+                                                <TextBlock Text="&#xf08e;" Style="{DynamicResource IconFontStyle}" FontSize="{DynamicResource FontSizeSmaller}" Opacity="0.6" />
                                             </Viewbox>
                                         </DockPanel>
                                     </ControlTemplate>
@@ -37,7 +36,7 @@
                                     Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                     ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
                             <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,28,0" Focusable="True"
-                                    BorderThickness="0" Background="{TemplateBinding Background}" IsReadOnly="{TemplateBinding IsReadOnly}" >
+                                    BorderThickness="0" Background="{TemplateBinding Background}" IsReadOnly="{TemplateBinding IsReadOnly}">
                             </TextBox>
                             <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
@@ -51,7 +50,7 @@
                                 </Grid>
                             </Popup>
                         </Grid>
-                    </Grid>                    
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
                             <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
@@ -98,18 +97,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-            </DataTrigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type ComboBoxItem}">

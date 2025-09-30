@@ -44,11 +44,10 @@
                             <!--Time Played-->
                             <DockPanel x:Name="PlayedTime" Width="{Settings GridItemWidth}" Visibility="{DynamicResource GridViewGameCoverShowPlayedTime}" Margin="0,0,0,4">
                                 <TextBlock Text="&#xe121;" FontSize="{DynamicResource FontSizeSmall}" TextAlignment="Left" Margin="0,0,0,0"
-                                        Foreground="{DynamicResource PromptBrush}" Style="{StaticResource IconFontStyle}" />
+                                           Style="{StaticResource IconFontStyle}" />
                                 <TextBlock Text="{Binding Playtime, Mode=OneWay, Converter={StaticResource PlayTimeToStringConverter}, IsAsync=True}"
-                                        Foreground="{DynamicResource GridViewCoverSubtitleBrush}" FontSize="{DynamicResource FontSizeSmall}"
-                                        Style="{DynamicResource BaseTextBlockStyle}" TextAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
-                                        Margin="4,0,0,0" />
+                                           FontSize="{DynamicResource FontSizeSmall}" TextAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,0,0,0"
+                                        Style="{DynamicResource BaseTextBlockStyle}" />
                             </DockPanel>
                             <!--Playing Status-->
                             <DockPanel x:Name="PlayingStatus" Width="{Settings GridItemWidth}" Tag="{DynamicResource GridViewGameCoverShowCompletionStatus}" Margin="0,0,0,4">
@@ -66,12 +65,12 @@
                                     </Style>
                                 </DockPanel.Style>
                                 <TextBlock Text="&#xe129;" FontSize="{DynamicResource FontSizeSmall}" TextAlignment="Left" Margin="0,0,0,0"
-                                        Foreground="{DynamicResource PromptBrush}" Style="{StaticResource IconFontStyle}" />
+                                           Style="{StaticResource IconFontStyle}" />
 
                                 <TextBlock x:Name="CompletionStatusName" Text="{Binding CompletionStatus.Name, Mode=OneWay, IsAsync=True}" TextAlignment="Left"
-                                        TextTrimming="CharacterEllipsis" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
-                                        Foreground="{DynamicResource GridViewCoverSubtitleBrush}" FontSize="{DynamicResource FontSizeSmall}" VerticalAlignment="Center"
-                                        Margin="4,0,0,0" Style="{DynamicResource BaseTextBlockStyle}" />
+                                           TextTrimming="CharacterEllipsis" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" 
+                                           FontSize="{DynamicResource FontSizeSmall}" VerticalAlignment="Center"
+                                           Margin="4,0,0,0" Style="{DynamicResource BaseTextBlockStyle}" />
                             </DockPanel>
                         </StackPanel>
 
