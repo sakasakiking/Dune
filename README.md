@@ -2,7 +2,8 @@
 
 # Dune
 
-### You might need to know before use, the dark mode still has issues due to the restrctions of the theme itself. And it won't be supported untill Playnite 11
+### You might need to know before use, the dark mode still has issues due to the restrctions of the theme itself. And it won't be supported untill Playnite 11. Sorry for it.
+
 ### Now you can switch Dune to Dune Night！ [How to play with Dune?](https://github.com/sakasakiking/Dune/wiki/How-to-play-with-Dune-Theme%3F)
 Hi guys, Dune is a dual color mode theme (Light and Dark), super clean and simple (This's what I hope it to be)Theme for [Playnite](https://github.com/JosefNemec/Playnite) Desktop Mode. 
 ## Preparation and Settings
