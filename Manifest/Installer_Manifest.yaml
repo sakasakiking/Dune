@@ -32,3 +32,11 @@ Packages:
     - Update game cover list in Grid overview
     - Enhanced the UI performance.
     - Add recommended settings
+  - Version: 0.9.4
+    RequiredApiVersion: 2.8.0
+    ReleaseDate: 2026-05-26
+    PackageUrl: https://github.com/sakasakiking/Dune/releases/download/Latest/Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884_0_9_4.pthm
+    Changelog: 
+    - Fix UI issues -RadioButton-, -CheckBox-, -ComboBox- and other tiny issues.
+    - There're still some issues within dark mode that might not be fixed due to the restrictions of theme itself.
+    - Thanks for your support and understanding. 

@@ -2,15 +2,14 @@ ThemeApiVersion: 2.8.0
 Id: Dune_267ceefe-e1d4-4817-ac57-0b4ae5b7f884
 Name: Dune
 Author: sakasaki
-Version: 0.9.3
+Version: 0.9.4
 Links:
 - Name: GitHub
   Url: https://github.com/sakasakiking/Dune
 - Name: Recommended Settings
   Url: https://github.com/sakasakiking/Dune/wiki/How-to-play-with-Dune-Theme%3F
 - Name: Issues Tracker
-  Url: https://github.com/sakasakiking/FusionX/issues
+  Url: https://github.com/sakasakiking/Dune/issues
 - Name: Support (Discord)
   Url: https://discord.com/channels/365863063296933888/808419347105447957
-- Name: Ko-fi (Tips and Donations)
-  Url: https://ko-fi.com/sakasaki30
+

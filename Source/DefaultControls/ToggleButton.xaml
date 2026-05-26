@@ -13,24 +13,24 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Grid>
-                        <Border x:Name="HoverBg" Style="{DynamicResource HoverBg}" Opacity="0"/>
-                        <Border x:Name="SelectedBg" Style="{DynamicResource SelectedBg}" Opacity="0" />
+                        <Border x:Name="HoverBg" Style="{DynamicResource HoverBg}" Opacity="0.08"/>
+                        <!-- <Border x:Name="SelectedBg" Style="{DynamicResource SelectedBg}" Opacity="0" /> -->
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
                     </Grid>
 
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="SelectedBg" />
+                            <!-- <Setter Property="BorderBrush" Value="{DynamicResource DarkControlBorderBrush}" TargetName="SelectedBg" /> -->
                             <Setter Property="Background" Value="{DynamicResource DarkControlBackgroundBrush}" TargetName="HoverBg" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="False">
-                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="SelectedBg" />
+                            <!-- <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" TargetName="SelectedBg" /> -->
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" TargetName="HoverBg" />
                         </DataTrigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Opacity" Value="0.16" TargetName="HoverBg"/>
-                            <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg"/>
+                            <!-- <Setter Property="Opacity" Value="0.16" TargetName="SelectedBg"/> -->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
